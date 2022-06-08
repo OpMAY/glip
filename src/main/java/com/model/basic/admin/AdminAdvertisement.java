@@ -1,4 +1,4 @@
-package com.model.basic;
+package com.model.basic.admin;
 
 import lombok.Data;
 

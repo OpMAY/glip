@@ -1,6 +1,6 @@
 package com.util.Encryption;
 
-import com.model.User;
+import com.model.basic.User;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;

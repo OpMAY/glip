@@ -1,14 +1,16 @@
-package com.model.basic.product;
+package com.model.basic;
 
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class Product {
     private int no;
     private String title;
     private String subtitle;
-    private String img;
-    private ProductCategory category;
+    private List<String> img;
+    private String category;
     private int price;
     private int sales;
     private String link;

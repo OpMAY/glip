@@ -5,7 +5,6 @@ import lombok.Data;
 @Data
 public class Alarm {
     private int no;
-    private AlarmType type;
     private AlarmCategory category;
     private String content;
     private String reg_date;

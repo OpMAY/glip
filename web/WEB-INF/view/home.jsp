@@ -26,9 +26,6 @@
 <body style="margin-top: 10vh; margin-bottom: 10vh;">
 <h1>Home</h1>
 <br/>
-<form action="/" method="post">
-    <button type="submit">POST HOME</button>
-</form>
 <br/>
 <div id="scroll" style="overflow: scroll; width: 200px;max-width: 100px;">
     asdsadasdasdsadasdasdsadasdasdsadasdasdsadasdasdsadasdasdsadasdasdsadasdasdsadasdasdsadasdasdsadasdasdsadasdasdsadasdasdsadasdasdsadasdasdsadasdasdsadasdasdsadasd
@@ -267,7 +264,7 @@
 <script>
     $(document).ready(function () {
         /*TODO Ajax Sample*/
-        sample();
+        // sample();
         //errorSample();
         /*TODO Ajax Sample End*/
 

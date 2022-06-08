@@ -1,4 +1,3 @@
-<%@ page import="com.model.User" %>
 <%@ page import="java.util.List" %>
 <%--
   Created by IntelliJ IDEA.
@@ -10,10 +9,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tf" tagdir="/WEB-INF/tags" %>
-<%
-    List<User> users = (List<User>) request.getAttribute("users");
-    request.setAttribute("users", users);
-%>
 <html>
 <head>
     <title>Title</title>

@@ -20,4 +20,12 @@ public class Constant {
     }
 
     public static final String DATABASE_SOURCE = "LOCAL1";
+
+    /* User Suspend Days Constant */
+    public static final int SUSPEND_1WEEK = 7;
+    public static final int SUSPEND_1MONTH = 31;
+    public static final int SUSPEND_3MONTH = 93;
+    public static final int SUSPEND_6MONTH = 186;
+    public static final int SUSPEND_FOREVER = -1;
+
 }

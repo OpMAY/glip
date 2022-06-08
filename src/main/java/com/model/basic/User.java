@@ -10,12 +10,12 @@ public class User {
     private String email;
     private String address;
     private String favorite;
-    private int phone;
+    private String phone;
     private String reg_date;
     private boolean gender;
     private String final_login;
-    private int suspend_status;
-    private String suspend_date;
+    private boolean suspend_status;
+    private int suspend_date;
     private boolean marketing_alarm;
     private boolean kakao_alarm;
     private boolean service_alarm;
