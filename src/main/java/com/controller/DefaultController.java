@@ -37,4 +37,28 @@ public class DefaultController {
         VIEW = new ModelAndView("/error/recover");
         return VIEW;
     }
+
+    @GetMapping("/module/kakaoMap.do")
+    public ModelAndView KakaoMap() {
+        VIEW = new ModelAndView("/test/kakao_map");
+        return VIEW;
+    }
+
+    @GetMapping("/module/kakaoLogin.do")
+    public ModelAndView KakaoLogin() {
+        VIEW = new ModelAndView("/test/kakao_login");
+        return VIEW;
+    }
+
+    @GetMapping("/module/kakaoShare.do")
+    public ModelAndView KakaoShare() {
+        VIEW = new ModelAndView("/test/kakao_share");
+        return VIEW;
+    }
+
+    @GetMapping("/module/smartEditor.do")
+    public ModelAndView SmartEditor() {
+        VIEW = new ModelAndView("/test/smart_editor");
+        return VIEW;
+    }
 }
