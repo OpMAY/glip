@@ -9,7 +9,6 @@ import com.api.sns.kakao.KakaoInfo;
 import com.api.sns.naver.NaverAPI;
 import com.api.sns.naver.NaverAccess;
 import com.api.sns.naver.NaverInfo;
-import com.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,7 +60,7 @@ public class LoginAPI {
                 return;
             }
             /** Login Success*/
-            User user = new User(naverInfo.getResponse().getEmail(), naverInfo.getResponse().getId(), naverInfo.getResponse().getNickname());
+//            User user = new User(naverInfo.getResponse().getEmail(), naverInfo.getResponse().getId(), naverInfo.getResponse().getNickname());
             /** Naver Logout*/
             /*NaverAccess logoutAccess = naverAPI.logout(naverAccess.getAccess_token());
             if (logoutAccess.getResult().equals("success")) {
@@ -88,9 +87,9 @@ public class LoginAPI {
                 return;
             }
             /** Login Success*/
-            User user = new User(kakaoInfo.getKakao_account().getEmail(),
-                    Long.toString(kakaoInfo.getId()),
-                    kakaoInfo.getKakao_account().getProfile().getNickname() != null ? kakaoInfo.getKakao_account().getProfile().getNickname() : kakaoInfo.getProperties().getNickname());
+//            User user = new User(kakaoInfo.getKakao_account().getEmail(),
+//                    Long.toString(kakaoInfo.getId()),
+//                    kakaoInfo.getKakao_account().getProfile().getNickname() != null ? kakaoInfo.getKakao_account().getProfile().getNickname() : kakaoInfo.getProperties().getNickname());
             /** Kakao Logout*/
             /*String id = kakaoAPI.logout(kakaoAccess.getAccess_token());
             if (id.equals(user.getId())) {
@@ -120,7 +119,7 @@ public class LoginAPI {
             }
             /** Login Success*/
             /**Google API는 NAME 못가져옵니다. 다른 방법을 사용해서 얻어야합니다.*/
-            User user = new User(googleInfo.getEmail(), googleInfo.getId(), googleInfo.getName() == null ? "Empty User Name" : googleInfo.getName());
+//            User user = new User(googleInfo.getEmail(), googleInfo.getId(), googleInfo.getName() == null ? "Empty User Name" : googleInfo.getName());
             /** Google Logout*/
             /*String result = googleAPI.logout(googleAccess.getAccess_token());
             if (result != null) {
