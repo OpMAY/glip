@@ -2,6 +2,7 @@ package com.util;
 
 public class Constant {
 
+
     public static String VERSION = "0.1a";
     public static String GRANT_SAMPLE = "general";
 
@@ -17,6 +18,7 @@ public class Constant {
     /* aws cdn path */
     public static class CDN_PATH {
         public static final String TEST = "test/";
+        public static final String SMART_EDITOR = "temp/";
     }
 
     public static final String DATABASE_SOURCE = "LOCAL1";

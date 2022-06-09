@@ -1,0 +1,12 @@
+.exhibition-mark {
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../../../resources/assets/images/glip/icon_map_outline.svg');
+    width: 25px;
+    height: 35px;
+} .exhibition-mark:hover {
+      background-image: url('../../../resources/assets/images/glip/icon_map_fill.svg');
+  } .exhibition-mark.active {
+          background-image: url('../../../resources/assets/images/glip/icon_map_fill.svg');
+      }
