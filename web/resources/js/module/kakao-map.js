@@ -31,6 +31,7 @@ const kakaoMapInit = (id, options) => {
 }
 
 const initMapEvent = () => {
+    // 지도 드래그 및 클릭 시 오버레이 열려있으면 닫기
     kakao.maps.event.addListener(map, 'dragstart', function () {
         if ($('.map-overlay-container').css('bottom') === '0px') {
             overlayContainerHide()
@@ -97,6 +98,7 @@ const setOverlays = (data) => {
     let coords;
     let content;
     let customOverlay;
+    // Sample Overlays
     for (let i = 0; i < data.length; i++) {
         coords = new kakao.maps.LatLng(37.4783696, 126.959507 + (i / 1000));
         content = createContent({no: data[i].no});

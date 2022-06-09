@@ -99,11 +99,15 @@
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cde34104a73ef798b0fc9edc7fb3bc5c&libraries=services,drawing"></script>
 <script src="../../../resources/js/module/kakao-map.js"></script>
 <script>
+    // 기본 초기 세팅 좌표
     let lat = 33.450701;
     let lon = 126.570667;
+    // 기본 초기 세팅 주소
     let address = '경기도 수원시 장안구 대평로162번길 25-2(정자동, 성심빌라)';
+    // 카카오 API 호출용 기본 주소
     const kakaoAPIAddress = 'https://dapi.kakao.com/';
     $(document).ready(function () {
+        // 기본 브라우저의 GPS 사용
         if (navigator.geolocation) {
 
             // GeoLocation을 이용해서 접속 위치를 얻어옵니다
@@ -111,6 +115,7 @@
                 console.log(position);
                 lat = position.coords.latitude; // 위도
                 lon = position.coords.longitude; // 경도
+                // 좌표로 주소 변환
                 getKorLocation();
             });
 
@@ -134,13 +139,16 @@
             .then(res => res.json())
             .then((res) => {
                 console.log('res', res);
+                // 지번주소가 없으면 도로명 주소
                 address = res.documents[0].address === null ? res.documents[0].road_address.address_name : res.documents[0].address.address_name;
+
+                // 카카오 맵 SET
                 let position = new kakao.maps.LatLng(lat, lon);
 
                 kakaoMapInit('map', { //지도를 생성할 때 필요한 기본 옵션
                     center: position, //지도의 중심좌표.
                     level: 3, //지도의 레벨(확대, 축소 정도)
-                    address: address
+                    address: address // 사용할 주소
                 });
             })
             .catch(rej => console.log(rej));

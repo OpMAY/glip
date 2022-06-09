@@ -58,9 +58,9 @@
             tabsize: 2,
             height: 300,
             lang: 'ko-KR',
-            focus: true,
-            disableResizeEditor: true,
-            toolbar: [
+            focus: true, // 활성화 시 input focus
+            disableResizeEditor: true, // Size 조절
+            toolbar: [ // Toolbar Set
                 ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
                 ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
