@@ -1,0 +1,58 @@
+/** Common Css*/
+.background {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/** Login Page Css*/
+.account-pages {
+    min-height: 100vh;
+}
+
+/** Carousel Css*/
+#carouselExampleCaption {
+    position: relative;
+}
+
+#carouselExampleCaption .carousel-item {
+    padding-top: 30%;
+}
+
+#carouselExampleCaption button[type="button"] {
+    right: 24px;
+    top: 24px;
+    z-index: 1;
+}
+
+/** Table Css*/
+.table > :not(caption) > * > * {
+    padding: 0.5rem 0.5rem;
+}
+
+/** DatePicker*/
+.flatpickr-calendar {
+    background-color: white;
+}
+
+/** Pointer */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.empty-label {
+    height: 16px;
+}
+
+/**Readonly*/
+input[readonly].readonly {
+    padding-left: 0;
+    padding-right: 0;
+    border: none;
+}
+
+textarea[readonly].readonly {
+    padding-left: 0;
+    padding-right: 0;
+    border: none;
+}
