@@ -108,7 +108,7 @@ public class AjaxExceptionAdvice {
     protected ResponseEntity handleNullPointerException(Exception e) {
         e.printStackTrace();
         log.info("NullPointerException");
-        return new ResponseEntity(DefaultRes.res(StatusCode.NULL_POINTER), HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity(DefaultRes.res(StatusCode.BAD_REQUEST), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(Exception.class)
