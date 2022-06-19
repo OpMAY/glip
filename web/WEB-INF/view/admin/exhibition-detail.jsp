@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -382,12 +383,11 @@
               <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                   <li class="breadcrumb-item"><a href="javascript: void(0);">Glip Manage</a></li>
-                  <li class="breadcrumb-item"><a href="javascript: void(0);">Products</a></li>
-                  <li class="breadcrumb-item"><a href="javascript: void(0);">Product Manage</a></li>
-                  <li class="breadcrumb-item active">Product Update</li>
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Exhibitions</a></li>
+                  <li class="breadcrumb-item active">Exhibition Manage</li>
                 </ol>
               </div>
-              <h4 class="page-title">Product Update</h4>
+              <h4 class="page-title">Exhibition Manage</h4>
             </div>
           </div>
         </div>
@@ -399,166 +399,263 @@
             <div class="card">
               <div class="card-body">
                 <div class="exhibition-detail">
-                  <h4 class="header-title">Product Update</h4>
+                  <h4 class="header-title">Exhibition Manage</h4>
                   <p class="text-muted font-13 mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum
                     earum eveniet impedit! Ea eligendi et explicabo harum hic nihil non porro possimus praesentium
                     voluptatem. Atque dicta nostrum nulla tenetur voluptatibus.</p>
                   <div class="row">
                     <div class="col-12">
                       <div class="mb-3">
-                        <label class="form-label">Product Name</label>
+                        <label class="form-label">Title</label>
                         <input type="text"
-                               name="product_name"
-                               placeholder="Input Product Name"
-                               class="form-control">
-                      </div>
-                      <div class="row row-cols-5 image-item-wrapper">
-                        <div class="col image-item"
-                             data-count="1">
-                          <div class="mb-3">
-                            <label class="form-label">
-                              <span>Main Image (1/5)</span>
-                              <span class="badge badge-soft-danger cursor-pointer my-auto ms-1">삭제</span>
-                            </label>
-                            <input type="file"
-                                   data-plugins="dropify"
-                                   data-max-file-size="5M"
-                                   data-default-file="../../resources/admin/assets/images/small/img-2.jpg"/>
-                          </div>
-                        </div>
-                        <div class="col image-item"
-                             data-count="2">
-                          <div class="mb-3">
-                            <label class="form-label d-flex">
-                              <span>Main Image (2/5)</span>
-                              <span class="badge badge-soft-danger cursor-pointer my-auto ms-1">삭제</span>
-                            </label>
-                            <input type="file"
-                                   data-plugins="dropify"
-                                   data-max-file-size="5M"
-                                   data-default-file="../../resources/admin/assets/images/small/img-2.jpg"/>
-                          </div>
-                        </div>
-                        <div class="col image-item"
-                             data-count="3">
-                          <div class="mb-3">
-                            <label class="form-label">
-                              <span>Main Image (3/5)</span>
-                              <span class="badge badge-soft-danger cursor-pointer my-auto ms-1">삭제</span>
-                            </label>
-                            <input type="file"
-                                   data-plugins="dropify"
-                                   data-max-file-size="5M"
-                                   data-default-file="../../resources/admin/assets/images/small/img-2.jpg"/>
-                          </div>
-                        </div>
-                        <div class="col image-item"
-                             data-count="4">
-                          <div class="mb-3">
-                            <label class="form-label">
-                              <span>Main Image (4/5)</span>
-                              <span class="badge badge-soft-danger cursor-pointer my-auto ms-1">삭제</span>
-                            </label>
-                            <input type="file"
-                                   data-plugins="dropify"
-                                   data-max-file-size="5M"
-                                   data-default-file="../../resources/admin/assets/images/small/img-2.jpg"/>
-                          </div>
-                        </div>
-                        <div class="col image-item"
-                             data-count="5">
-                          <div class="mb-3">
-                            <label class="form-label">
-                              <span>Main Image (5/5)</span>
-                              <span class="badge badge-soft-danger cursor-pointer my-auto ms-1">삭제</span>
-                            </label>
-                            <input type="file"
-                                   data-plugins="dropify"
-                                   data-max-file-size="5M"
-                                   data-default-file="../../resources/admin/assets/images/small/img-2.jpg"/>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="mb-3 image-item-add-wrapper">
-                        <button type="button"
-                                class="btn btn-primary waves-effect waves-light">이미지 추가하기
-                        </button>
+                               name="title"
+                               readonly
+                               placeholder="Input Title"
+                               class="form-control readonly">
                       </div>
                       <div class="mb-3">
-                        <label class="form-label">Exhibition Title</label>
-                        <input type="text"
-                               name="product_title"
-                               placeholder="Input Exhibition Title"
-                               class="form-control">
+                        <label class="form-label">Main Image</label>
+                        <div class="background"
+                             style="padding-top: 30%; background-image:
+                        url('../../resources/admin/assets/images/small/img-2.jpg')"></div>
                       </div>
                       <div class="mb-3">
                         <label class="form-label">Simple Description</label>
                         <input type="text"
+                               readonly
                                name="simple_desc"
                                placeholder="Input Simple Description"
-                               class="form-control">
+                               class="form-control readonly">
                       </div>
                       <div class="row">
-                        <div class="col-auto">
+                        <div class="col-4">
                           <div class="mb-3">
-                            <label class="form-label">Product Category</label>
+                            <label class="form-label">Start Date And Finish Date</label>
                             <input type="text"
-                                   name="product_category"
-                                   placeholder="Input Product Category"
-                                   class="form-control">
+                                   readonly
+                                   class="form-control readonly"
+                                   placeholder="2018-10-03 to 2018-10-10">
                           </div>
                         </div>
                         <div class="col-auto">
                           <div class="mb-3">
-                            <label class="form-label">가격</label>
+                            <label class="form-label">Start Date</label>
                             <input type="text"
-                                   name="product_price"
-                                   placeholder="Input Product Price"
-                                   class="form-control">
+                                   readonly
+                                   class="form-control readonly"
+                                   placeholder="16:21">
                           </div>
                         </div>
                         <div class="col-auto">
                           <div class="mb-3">
-                            <label class="form-label">할인율</label>
+                            <label class="form-label">End Date</label>
                             <input type="text"
-                                   name="product_sale_rate"
-                                   placeholder="Input Product Sale Rate"
-                                   class="form-control">
+                                   readonly
+                                   class="form-control readonly"
+                                   placeholder="16:21">
                           </div>
                         </div>
-                        <div class="col-auto">
+                      </div>
+                      <div class="row">
+                        <div class="col d-grid">
                           <div class="mb-3">
-                            <label class="form-label">판매가</label>
+                            <label class="form-label">Exhibition Address</label>
+                            <div class="input-group">
+                              <input type="text"
+                                     name="exhibition-address"
+                                     readonly
+                                     placeholder="Input Exhibition Address"
+                                     class="form-control readonly">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="mb-3">
+                            <label class="form-label">Exhibition Address Detail</label>
                             <input type="text"
-                                   name="product_sale"
-                                   placeholder="Input Product Sale"
-                                   class="form-control">
+                                   name="exhibition-address-detail"
+                                   readonly
+                                   placeholder="Input Exhibition Address Detail"
+                                   class="form-control readonly">
                           </div>
                         </div>
                       </div>
                       <div class="mb-3">
-                        <label class="form-label d-flex">판매
-                          링크<span class="cursor-pointer my-auto badge badge-soft-primary ms-1">링크 확인</span></label>
-                        <input type="text"
-                               name="sell_link"
-                               placeholder="Input Sell Links"
-                               class="form-control">
+                        <label class="form-label">Address Map</label>
+                        <div class="w-100 background"
+                             style="padding-top: 40%;
+                             background-image:url('../../resources/admin/assets/images/bg-auth.jpg');"></div>
                       </div>
                       <div class="mb-3">
                         <label class="form-label">Description</label>
-                        <textarea class="form-control"
+                        <textarea class="form-control readonly"
                                   name="description"
+                                  readonly
                                   id="example-textarea"
                                   placeholder="Input Description"
                                   rows="5"></textarea>
                       </div>
+                      <div class="mb-3">
+                        <label class="form-label d-flex">Homepage
+                          Url<span onclick="javascript:void(0);"
+                                   class="cursor-pointer badge bg-dark float-end my-auto ms-1">링크
+                            이동</span></label>
+                        <input type="text"
+                               name="homepage-url"
+                               readonly
+                               placeholder="Input Homepage Url"
+                               class="form-control readonly">
+                      </div>
+                      <div class="row join-writer-wrapper">
+                        <div class="col-12 join-writer-inner">
+                          <div class="row join-writer-item">
+                            <div class="col-auto d-grid">
+                              <div class="mb-3">
+                                <label class="form-label d-flex">
+                                  참여 작가
+                                  <span onclick="javascript:void(0);"
+                                        class="cursor-pointer badge bg-dark float-end my-auto ms-1">Move</span>
+                                </label>
+                                <input type="text"
+                                       name="writer"
+                                       readonly
+                                       placeholder="Input Enter Writer"
+                                       class="form-control readonly">
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <label class="form-label empty-label"></label>
+                              <input type="text"
+                                     name="writer-url"
+                                     readonly
+                                     placeholder="Input Enter Writer Url"
+                                     class="form-control readonly">
+                            </div>
+                          </div>
+                          <div class="row join-writer-item">
+                            <div class="col-auto d-grid">
+                              <div class="mb-3">
+                                <label class="form-label d-flex">
+                                  참여 작가
+                                  <span onclick="javascript:void(0);"
+                                        class="cursor-pointer badge bg-dark float-end my-auto ms-1">Move</span>
+                                </label>
+                                <input type="text"
+                                       name="writer"
+                                       readonly
+                                       placeholder="Input Enter Writer"
+                                       class="form-control readonly">
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <label class="form-label empty-label"></label>
+                              <input type="text"
+                                     name="writer-url"
+                                     readonly
+                                     placeholder="Input Enter Writer Url"
+                                     class="form-control readonly">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-3">
+                          <div class="mb-3">
+                            <label class="form-label">Exhibition Type</label>
+                            <input type="text"
+                                   name="exhibition-type"
+                                   readonly
+                                   placeholder="Input Enter Exhibition Type"
+                                   class="form-control readonly">
+                          </div>
+                        </div>
+                        <div class="col-6 d-grid">
+                          <div class="mb-3">
+                            <label class="form-label">Recommend Hashtag Other Type</label>
+                            <input type="text"
+                                   readonly
+                                   class="form-control readonly"
+                                   value="awesome,neat">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label d-flex">Detail Description</label>
+                        <textarea class="form-control readonly"
+                                  readonly
+                                  id="detail-description"
+                                  placeholder="Smart Editor"
+                                  rows="5"></textarea>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label d-flex">관련 상품</label>
+                        <div class="row row-cols-4">
+                          <div class="col">
+                            <div class="card product-box">
+                              <div class="card-body">
+                                <div class="product-action">
+                                  <a href="javascript: void(0);"
+                                     class="btn btn-info btn-xs waves-effect waves-light"><i class="mdi mdi-details"></i></a>
+                                </div>
+                                <div class="bg-light">
+                                  <img src="../../resources/admin/assets/images/products/product-1.png"
+                                       alt="product-pic"
+                                       class="img-fluid">
+                                </div>
+
+                                <div class="product-info">
+                                  <div class="row align-items-center">
+                                    <div class="col">
+                                      <h5 class="font-16 mt-0 sp-line-1"><a href="javascript:void(0);"
+                                                                            class="text-dark">Adirondack Chair</a></h5>
+                                      <div class="text-warning mb-2 font-13">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                      </div>
+                                      <h5 class="m-0"><span class="text-muted"> Stocks : 98 pcs</span></h5>
+                                    </div>
+                                    <div class="col-auto">
+                                      <div class="product-price-tag">
+                                        $39
+                                      </div>
+                                    </div>
+                                  </div> <!-- end row -->
+                                </div> <!-- end product info-->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div class="col-12 text-end">
+                      <button type="button"
+                              data-bs-toggle="modal"
+                              data-bs-target="#exhibition-inactive-modal"
+                              data-bs-exhibition-no="1"
+                              class="btn btn-secondary waves-effect waves-light">비활성화
+                      </button>
+                      <button type="button"
+                              data-bs-toggle="modal"
+                              data-bs-target="#exhibition-agree-modal"
+                              data-bs-exhibition-no="1"
+                              class="btn btn-success waves-effect waves-light">전시 승인
+                      </button>
+                      <button type="button"
+                              data-bs-toggle="modal"
+                              data-bs-target="#exhibition-reject-modal"
+                              class="btn btn-danger waves-effect waves-light">전시 반려
+                      </button>
                       <button type="button"
                               class="btn btn-dark waves-effect waves-light">수정하기
                       </button>
                       <button type="button"
-                              class="btn btn-primary waves-effect waves-light">상품으로
+                              data-bs-toggle="modal"
+                              data-bs-target="#exhibition-delete-modal"
+                              data-bs-exhibition-no="1"
+                              class="btn btn-danger waves-effect waves-light">삭제
                       </button>
                     </div>
                   </div>
@@ -613,7 +710,7 @@
     <div class="modal-content">
       <div class="modal-header bg-light">
         <h4 class="modal-title"
-            id="exhibitionDeleteModalLabel">Product Delete</h4>
+            id="exhibitionDeleteModalLabel">Exhibition Delete</h4>
         <button type="button"
                 class="btn-close"
                 data-bs-dismiss="modal"
@@ -637,6 +734,77 @@
   </div><!-- /.modal -->
 </div>
 <div class="modal fade"
+     id="exhibition-agree-modal"
+     tabindex="-1"
+     role="dialog"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <h4 class="modal-title"
+            id="exhibitionAgreeModalLabel">Exhibition Agree</h4>
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <p>Would you like to cancel service suspension for 'Yoo Byung-jun'?</p>
+        <div class="mt-3">
+          <div class="btn-container mt-3 text-end">
+            <button data-bs-dismiss="modal"
+                    class="btn btn-sm btn-dark waves-effect waves-light"
+                    type="button">Cancel
+            </button>
+            <button data-bs-dismiss="modal"
+                    class="btn btn-sm btn-success waves-effect waves-light">Agree
+            </button>
+          </div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>
+<div class="modal fade"
+     id="exhibition-reject-modal"
+     tabindex="-1"
+     role="dialog"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <h4 class="modal-title"
+            id="exhibitionRejectModalLabel">Exhibition Reject</h4>
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <p>Would you like to cancel service suspension for 'Yoo Byung-jun'?</p>
+        <div class="mb-3">
+          <label class="form-label">반려 사유</label>
+          <input type="text"
+                 name="rejected-cause"
+                 placeholder="Input Rejected Cause"
+                 class="form-control">
+        </div>
+        <div class="mt-3">
+          <div class="btn-container mt-3 text-end">
+            <button data-bs-dismiss="modal"
+                    class="btn btn-sm btn-dark waves-effect waves-light"
+                    type="button">Cancel
+            </button>
+            <button data-bs-dismiss="modal"
+                    class="btn btn-sm btn-danger waves-effect waves-light">Reject
+            </button>
+          </div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>
+<div class="modal fade"
      id="exhibition-inactive-modal"
      tabindex="-1"
      role="dialog"
@@ -645,7 +813,7 @@
     <div class="modal-content">
       <div class="modal-header bg-light">
         <h4 class="modal-title"
-            id="exhibitionInActiveModalLabel">Product InActive</h4>
+            id="exhibitionInActiveModalLabel">Exhibition InActive</h4>
         <button type="button"
                 class="btn-close"
                 data-bs-dismiss="modal"
@@ -661,38 +829,6 @@
             </button>
             <button data-bs-dismiss="modal"
                     class="btn btn-sm btn-secondary waves-effect waves-light">InActive
-            </button>
-          </div>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-</div>
-<div class="modal fade"
-     id="exhibition-active-modal"
-     tabindex="-1"
-     role="dialog"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header bg-light">
-        <h4 class="modal-title"
-            id="exhibitionActiveModalLabel">Product Active</h4>
-        <button type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"></button>
-      </div>
-      <div class="modal-body p-4">
-        <p>Would you like to cancel service suspension for 'Yoo Byung-jun'?</p>
-        <div class="mt-3">
-          <div class="btn-container mt-3 text-end">
-            <button data-bs-dismiss="modal"
-                    class="btn btn-sm btn-dark waves-effect waves-light"
-                    type="button">Cancel
-            </button>
-            <button data-bs-dismiss="modal"
-                    class="btn btn-sm btn-primary waves-effect waves-light">Active
             </button>
           </div>
         </div>
@@ -757,18 +893,28 @@
 <script src="../../resources/admin/assets/js/pages/form-advanced.init.js"></script>
 <script>
     $(document).ready(function () {
-        /** Image Item Control */
-        let $image_items = $('.image-item-wrapper .image-item');
-        console.log($('.image-item-wrapper .image-item label span:last-child'));
-        $('.image-item-wrapper').on('click', 'div.image-item label span:last-child', function (e) {
-            console.log(e);
-            /** Delete Item*/
-            $(e.currentTarget).closest('.image-item').remove();
-            updateImageWrapperUI();
-        });
-        /** Image Item Control End*/
         /** Modal Event Listener */
         $('#exhibition-delete-modal').on('show.bs.modal', function (event) {
+            // do something...
+            let $button = $(event.relatedTarget)
+            console.log($button.data());
+            let $modal = $(this);
+            $modal.find('.btn-container button:nth-child(2)').click(function (e) {
+                console.log('click event');
+                $(this).off('click');
+            });
+        });
+        $('#exhibition-agree-modal').on('show.bs.modal', function (event) {
+            // do something...
+            let $button = $(event.relatedTarget)
+            console.log($button.data());
+            let $modal = $(this);
+            $modal.find('.btn-container button:nth-child(2)').click(function (e) {
+                console.log('click event');
+                $(this).off('click');
+            });
+        });
+        $('#exhibition-reject-modal').on('show.bs.modal', function (event) {
             // do something...
             let $button = $(event.relatedTarget)
             console.log($button.data());
@@ -788,61 +934,7 @@
                 $(this).off('click');
             });
         });
-        $('#exhibition-active-modal').on('show.bs.modal', function (event) {
-            // do something...
-            let $button = $(event.relatedTarget)
-            console.log($button.data());
-            let $modal = $(this);
-            $modal.find('.btn-container button:nth-child(2)').click(function (e) {
-                console.log('click event');
-                $(this).off('click');
-            });
-        });
-
-        $('.image-item-add-wrapper button').click(addImageItem);
     });
-
-    const updateImageWrapperUI = () => {
-        $('.image-item-wrapper .image-item').each(function (index, item) {
-            $(item).find('.form-label span:first-child').text('Main Image (' + (index + 1) + '/' +
-                5 + ')');
-        });
-    }
-
-    const addImageItem = () => {
-        let count = $('.image-item-wrapper .image-item').length;
-        console.log(count);
-        if (count >= 5) {
-            return;
-        }
-        $('.image-item-wrapper').append(createImageItem({count: (count + 1)}));
-        $('[data-plugins="dropify"][data-count="' + (count + 1) + '"]').dropify({
-            messages: {
-                default: "Drag and drop a file here or click",
-                replace: "Drag and drop or click to replace",
-                remove: "Remove",
-                error: "Ooops, something wrong appended."
-            }, error: {fileSize: "The file size is too big (1M max)."}
-        });
-        $('[data-plugins="dropify"][data-count="' + (count + 1) + '"]').removeAttr('data-count');
-    }
-
-    const createImageItem = ({count}) => {
-        return `<div class="col image-item"
-                     data-count="${count}">
-                  <div class="mb-3">
-                    <label class="form-label">
-                      <span>Main Image (${count}/5)</span>
-                      <span class="badge badge-soft-danger cursor-pointer my-auto ms-1">삭제</span>
-                    </label>
-                    <input type="file"
-                           data-count="${count}"
-                           data-plugins="dropify"
-                           data-max-file-size="5M"
-                           data-default-file="../../resources/admin/assets/images/small/img-2.jpg"/>
-                  </div>
-                </div>`;
-    }
 </script>
 </body>
 </html>

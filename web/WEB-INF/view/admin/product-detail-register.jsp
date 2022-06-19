@@ -1,7 +1,7 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="utf-8"/>
   <title>Glip Admin Theme</title>
   <meta name="viewport"
@@ -15,67 +15,6 @@
   <!-- App favicon -->
   <link rel="shortcut icon"
         href="../../resources/admin/assets/images/favicon.ico">
-
-  <!-- plugin css -->
-  <link href="../../resources/admin/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css"
-        rel="stylesheet"
-        type="text/css"/>
-
-  <!-- Plugins css -->
-  <link href="../../resources/admin/assets/libs/dropzone/min/dropzone.min.css"
-        rel="stylesheet"
-        type="text/css"/>
-  <link href="../../resources/admin/assets/libs/dropify/css/dropify.min.css"
-        rel="stylesheet"
-        type="text/css"/>
-
-  <!-- third party css -->
-  <link href="../../resources/admin/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css"
-        rel="stylesheet"
-        type="text/css"/>
-  <link href="../../resources/admin/assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css"
-        rel="stylesheet"
-        type="text/css"/>
-  <link href="../../resources/admin/assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css"
-        rel="stylesheet"
-        type="text/css"/>
-  <link href="../../resources/admin/assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css"
-        rel="stylesheet"
-        type="text/css"/>
-  <!-- third party css end -->
-
-  <!-- Plugins css -->
-  <link href="../../resources/admin/assets/libs/mohithg-switchery/switchery.min.css"
-        rel="stylesheet"
-        type="text/css"/>
-  <link href="../../resources/admin/assets/libs/multiselect/css/multi-select.css"
-        rel="stylesheet"
-        type="text/css"/>
-  <link href="../../resources/admin/assets/libs/select2/css/select2.min.css"
-        rel="stylesheet"
-        type="text/css"/>
-  <link href="../../resources/admin/assets/libs/selectize/css/selectize.bootstrap3.css"
-        rel="stylesheet"
-        type="text/css"/>
-  <link href="../../resources/admin/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css"
-        rel="stylesheet"
-        type="text/css"/>
-  <!-- Plugins css -->
-  <link href="../../resources/admin/assets/libs/mohithg-switchery/switchery.min.css"
-        rel="stylesheet"
-        type="text/css"/>
-  <link href="../../resources/admin/assets/libs/multiselect/css/multi-select.css"
-        rel="stylesheet"
-        type="text/css"/>
-  <link href="../../resources/admin/assets/libs/select2/css/select2.min.css"
-        rel="stylesheet"
-        type="text/css"/>
-  <link href="../../resources/admin/assets/libs/selectize/css/selectize.bootstrap3.css"
-        rel="stylesheet"
-        type="text/css"/>
-  <link href="../../resources/admin/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css"
-        rel="stylesheet"
-        type="text/css"/>
 
   <!-- App css -->
   <link href="../../resources/admin/assets/css/config/default/bootstrap.min.css"
@@ -95,13 +34,74 @@
         rel="stylesheet"
         type="text/css"
         id="app-dark-stylesheet"/>
-  <link href="../../resources/admin/assets/css/custom.css"
-        rel="stylesheet"
-        type="text/css"/>
+
   <!-- icons -->
   <link href="../../resources/admin/assets/css/icons.min.css"
         rel="stylesheet"
         type="text/css"/>
+  <!-- custom -->
+  <link href="../../resources/admin/assets/css/custom.css"
+        rel="stylesheet"
+        type="text/css"/>
+
+  <!-- third party css -->
+  <link href="../../resources/admin/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css"
+        rel="stylesheet"
+        type="text/css"/>
+  <link href="../../resources/admin/assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css"
+        rel="stylesheet"
+        type="text/css"/>
+  <link href="../../resources/admin/assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css"
+        rel="stylesheet"
+        type="text/css"/>
+  <link href="../../resources/admin/assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css"
+        rel="stylesheet"
+        type="text/css"/>
+  <!-- third party css end -->
+
+  <!-- third party css dropfy -->
+  <link href="../../resources/admin/assets/libs/dropzone/min/dropzone.min.css"
+        rel="stylesheet"
+        type="text/css"/>
+  <link href="../../resources/admin/assets/libs/dropify/css/dropify.min.css"
+        rel="stylesheet"
+        type="text/css"/>
+  <!-- third party css -->
+
+  <!-- third party css datepicker -->
+  <link href="../../resources/admin/assets/libs/spectrum-colorpicker2/spectrum.min.css"
+        rel="stylesheet"
+        type="text/css">
+  <link href="../../resources/admin/assets/libs/flatpickr/flatpickr.min.css"
+        rel="stylesheet"
+        type="text/css"/>
+  <link href="../../resources/admin/assets/libs/clockpicker/bootstrap-clockpicker.min.css"
+        rel="stylesheet"
+        type="text/css"/>
+  <link href="../../resources/admin/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css"
+        rel="stylesheet"
+        type="text/css"/>
+  <link href="../../resources/admin/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css"
+        rel="stylesheet"
+        type="text/css"/>
+  <!-- third party css datepicker end-->
+  <!-- third party css form -->
+  <link href="../../resources/admin/assets/libs/mohithg-switchery/switchery.min.css"
+        rel="stylesheet"
+        type="text/css"/>
+  <link href="../../resources/admin/assets/libs/multiselect/css/multi-select.css"
+        rel="stylesheet"
+        type="text/css"/>
+  <link href="../../resources/admin/assets/libs/select2/css/select2.min.css"
+        rel="stylesheet"
+        type="text/css"/>
+  <link href="../../resources/admin/assets/libs/selectize/css/selectize.bootstrap3.css"
+        rel="stylesheet"
+        type="text/css"/>
+  <link href="../../resources/admin/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css"
+        rel="stylesheet"
+        type="text/css"/>
+  <!-- third party css form end -->
 </head>
 
 <!-- body start -->
@@ -383,10 +383,12 @@
               <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                   <li class="breadcrumb-item"><a href="javascript: void(0);">Glip Manage</a></li>
-                  <li class="breadcrumb-item active">Banner Manage</li>
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Products</a></li>
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Product Manage</a></li>
+                  <li class="breadcrumb-item active">Product Register</li>
                 </ol>
               </div>
-              <h4 class="page-title">Banner Manage</h4>
+              <h4 class="page-title">Product Register</h4>
             </div>
           </div>
         </div>
@@ -398,88 +400,101 @@
             <div class="card">
               <div class="card-body">
                 <div class="exhibition-detail">
-                  <h4 class="header-title">Banner Manage</h4>
+                  <h4 class="header-title">Product Register</h4>
                   <p class="text-muted font-13 mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum
                     earum eveniet impedit! Ea eligendi et explicabo harum hic nihil non porro possimus praesentium
                     voluptatem. Atque dicta nostrum nulla tenetur voluptatibus.</p>
-
-                  <div class="row banner-list">
-                    <div class="col-12 banner-item">
-                      <div class="mb-3 banner-link-wrapper">
-                        <label class="form-label">배너 링크</label>
-                        <input type="text"
-                               class="form-control mb-2"
-                               value="http://www.naver.com/"
-                               placeholder="http://example.com/">
-                        <input type="file"
-                               data-plugins="dropify"
-                               data-default-file="../../resources/admin/assets/images/small/img-2.jpg"/>
-                      </div>
-                      <div class="mt-3 text-right">
-                        <button type="button"
-                                class="btn btn-success waves-effect waves-light m-1">
-                          저장하기
-                        </button>
-                        <button type="button"
-                                class="btn btn-danger waves-effect waves-light m-1">
-                          삭제하기
-                        </button>
-                      </div>
-                    </div>
-                    <div class="col-12 banner-item">
-                      <div class="mb-3 banner-link-wrapper">
-                        <label class="form-label">배너 링크</label>
-                        <input type="text"
-                               class="form-control mb-2"
-                               value="http://www.naver.com/"
-                               placeholder="http://example.com/">
-                        <input type="file"
-                               data-plugins="dropify"
-                               data-default-file="../../resources/admin/assets/images/small/img-2.jpg"/>
-                      </div>
-                      <div class="mt-3 text-right">
-                        <button type="button"
-                                class="btn btn-success waves-effect waves-light m-1">
-                          저장하기
-                        </button>
-                        <button type="button"
-                                class="btn btn-danger waves-effect waves-light m-1">
-                          삭제하기
-                        </button>
-                      </div>
-                    </div>
-                    <div class="col-12 banner-item">
-                      <div class="mb-3 banner-link-wrapper">
-                        <label class="form-label">배너 링크</label>
-                        <input type="text"
-                               class="form-control mb-2"
-                               value="http://www.naver.com/"
-                               placeholder="http://example.com/">
-                        <input type="file"
-                               data-plugins="dropify"
-                               data-default-file="../../resources/admin/assets/images/small/img-2.jpg"/>
-                      </div>
-                      <div class="mt-3 text-right">
-                        <button type="button"
-                                class="btn btn-success waves-effect waves-light m-1">
-                          저장하기
-                        </button>
-                        <button type="button"
-                                class="btn btn-danger waves-effect waves-light m-1">
-                          삭제하기
-                        </button>
-                      </div>
-                    </div>
-                  </div>
                   <div class="row">
                     <div class="col-12">
-                      <div class="mt-3 text-right">
+                      <div class="mb-3">
+                        <label class="form-label">Product Name</label>
+                        <input type="text"
+                               name="product_name"
+                               placeholder="Input Product Name"
+                               class="form-control">
+                      </div>
+                      <div class="row row-cols-5 image-item-wrapper"></div>
+                      <div class="mb-3 image-item-add-wrapper">
                         <button type="button"
-                                onclick="addBanner();"
-                                class="btn btn-success waves-effect waves-light m-1">
-                          배너 추가하기
+                                class="btn btn-primary waves-effect waves-light">이미지 추가하기
                         </button>
                       </div>
+                      <div class="mb-3">
+                        <label class="form-label">Exhibition Title</label>
+                        <input type="text"
+                               name="product_title"
+                               placeholder="Input Exhibition Title"
+                               class="form-control">
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Simple Description</label>
+                        <input type="text"
+                               name="simple_desc"
+                               placeholder="Input Simple Description"
+                               class="form-control">
+                      </div>
+                      <div class="row">
+                        <div class="col-auto">
+                          <div class="mb-3">
+                            <label class="form-label">Product Category</label>
+                            <input type="text"
+                                   name="product_category"
+                                   placeholder="Input Product Category"
+                                   class="form-control">
+                          </div>
+                        </div>
+                        <div class="col-auto">
+                          <div class="mb-3">
+                            <label class="form-label">가격</label>
+                            <input type="text"
+                                   name="product_price"
+                                   placeholder="Input Product Price"
+                                   class="form-control">
+                          </div>
+                        </div>
+                        <div class="col-auto">
+                          <div class="mb-3">
+                            <label class="form-label">할인율</label>
+                            <input type="text"
+                                   name="product_sale_rate"
+                                   placeholder="Input Product Sale Rate"
+                                   class="form-control">
+                          </div>
+                        </div>
+                        <div class="col-auto">
+                          <div class="mb-3">
+                            <label class="form-label">판매가</label>
+                            <input type="text"
+                                   name="product_sale"
+                                   placeholder="Input Product Sale"
+                                   class="form-control">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label d-flex">판매
+                          링크<span class="cursor-pointer my-auto badge badge-soft-primary ms-1">링크 확인</span></label>
+                        <input type="text"
+                               name="sell_link"
+                               placeholder="Input Sell Links"
+                               class="form-control">
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control"
+                                  name="description"
+                                  id="example-textarea"
+                                  placeholder="Input Description"
+                                  rows="5"></textarea>
+                      </div>
+                    </div>
+                    <div class="col-12 text-end">
+                      <button type="button"
+                              class="btn btn-dark waves-effect waves-light">저장하기
+                      </button>
+                      <button type="button"
+                              class="btn btn-primary waves-effect waves-light">목록으로
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -522,8 +537,113 @@
 </div>
 <!-- END wrapper -->
 
+
+<!-- Modal -->
+<div class="modal fade"
+     id="exhibition-delete-modal"
+     tabindex="-1"
+     role="dialog"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <h4 class="modal-title"
+            id="exhibitionDeleteModalLabel">Product Delete</h4>
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <p>Would you like to cancel service suspension for 'Yoo Byung-jun'?</p>
+        <div class="mt-3">
+          <div class="btn-container mt-3 text-end">
+            <button data-bs-dismiss="modal"
+                    class="btn btn-sm btn-dark waves-effect waves-light"
+                    type="button">Cancel
+            </button>
+            <button data-bs-dismiss="modal"
+                    class="btn btn-sm btn-danger waves-effect waves-light">Delete
+            </button>
+          </div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>
+<div class="modal fade"
+     id="exhibition-inactive-modal"
+     tabindex="-1"
+     role="dialog"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <h4 class="modal-title"
+            id="exhibitionInActiveModalLabel">Product InActive</h4>
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <p>Would you like to cancel service suspension for 'Yoo Byung-jun'?</p>
+        <div class="mt-3">
+          <div class="btn-container mt-3 text-end">
+            <button data-bs-dismiss="modal"
+                    class="btn btn-sm btn-dark waves-effect waves-light"
+                    type="button">Cancel
+            </button>
+            <button data-bs-dismiss="modal"
+                    class="btn btn-sm btn-secondary waves-effect waves-light">InActive
+            </button>
+          </div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>
+<div class="modal fade"
+     id="exhibition-active-modal"
+     tabindex="-1"
+     role="dialog"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <h4 class="modal-title"
+            id="exhibitionActiveModalLabel">Product Active</h4>
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <p>Would you like to cancel service suspension for 'Yoo Byung-jun'?</p>
+        <div class="mt-3">
+          <div class="btn-container mt-3 text-end">
+            <button data-bs-dismiss="modal"
+                    class="btn btn-sm btn-dark waves-effect waves-light"
+                    type="button">Cancel
+            </button>
+            <button data-bs-dismiss="modal"
+                    class="btn btn-sm btn-primary waves-effect waves-light">Active
+            </button>
+          </div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>
+
 <!-- Vendor js -->
 <script src="../../resources/admin/assets/js/vendor.min.js"></script>
+
+<!-- App js -->
+<script src="../../resources/admin/assets/js/app.min.js"></script>
+
+<!-- Custom App js -->
+<script src="../../resources/admin/assets/js/app_custom.js"></script>
 
 <!-- third party js -->
 <script src="../../resources/admin/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
@@ -539,7 +659,26 @@
 <script src="../../resources/admin/assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
 <script src="../../resources/admin/assets/libs/pdfmake/build/pdfmake.min.js"></script>
 <script src="../../resources/admin/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+<!-- third party js ends -->
+<!-- third party js dropfy -->
+<!-- Plugins js -->
+<script src="../../resources/admin/assets/libs/dropzone/min/dropzone.min.js"></script>
+<script src="../../resources/admin/assets/libs/dropify/js/dropify.min.js"></script>
 
+<!-- Init js-->
+<script src="../../resources/admin/assets/js/pages/form-fileuploads.init.js"></script>
+<!-- third party js dropfy end -->
+<!--third party js datepicker -->
+<!-- Plugins js-->
+<script src="../../resources/admin/assets/libs/flatpickr/flatpickr.min.js"></script>
+<script src="../../resources/admin/assets/libs/spectrum-colorpicker2/spectrum.min.js"></script>
+<script src="../../resources/admin/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
+<script src="../../resources/admin/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+
+<!-- Init js-->
+<script src="../../resources/admin/assets/js/pages/form-pickers.init.js"></script>
+<!--third party js datepicker end -->
+<!-- third party js form -->
 <script src="../../resources/admin/assets/libs/selectize/js/standalone/selectize.min.js"></script>
 <script src="../../resources/admin/assets/libs/mohithg-switchery/switchery.min.js"></script>
 <script src="../../resources/admin/assets/libs/multiselect/js/jquery.multi-select.js"></script>
@@ -548,73 +687,96 @@
 <script src="../../resources/admin/assets/libs/devbridge-autocomplete/jquery.autocomplete.min.js"></script>
 <script src="../../resources/admin/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
 <script src="../../resources/admin/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
-
-<!-- third party js ends -->
-
-<!-- Datatables init -->
-<script src="../../resources/admin/assets/js/pages/datatables.init.js"></script>
-
+<!-- third party js form end -->
 <!-- Init js-->
 <script src="../../resources/admin/assets/js/pages/form-advanced.init.js"></script>
-
-<!-- Plugins js -->
-<script src="../../resources/admin/assets/libs/dropzone/min/dropzone.min.js"></script>
-<script src="../../resources/admin/assets/libs/dropify/js/dropify.min.js"></script>
-
-<!-- Init js-->
-<script src="../../resources/admin/assets/js/pages/form-fileuploads.init.js"></script>
-
-<!-- App js -->
-<script src="../../resources/admin/assets/js/app.min.js"></script>
 <script>
     $(document).ready(function () {
-        $('.banner-list .banner-item').find('.btn-success').click(function () {
-            /*TODO FETCH*/
-            let item = this.closest('.banner-item');
+        /** Image Item Control */
+        let $image_items = $('.image-item-wrapper .image-item');
+        console.log($('.image-item-wrapper .image-item label span:last-child'));
+        $('.image-item-wrapper').on('click', 'div.image-item label span:last-child', function (e) {
+            console.log(e);
+            /** Delete Item*/
+            $(e.currentTarget).closest('.image-item').remove();
+            updateImageWrapperUI();
         });
-        $('.banner-list .banner-item').find('.btn-danger').click(function () {
-            /*TODO FETCH*/
-            /*TODO ITEM REMOVE*/
-            let item = this.closest('.banner-item');
-            $(item).remove();
+        /** Image Item Control End*/
+        /** Modal Event Listener */
+        $('#exhibition-delete-modal').on('show.bs.modal', function (event) {
+            // do something...
+            let $button = $(event.relatedTarget)
+            console.log($button.data());
+            let $modal = $(this);
+            $modal.find('.btn-container button:nth-child(2)').click(function (e) {
+                console.log('click event');
+                $(this).off('click');
+            });
         });
+        $('#exhibition-inactive-modal').on('show.bs.modal', function (event) {
+            // do something...
+            let $button = $(event.relatedTarget)
+            console.log($button.data());
+            let $modal = $(this);
+            $modal.find('.btn-container button:nth-child(2)').click(function (e) {
+                console.log('click event');
+                $(this).off('click');
+            });
+        });
+        $('#exhibition-active-modal').on('show.bs.modal', function (event) {
+            // do something...
+            let $button = $(event.relatedTarget)
+            console.log($button.data());
+            let $modal = $(this);
+            $modal.find('.btn-container button:nth-child(2)').click(function (e) {
+                console.log('click event');
+                $(this).off('click');
+            });
+        });
+
+        $('.image-item-add-wrapper button').click(addImageItem);
     });
 
-    const addBanner = () => {
-        $('.banner-list').append(createBannerItem({}));
-        $('.banner-list .banner-item:last-child [data-plugins="dropify"]').dropify();
-        $('.banner-list .banner-item:last-child').find('.btn-success').click(function () {
-            /*TODO FETCH*/
-            let item = this.closest('.banner-item');
-        });
-        $('.banner-list .banner-item:last-child').find('.btn-danger').click(function () {
-            /*TODO ITEM REMOVE*/
-            let item = this.closest('.banner-item');
-            item.remove();
+    const updateImageWrapperUI = () => {
+        $('.image-item-wrapper .image-item').each(function (index, item) {
+            $(item).find('.form-label span:first-child').text('Main Image (' + (index + 1) + '/' +
+                5 + ')');
         });
     }
 
-    const createBannerItem = ({}) => {
-        return `<div class="col-12 banner-item">
-                <div class="mb-3 banner-link-wrapper">
-                  <label class="form-label">배너 링크</label>
-                  <input type="text"
-                         class="form-control mb-2"
-                         placeholder="http://example.com/">
-                  <input type="file"
-                         data-plugins="dropify"/>
-                </div>
-                <div class="mt-3 text-right">
-                  <button type="button"
-                          class="btn btn-success waves-effect waves-light m-1">
-                    저장하기
-                  </button>
-                  <button type="button"
-                          class="btn btn-danger waves-effect waves-light m-1">
-                    삭제하기
-                  </button>
-                </div>
-              </div>`;
+    const addImageItem = () => {
+        let count = $('.image-item-wrapper .image-item').length;
+        console.log(count);
+        if (count >= 5) {
+            return;
+        }
+        $('.image-item-wrapper').append(createImageItem({count: (count + 1)}));
+        $('[data-plugins="dropify"][data-count="' + (count + 1) + '"]').dropify({
+            messages: {
+                default: "Drag and drop a file here or click",
+                replace: "Drag and drop or click to replace",
+                remove: "Remove",
+                error: "Ooops, something wrong appended."
+            }, error: {fileSize: "The file size is too big (1M max)."}
+        });
+        $('[data-plugins="dropify"][data-count="' + (count + 1) + '"]').removeAttr('data-count');
+    }
+
+    const createImageItem = ({count}) => {
+        return `<div class="col image-item"
+                     data-count="${count}">
+                  <div class="mb-3">
+                    <label class="form-label">
+                      <span>Main Image (${count}/5)</span>
+                      <span class="badge badge-soft-danger cursor-pointer my-auto ms-1">삭제</span>
+                    </label>
+                    <input type="file"
+                           data-count="${count}"
+                           data-plugins="dropify"
+                           data-max-file-size="5M"
+                           data-default-file="../../resources/admin/assets/images/small/img-2.jpg"/>
+                  </div>
+                </div>`;
     }
 </script>
 </body>

@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -848,10 +849,10 @@
                     <p class="text-muted">asszxc@naver.com</p>
 
                     <a href="javascript: void(0);"
-                       data-bs-target="#freeze-modal"
+                       data-bs-target="#unfreeze-modal"
                        data-bs-user-no="1"
                        data-bs-toggle="modal"
-                       class="btn- btn-xs btn-danger">Freeze</a>
+                       class="btn- btn-xs btn-warning text-white">Un Freeze</a>
                   </div>
                 </div>
 
@@ -922,7 +923,7 @@
 
 <!-- Modal -->
 <div class="modal fade"
-     id="freeze-modal"
+     id="unfreeze-modal"
      tabindex="-1"
      role="dialog"
      aria-hidden="true">
@@ -930,69 +931,29 @@
     <div class="modal-content">
       <div class="modal-header bg-light">
         <h4 class="modal-title"
-            id="myCenterModalLabel">User Freeze</h4>
+            id="myCenterModalLabel">User Unfreeze</h4>
         <button type="button"
                 class="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"></button>
       </div>
       <div class="modal-body p-4">
-        <p>Would you like to suspend ‘Yoo Byung-jun’ from using the service?</p>
+        <p>Would you like to cancel service suspension for 'Yoo Byung-jun'?</p>
         <div class="mt-3">
-          <div class="form-check">
-            <input type="radio"
-                   id="customRadio1"
-                   name="customRadio"
-                   class="form-check-input">
-            <label class="form-check-label"
-                   for="customRadio1">Week</label>
-          </div>
-          <div class="form-check">
-            <input type="radio"
-                   id="customRadio2"
-                   name="customRadio"
-                   class="form-check-input">
-            <label class="form-check-label"
-                   for="customRadio2">Month</label>
-          </div>
-          <div class="form-check">
-            <input type="radio"
-                   id="customRadio3"
-                   name="customRadio"
-                   class="form-check-input">
-            <label class="form-check-label"
-                   for="customRadio3">Quater</label>
-          </div>
-          <div class="form-check">
-            <input type="radio"
-                   id="customRadio4"
-                   name="customRadio"
-                   class="form-check-input">
-            <label class="form-check-label"
-                   for="customRadio4">Half</label>
-          </div>
-          <div class="form-check">
-            <input type="radio"
-                   id="customRadio5"
-                   name="customRadio"
-                   class="form-check-input">
-            <label class="form-check-label"
-                   for="customRadio5">Forever</label>
+          <div class="btn-container mt-3 text-end">
+            <button data-bs-dismiss="modal"
+                    class="btn btn-sm btn-dark waves-effect waves-light"
+                    type="button">Cancel
+            </button>
+            <button data-bs-dismiss="modal"
+                    class="btn btn-sm btn-success waves-effect waves-light">Unfreeze
+            </button>
           </div>
         </div>
-        <div class="btn-container mt-3 text-end">
-          <button data-bs-dismiss="modal"
-                  class="btn btn-sm btn-dark waves-effect waves-light"
-                  type="button">Cancel
-          </button>
-          <button data-bs-dismiss="modal"
-                  class="btn btn-sm btn-danger waves-effect waves-light">Freeze
-          </button>
-        </div>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>
 
 <!-- Vendor js -->
 <script src="../../resources/admin/assets/js/vendor.min.js"></script>
@@ -1032,9 +993,8 @@
                 });
             }
         });
-
         /** Modal Event Listener */
-        $('#freeze-modal').on('show.bs.modal', function (event) {
+        $('#unfreeze-modal').on('show.bs.modal', function (event) {
             // do something...
             let $button = $(event.relatedTarget)
             console.log($button.data());
@@ -1044,7 +1004,7 @@
                 $(this).off('click');
             });
         });
-        $('#freeze-modal').on('hide.bs.modal', function (event) {
+        $('#unfreeze-modal').on('hide.bs.modal', function (event) {
             // do something...
             let $button = $(event.relatedTarget)
             console.log($button.data());

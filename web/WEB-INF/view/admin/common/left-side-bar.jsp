@@ -1,53 +1,9 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!-- ========== Left Sidebar Start ========== -->
 <div class="left-side-menu">
 
     <div class="h-100"
          data-simplebar>
-
-        <!-- User box -->
-        <div class="user-box text-center">
-            <img src="../../resources/admin/assets/images/users/user-1.jpg"
-                 alt="user-img"
-                 title="Mat Helme"
-                 class="rounded-circle avatar-md">
-            <div class="dropdown">
-                <a href="javascript: void(0);"
-                   class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block"
-                   data-bs-toggle="dropdown">Geneva Kennedy</a>
-                <div class="dropdown-menu user-pro-dropdown">
-
-                    <!-- item-->
-                    <a href="javascript:void(0);"
-                       class="dropdown-item notify-item">
-                        <i class="fe-user me-1"></i>
-                        <span>My Account</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);"
-                       class="dropdown-item notify-item">
-                        <i class="fe-settings me-1"></i>
-                        <span>Settings</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);"
-                       class="dropdown-item notify-item">
-                        <i class="fe-lock me-1"></i>
-                        <span>Lock Screen</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);"
-                       class="dropdown-item notify-item">
-                        <i class="fe-log-out me-1"></i>
-                        <span>Logout</span>
-                    </a>
-
-                </div>
-            </div>
-            <p class="text-muted">Admin Head</p>
-        </div>
 
         <!--- Sidemenu -->
         <div id="sidebar-menu">
@@ -57,17 +13,17 @@
                 <li class="menu-title">Home</li>
 
                 <li>
-                    <a href="#sidebarDashboards"
+                    <a href="/admin/dashboard.do"
                        data-bs-toggle="collapse">
                         <i data-feather="airplay"></i>
-                        <span> Dashboards </span>
+                        <span> Dashboard </span>
                     </a>
                 </li>
 
                 <li class="menu-title mt-2">회원 관리</li>
 
                 <li>
-                    <a href="javascript:void(0);">
+                    <a href="/admin/user/registered.do">
                         <i data-feather="users"></i>
                         <span class="badge bg-success rounded-pill float-end">4</span>
                         <span> 가입 회원 </span>
@@ -75,7 +31,7 @@
                 </li>
 
                 <li>
-                    <a href="javascript:void(0);">
+                    <a href="/admin/user/suspended.do">
                         <i data-feather="users"></i>
                         <span class="badge bg-danger rounded-pill float-end">20</span>
                         <span> 정지 회원 </span>
@@ -103,24 +59,24 @@
                                      id="exhibitionMultilevel2">
                                     <ul class="nav-second-level">
                                         <li>
-                                            <a href="javascript: void(0);">전시 중</a>
+                                            <a href="/admin/exhibition.do?type=process">전시 중</a>
                                         </li>
                                         <li>
-                                            <a href="javascript: void(0);">전시 예정</a>
+                                            <a href="/admin/exhibition.do?type=planned">전시 예정</a>
                                         </li>
                                         <li>
-                                            <a href="javascript: void(0);">전시 종료</a>
+                                            <a href="/admin/exhibition.do?type=finished">전시 종료</a>
                                         </li>
                                     </ul>
                                 </div>
                             </li>
                             <li>
-                                <a href="javascript:void(0);">
+                                <a href="/admin/exhibition/request.do">
                                     <span> 전시 요청 </span>
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);">
+                                <a href="/admin/exhibition/register.do">
                                     <span> 전시 등록 </span>
                                 </a>
                             </li>
@@ -139,10 +95,10 @@
                          id="sidebarEcommerce">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="javascript:void(0);">상품 목록</a>
+                                <a href="/admin/product.do">상품 목록</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);">상품 등록</a>
+                                <a href="/admin/product/register.do">상품 등록</a>
                             </li>
                         </ul>
                     </div>
@@ -151,13 +107,13 @@
                 <li class="menu-title mt-2">웹 관리</li>
 
                 <li>
-                    <a href="javascript:void(0);">
+                    <a href="/admin/category.do">
                         <i data-feather="grid"></i>
                         <span> 카테고리 관리 </span>
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0);">
+                    <a href="/admin/banner.do">
                         <i data-feather="layout"></i>
                         <span> 배너 관리 </span>
                     </a>

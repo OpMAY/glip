@@ -1,8 +1,9 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <title>Glip Admin Theme</title>
+  <title>Glip 관리자 로그인</title>
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
   <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc."
@@ -13,34 +14,34 @@
         content="IE=edge"/>
   <!-- App favicon -->
   <link rel="shortcut icon"
-        href="../../resources/admin/assets/images/favicon.ico">
+        href="../../../resources/admin/assets/images/favicon.ico">
 
   <!-- App css -->
-  <link href="../../resources/admin/assets/css/config/default/bootstrap.min.css"
+  <link href="../../../resources/admin/assets/css/config/default/bootstrap.min.css"
         rel="stylesheet"
         type="text/css"
         id="bs-default-stylesheet"/>
-  <link href="../../resources/admin/assets/css/config/default/app.min.css"
+  <link href="../../../resources/admin/assets/css/config/default/app.min.css"
         rel="stylesheet"
         type="text/css"
         id="app-default-stylesheet"/>
 
-  <link href="../../resources/admin/assets/css/config/default/bootstrap-dark.min.css"
+  <link href="../../../resources/admin/assets/css/config/default/bootstrap-dark.min.css"
         rel="stylesheet"
         type="text/css"
         id="bs-dark-stylesheet"/>
-  <link href="../../resources/admin/assets/css/config/default/app-dark.min.css"
+  <link href="../../../resources/admin/assets/css/config/default/app-dark.min.css"
         rel="stylesheet"
         type="text/css"
         id="app-dark-stylesheet"/>
 
   <!-- icons -->
-  <link href="../../resources/admin/assets/css/icons.min.css"
+  <link href="../../../resources/admin/assets/css/icons.min.css"
         rel="stylesheet"
         type="text/css"/>
 
   <!-- custom css -->
-  <link href="../../resources/admin/assets/css/custom.css"
+  <link href="../../../resources/admin/assets/css/custom.css"
         rel="stylesheet"
         type="text/css"/>
 
@@ -58,47 +59,34 @@
 
             <div class="text-center w-75 m-auto">
               <div class="auth-logo">
-                <a href="index.html"
-                   class="logo logo-dark text-center">
                   <span class="logo-lg">
-                    <img src="../../resources/admin/assets/images/logo-dark.png"
+                    <img src="../../../resources/assets/images/glip/main_logo_bg.svg"
                          alt=""
-                         height="22">
+                         height="40">
                   </span>
-                </a>
-
-                <a href="index.html"
-                   class="logo logo-light text-center">
-                  <span class="logo-lg">
-                    <img src="../../resources/admin/assets/images/logo-light.png"
-                         alt=""
-                         height="22">
-                  </span>
-                </a>
               </div>
-              <p class="text-muted mb-4 mt-3">Enter your email address and password to access admin panel.</p>
             </div>
 
             <form action="#">
 
-              <div class="mb-3">
+              <div class="mb-3 mt-3">
                 <label for="emailaddress"
-                       class="form-label">Email address</label>
+                       class="form-label">아이디</label>
                 <input class="form-control"
-                       type="email"
+                       type="text"
                        id="emailaddress"
                        required=""
-                       placeholder="Enter your email">
+                       placeholder="아이디를 입력하세요.">
               </div>
 
               <div class="mb-3">
                 <label for="password"
-                       class="form-label">Password</label>
+                       class="form-label">비밀번호</label>
                 <div class="input-group input-group-merge">
                   <input type="password"
                          id="password"
                          class="form-control"
-                         placeholder="Enter your password">
+                         placeholder="비밀번호를 입력하세요.">
                   <div class="input-group-text"
                        data-password="false">
                     <span class="password-eye"></span>
@@ -108,7 +96,7 @@
 
               <div class="text-center d-grid">
                 <button class="btn btn-primary"
-                        type="submit"> Log In
+                        type="submit"> 로그인
                 </button>
               </div>
 
@@ -117,16 +105,6 @@
           </div> <!-- end card-body -->
         </div>
         <!-- end card -->
-
-        <div class="row mt-3">
-          <div class="col-12 text-center">
-            <p>
-              <a href="auth-recoverpw.html"
-                 class="text-white-50 ms-1">Forgot your password?</a>
-            </p>
-          </div> <!-- end col -->
-        </div>
-        <!-- end row -->
 
       </div> <!-- end col -->
     </div>
@@ -144,10 +122,10 @@
 </footer>
 
 <!-- Vendor js -->
-<script src="../../resources/admin/assets/js/vendor.min.js"></script>
+<script src="../../../resources/admin/assets/js/vendor.min.js"></script>
 
 <!-- App js -->
-<script src="../../resources/admin/assets/js/app.min.js"></script>
+<script src="../../../resources/admin/assets/js/app.min.js"></script>
 
 </body>
 </html>

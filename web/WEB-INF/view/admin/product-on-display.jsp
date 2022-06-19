@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -339,11 +340,11 @@
               <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                   <li class="breadcrumb-item"><a href="javascript: void(0);">Glip Manage</a></li>
-                  <li class="breadcrumb-item"><a href="javascript: void(0);">Exhibition</a></li>
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Product</a></li>
                   <li class="breadcrumb-item active">On Display</li>
                 </ol>
               </div>
-              <h4 class="page-title">On Display in Exhibition</h4>
+              <h4 class="page-title">On Display in Product</h4>
             </div>
           </div>
         </div>
@@ -355,19 +356,22 @@
             <div class="card">
               <div class="card-body">
                 <div class="table-responsive">
-                  <h4 class="header-title">On Display in Exhibition</h4>
+                  <h4 class="header-title">On Display in Product</h4>
                   <p class="text-muted font-13 mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum
                     earum eveniet impedit! Ea eligendi et explicabo harum hic nihil non porro possimus praesentium
                     voluptatem. Atque dicta nostrum nulla tenetur voluptatibus.</p>
                   <table class="table dt-responsive nowrap w-100 alternative-page-datatable">
                     <thead>
+                    <!--TODO 2022-06-13 마지막 작업 tr만 수정하면됨-->
                     <tr>
                       <th>No</th>
-                      <th>Title</th>
+                      <th>Name</th>
                       <th>Category</th>
-                      <th>Start Date</th>
-                      <th>Finish Date</th>
-                      <th>Writer</th>
+                      <th>Price</th>
+                      <th>Sale</th>
+                      <th>Total Price</th>
+                      <th>Scraps</th>
+                      <th>Views</th>
                       <th>Register Date</th>
                       <th>Action</th>
                     </tr>
@@ -383,17 +387,210 @@
                       <td>2022.12.12</td>
                       <td>Garrett Winters</td>
                       <td>2022.11.12</td>
+                      <td>32</td>
+                      <td>16</td>
                       <td>
                         <button type="button"
+                                data-bs-target="#exhibition-abled-modal"
+                                data-bs-exhibition-no="1"
+                                data-bs-toggle="modal"
                                 class="btn btn-sm btn-primary waves-effect waves-light">
-                          승인 대기
+                          활성화
                         </button>
                         <button type="button"
-                                class="btn btn-sm btn-danger waves-effect waves-light">
-                          반려
+                                class="btn btn-sm btn-danger waves-effect waves-light"
+                                data-bs-target="#exhibition-disabled-modal"
+                                data-bs-exhibition-no="1"
+                                data-bs-toggle="modal">
+                          비활성화
+                        </button>
+                        <button type="button" onclick="javascript:void(0);"
+                                class="btn btn-sm btn-info waves-effect waves-light">
+                          상세보기
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Lorem ipsum</td>
+                      <td><span class="badge bg-warning">Photography</span></td>
+                      <td>2022.12.12</td>
+                      <td>2022.12.12</td>
+                      <td>Garrett Winters</td>
+                      <td>2022.11.12</td>
+                      <td>32</td>
+                      <td>16</td>
+                      <td>
+                        <button type="button"
+                                data-bs-target="#exhibition-abled-modal"
+                                data-bs-exhibition-no="1"
+                                data-bs-toggle="modal"
+                                class="btn btn-sm btn-primary waves-effect waves-light">
+                          활성화
                         </button>
                         <button type="button"
-                                onclick="javascript:void(0);"
+                                class="btn btn-sm btn-danger waves-effect waves-light"
+                                data-bs-target="#exhibition-disabled-modal"
+                                data-bs-exhibition-no="1"
+                                data-bs-toggle="modal">
+                          비활성화
+                        </button>
+                        <button type="button" onclick="javascript:void(0);"
+                                class="btn btn-sm btn-info waves-effect waves-light">
+                          상세보기
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Lorem ipsum</td>
+                      <td><span class="badge bg-dark">Photography</span></td>
+                      <td>2022.12.12</td>
+                      <td>2022.12.12</td>
+                      <td>Garrett Winters</td>
+                      <td>2022.11.12</td>
+                      <td>32</td>
+                      <td>16</td>
+                      <td>
+                        <button type="button"
+                                data-bs-target="#exhibition-abled-modal"
+                                data-bs-exhibition-no="1"
+                                data-bs-toggle="modal"
+                                class="btn btn-sm btn-primary waves-effect waves-light">
+                          활성화
+                        </button>
+                        <button type="button"
+                                class="btn btn-sm btn-danger waves-effect waves-light"
+                                data-bs-target="#exhibition-disabled-modal"
+                                data-bs-exhibition-no="1"
+                                data-bs-toggle="modal">
+                          비활성화
+                        </button>
+                        <button type="button" onclick="javascript:void(0);"
+                                class="btn btn-sm btn-info waves-effect waves-light">
+                          상세보기
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Lorem ipsum</td>
+                      <td><span class="badge bg-secondary">Photography</span></td>
+                      <td>2022.12.12</td>
+                      <td>2022.12.12</td>
+                      <td>Garrett Winters</td>
+                      <td>2022.11.12</td>
+                      <td>32</td>
+                      <td>16</td>
+                      <td>
+                        <button type="button"
+                                data-bs-target="#exhibition-abled-modal"
+                                data-bs-exhibition-no="1"
+                                data-bs-toggle="modal"
+                                class="btn btn-sm btn-primary waves-effect waves-light">
+                          활성화
+                        </button>
+                        <button type="button"
+                                class="btn btn-sm btn-danger waves-effect waves-light"
+                                data-bs-target="#exhibition-disabled-modal"
+                                data-bs-exhibition-no="1"
+                                data-bs-toggle="modal">
+                          비활성화
+                        </button>
+                        <button type="button" onclick="javascript:void(0);"
+                                class="btn btn-sm btn-info waves-effect waves-light">
+                          상세보기
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Lorem ipsum</td>
+                      <td><span class="badge bg-blue">Photography</span></td>
+                      <td>2022.12.12</td>
+                      <td>2022.12.12</td>
+                      <td>Garrett Winters</td>
+                      <td>2022.11.12</td>
+                      <td>32</td>
+                      <td>16</td>
+                      <td>
+                        <button type="button"
+                                data-bs-target="#exhibition-abled-modal"
+                                data-bs-exhibition-no="1"
+                                data-bs-toggle="modal"
+                                class="btn btn-sm btn-primary waves-effect waves-light">
+                          활성화
+                        </button>
+                        <button type="button"
+                                class="btn btn-sm btn-danger waves-effect waves-light"
+                                data-bs-target="#exhibition-disabled-modal"
+                                data-bs-exhibition-no="1"
+                                data-bs-toggle="modal">
+                          비활성화
+                        </button>
+                        <button type="button" onclick="javascript:void(0);"
+                                class="btn btn-sm btn-info waves-effect waves-light">
+                          상세보기
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Lorem ipsum</td>
+                      <td><span class="badge bg-success">Photography</span></td>
+                      <td>2022.12.12</td>
+                      <td>2022.12.12</td>
+                      <td>Garrett Winters</td>
+                      <td>2022.11.12</td>
+                      <td>32</td>
+                      <td>16</td>
+                      <td>
+                        <button type="button"
+                                data-bs-target="#exhibition-abled-modal"
+                                data-bs-exhibition-no="1"
+                                data-bs-toggle="modal"
+                                class="btn btn-sm btn-primary waves-effect waves-light">
+                          활성화
+                        </button>
+                        <button type="button"
+                                class="btn btn-sm btn-danger waves-effect waves-light"
+                                data-bs-target="#exhibition-disabled-modal"
+                                data-bs-exhibition-no="1"
+                                data-bs-toggle="modal">
+                          비활성화
+                        </button>
+                        <button type="button" onclick="javascript:void(0);"
+                                class="btn btn-sm btn-info waves-effect waves-light">
+                          상세보기
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Lorem ipsum</td>
+                      <td><span class="badge bg-info">Photography</span></td>
+                      <td>2022.12.12</td>
+                      <td>2022.12.12</td>
+                      <td>Garrett Winters</td>
+                      <td>2022.11.12</td>
+                      <td>32</td>
+                      <td>16</td>
+                      <td>
+                        <button type="button"
+                                data-bs-target="#exhibition-abled-modal"
+                                data-bs-exhibition-no="1"
+                                data-bs-toggle="modal"
+                                class="btn btn-sm btn-primary waves-effect waves-light">
+                          활성화
+                        </button>
+                        <button type="button"
+                                class="btn btn-sm btn-danger waves-effect waves-light"
+                                data-bs-target="#exhibition-disabled-modal"
+                                data-bs-exhibition-no="1"
+                                data-bs-toggle="modal">
+                          비활성화
+                        </button>
+                        <button type="button" onclick="javascript:void(0);"
                                 class="btn btn-sm btn-info waves-effect waves-light">
                           상세보기
                         </button>
@@ -407,17 +604,24 @@
                       <td>2022.12.12</td>
                       <td>Garrett Winters</td>
                       <td>2022.11.12</td>
+                      <td>32</td>
+                      <td>16</td>
                       <td>
                         <button type="button"
+                                data-bs-target="#exhibition-abled-modal"
+                                data-bs-exhibition-no="1"
+                                data-bs-toggle="modal"
                                 class="btn btn-sm btn-primary waves-effect waves-light">
-                          승인 대기
+                          활성화
                         </button>
                         <button type="button"
-                                class="btn btn-sm btn-danger waves-effect waves-light">
-                          반려
+                                class="btn btn-sm btn-danger waves-effect waves-light"
+                                data-bs-target="#exhibition-disabled-modal"
+                                data-bs-exhibition-no="1"
+                                data-bs-toggle="modal">
+                          비활성화
                         </button>
-                        <button type="button"
-                                onclick="javascript:void(0);"
+                        <button type="button" onclick="javascript:void(0);"
                                 class="btn btn-sm btn-info waves-effect waves-light">
                           상세보기
                         </button>
@@ -431,17 +635,24 @@
                       <td>2022.12.12</td>
                       <td>Garrett Winters</td>
                       <td>2022.11.12</td>
+                      <td>32</td>
+                      <td>16</td>
                       <td>
                         <button type="button"
+                                data-bs-target="#exhibition-abled-modal"
+                                data-bs-exhibition-no="1"
+                                data-bs-toggle="modal"
                                 class="btn btn-sm btn-primary waves-effect waves-light">
-                          승인 대기
+                          활성화
                         </button>
                         <button type="button"
-                                class="btn btn-sm btn-danger waves-effect waves-light">
-                          반려
+                                class="btn btn-sm btn-danger waves-effect waves-light"
+                                data-bs-target="#exhibition-disabled-modal"
+                                data-bs-exhibition-no="1"
+                                data-bs-toggle="modal">
+                          비활성화
                         </button>
-                        <button type="button"
-                                onclick="javascript:void(0);"
+                        <button type="button" onclick="javascript:void(0);"
                                 class="btn btn-sm btn-info waves-effect waves-light">
                           상세보기
                         </button>
@@ -455,17 +666,24 @@
                       <td>2022.12.12</td>
                       <td>Garrett Winters</td>
                       <td>2022.11.12</td>
+                      <td>32</td>
+                      <td>16</td>
                       <td>
                         <button type="button"
+                                data-bs-target="#exhibition-abled-modal"
+                                data-bs-exhibition-no="1"
+                                data-bs-toggle="modal"
                                 class="btn btn-sm btn-primary waves-effect waves-light">
-                          승인 대기
+                          활성화
                         </button>
                         <button type="button"
-                                class="btn btn-sm btn-danger waves-effect waves-light">
-                          반려
+                                class="btn btn-sm btn-danger waves-effect waves-light"
+                                data-bs-target="#exhibition-disabled-modal"
+                                data-bs-exhibition-no="1"
+                                data-bs-toggle="modal">
+                          비활성화
                         </button>
-                        <button type="button"
-                                onclick="javascript:void(0);"
+                        <button type="button" onclick="javascript:void(0);"
                                 class="btn btn-sm btn-info waves-effect waves-light">
                           상세보기
                         </button>
@@ -479,115 +697,34 @@
                       <td>2022.12.12</td>
                       <td>Garrett Winters</td>
                       <td>2022.11.12</td>
+                      <td>32</td>
+                      <td>16</td>
                       <td>
                         <button type="button"
+                                data-bs-target="#exhibition-abled-modal"
+                                data-bs-exhibition-no="1"
+                                data-bs-toggle="modal"
                                 class="btn btn-sm btn-primary waves-effect waves-light">
-                          승인 대기
+                          활성화
                         </button>
                         <button type="button"
-                                class="btn btn-sm btn-danger waves-effect waves-light">
-                          반려
+                                class="btn btn-sm btn-danger waves-effect waves-light"
+                                data-bs-target="#exhibition-disabled-modal"
+                                data-bs-exhibition-no="1"
+                                data-bs-toggle="modal">
+                          비활성화
                         </button>
-                        <button type="button"
-                                onclick="javascript:void(0);"
+                        <button type="button" onclick="javascript:void(0);"
                                 class="btn btn-sm btn-info waves-effect waves-light">
                           상세보기
                         </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <td>Lorem ipsum</td>
-                      <td><span class="badge bg-primary">Photography</span></td>
-                      <td>2022.12.12</td>
-                      <td>2022.12.12</td>
-                      <td>Garrett Winters</td>
-                      <td>2022.11.12</td>
-                      <td>
-                        <button type="button"
-                                class="btn btn-sm btn-primary waves-effect waves-light">
-                          승인 대기
-                        </button>
-                        <button type="button"
-                                class="btn btn-sm btn-danger waves-effect waves-light">
-                          반려
-                        </button>
-                        <button type="button"
-                                onclick="javascript:void(0);"
+                        <button type="button" onclick="javascript:void(0);"
                                 class="btn btn-sm btn-info waves-effect waves-light">
-                          상세보기
+                          수정
                         </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <td>Lorem ipsum</td>
-                      <td><span class="badge bg-primary">Photography</span></td>
-                      <td>2022.12.12</td>
-                      <td>2022.12.12</td>
-                      <td>Garrett Winters</td>
-                      <td>2022.11.12</td>
-                      <td>
-                        <button type="button"
-                                class="btn btn-sm btn-primary waves-effect waves-light">
-                          승인 대기
-                        </button>
-                        <button type="button"
-                                class="btn btn-sm btn-danger waves-effect waves-light">
-                          반려
-                        </button>
-                        <button type="button"
-                                onclick="javascript:void(0);"
+                        <button type="button" onclick="javascript:void(0);"
                                 class="btn btn-sm btn-info waves-effect waves-light">
-                          상세보기
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <td>Lorem ipsum</td>
-                      <td><span class="badge bg-primary">Photography</span></td>
-                      <td>2022.12.12</td>
-                      <td>2022.12.12</td>
-                      <td>Garrett Winters</td>
-                      <td>2022.11.12</td>
-                      <td>
-                        <button type="button"
-                                class="btn btn-sm btn-primary waves-effect waves-light">
-                          승인 대기
-                        </button>
-                        <button type="button"
-                                class="btn btn-sm btn-danger waves-effect waves-light">
-                          반려
-                        </button>
-                        <button type="button"
-                                onclick="javascript:void(0);"
-                                class="btn btn-sm btn-info waves-effect waves-light">
-                          상세보기
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <td>Lorem ipsum</td>
-                      <td><span class="badge bg-primary">Photography</span></td>
-                      <td>2022.12.12</td>
-                      <td>2022.12.12</td>
-                      <td>Garrett Winters</td>
-                      <td>2022.11.12</td>
-                      <td>
-                        <button type="button"
-                                class="btn btn-sm btn-primary waves-effect waves-light">
-                          승인 대기
-                        </button>
-                        <button type="button"
-                                class="btn btn-sm btn-danger waves-effect waves-light">
-                          반려
-                        </button>
-                        <button type="button"
-                                onclick="javascript:void(0);"
-                                class="btn btn-sm btn-info waves-effect waves-light">
-                          상세보기
+                          삭제
                         </button>
                       </td>
                     </tr>

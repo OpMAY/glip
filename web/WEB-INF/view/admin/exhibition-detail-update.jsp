@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -402,266 +403,333 @@
                   <p class="text-muted font-13 mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum
                     earum eveniet impedit! Ea eligendi et explicabo harum hic nihil non porro possimus praesentium
                     voluptatem. Atque dicta nostrum nulla tenetur voluptatibus.</p>
-                  <div class="row">
-                    <div class="col-12">
-                      <div class="mb-3">
-                        <label class="form-label">Title</label>
-                        <input type="text"
-                               name="title"
-                               placeholder="Input Title"
-                               class="form-control">
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label">Main Image</label>
-                        <input type="file"
-                               name="main_image"
-                               data-plugins="dropify"
-                               data-max-file-size="5M"
-                               data-default-file="../../resources/admin/assets/images/small/img-2.jpg"
-                               data-height="400"/>
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label">Simple Description</label>
-                        <input type="text"
-                               name="simple_desc"
-                               placeholder="Input Simple Description"
-                               class="form-control">
-                      </div>
-                      <div class="row">
-                        <div class="col-4">
-                          <div class="mb-3">
-                            <label class="form-label">Start Date And Finish Date</label>
-                            <input type="text"
-                                   id="range-datepicker"
-                                   class="form-control"
-                                   placeholder="2018-10-03 to 2018-10-10">
-                          </div>
+                  <form action="#"
+                        method="get"
+                        enctype="multipart/form-data">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="mb-3">
+                          <label class="form-label">Title</label>
+                          <input type="text"
+                                 name="title"
+                                 placeholder="Input Title"
+                                 class="form-control">
                         </div>
-                        <div class="col-auto">
-                          <div class="mb-3">
-                            <label class="form-label">Start Date</label>
-                            <input type="text"
-                                   class="form-control 24hours-timepicker"
-                                   placeholder="16:21">
-                          </div>
+                        <div class="mb-3">
+                          <label class="form-label">Main Image</label>
+                          <input type="file"
+                                 name="main_image"
+                                 data-plugins="dropify"
+                                 data-max-file-size="5M"
+                                 data-default-file="../../resources/admin/assets/images/small/img-2.jpg"
+                                 data-height="400"/>
                         </div>
-                        <div class="col-auto">
-                          <div class="mb-3">
-                            <label class="form-label">End Date</label>
-                            <input type="text"
-                                   class="form-control 24hours-timepicker"
-                                   placeholder="16:21">
-                          </div>
+                        <div class="mb-3">
+                          <label class="form-label">Simple Description</label>
+                          <input type="text"
+                                 name="simple_desc"
+                                 placeholder="Input Simple Description"
+                                 class="form-control">
                         </div>
-                      </div>
-                      <div class="row">
-                        <div class="col d-grid">
-                          <div class="mb-3">
-                            <label class="form-label">Exhibition Address</label>
-                            <div class="input-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <div class="mb-3">
+                              <label class="form-label">Start Date And Finish Date</label>
                               <input type="text"
-                                     name="exhibition-address"
-                                     placeholder="Input Exhibition Address"
-                                     class="form-control">
-                              <button class="btn input-group-text btn-dark waves-effect waves-light"
-                                      type="button">Search...
-                              </button>
+                                     id="range-datepicker"
+                                     class="form-control"
+                                     placeholder="2018-10-03 to 2018-10-10">
+                            </div>
+                          </div>
+                          <div class="col-auto">
+                            <div class="mb-3">
+                              <label class="form-label">Start Date</label>
+                              <input type="text"
+                                     class="form-control 24hours-timepicker"
+                                     placeholder="16:21">
+                            </div>
+                          </div>
+                          <div class="col-auto">
+                            <div class="mb-3">
+                              <label class="form-label">End Date</label>
+                              <input type="text"
+                                     class="form-control 24hours-timepicker"
+                                     placeholder="16:21">
                             </div>
                           </div>
                         </div>
-                        <div class="col-4">
-                          <div class="mb-3">
-                            <label class="form-label">Exhibition Address Detail</label>
-                            <input type="text"
-                                   name="exhibition-address-detail"
-                                   placeholder="Input Exhibition Address Detail"
-                                   class="form-control">
+                        <div class="row">
+                          <div class="col d-grid">
+                            <div class="mb-3">
+                              <label class="form-label">Exhibition Address</label>
+                              <div class="input-group">
+                                <input type="text"
+                                       name="exhibition-address"
+                                       placeholder="Input Exhibition Address"
+                                       class="form-control">
+                                <button class="btn input-group-text btn-dark waves-effect waves-light"
+                                        type="button">Search...
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-4">
+                            <div class="mb-3">
+                              <label class="form-label">Exhibition Address Detail</label>
+                              <input type="text"
+                                     name="exhibition-address-detail"
+                                     placeholder="Input Exhibition Address Detail"
+                                     class="form-control">
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label">Address Map</label>
-                        <div class="w-100 background"
-                             style="padding-top: 40%;
+                        <div class="mb-3">
+                          <label class="form-label">Address Map</label>
+                          <div class="w-100 background"
+                               style="padding-top: 40%;
                              background-image:url('../../resources/admin/assets/images/bg-auth.jpg');"></div>
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label">Description</label>
-                        <textarea class="form-control"
-                                  name="description"
-                                  id="example-textarea"
-                                  placeholder="Input Description"
-                                  rows="5"></textarea>
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label d-flex">Homepage
-                          Url<span onclick="javascript:void(0);"
-                                   class="cursor-pointer badge bg-dark float-end my-auto ms-1">링크
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label">Description</label>
+                          <textarea class="form-control"
+                                    name="description"
+                                    id="example-textarea"
+                                    placeholder="Input Description"
+                                    rows="5"></textarea>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label d-flex">Homepage
+                            Url<span onclick="javascript:void(0);"
+                                     class="cursor-pointer badge bg-dark float-end my-auto ms-1">링크
                             이동</span></label>
-                        <input type="text"
-                               name="homepage-url"
-                               placeholder="Input Homepage Url"
-                               class="form-control">
-                      </div>
-                      <div class="row join-writer-wrapper">
-                        <div class="col-12 join-writer-inner">
-                          <div class="row join-writer-item">
-                            <div class="col-auto d-grid">
-                              <div class="mb-3">
-                                <label class="form-label d-flex">
-                                  참여 작가
-                                  <span onclick="javascript:void(0);"
-                                        class="cursor-pointer badge bg-dark float-end my-auto ms-1">Move</span>
-                                  <span onclick="javascript:void(0);"
-                                        class="cursor-pointer badge bg-danger float-end my-auto ms-1">Delete</span>
-                                </label>
+                          <input type="text"
+                                 name="homepage-url"
+                                 placeholder="Input Homepage Url"
+                                 class="form-control">
+                        </div>
+                        <div class="row join-writer-wrapper">
+                          <div class="col-12 join-writer-inner">
+                            <div class="row join-writer-item">
+                              <div class="col-auto d-grid">
+                                <div class="mb-3">
+                                  <label class="form-label d-flex">
+                                    참여 작가
+                                    <span onclick="javascript:void(0);"
+                                          data-action="move"
+                                          class="cursor-pointer badge bg-dark float-end my-auto ms-1">Move</span>
+                                    <span onclick="javascript:void(0);"
+                                          data-action="delete"
+                                          class="cursor-pointer badge bg-danger float-end my-auto ms-1">Delete</span>
+                                  </label>
+                                  <input type="text"
+                                         name="writer"
+                                         placeholder="Input Enter Writer"
+                                         class="form-control">
+                                </div>
+                              </div>
+                              <div class="col-6">
+                                <label class="form-label empty-label"></label>
                                 <input type="text"
-                                       name="writer"
-                                       placeholder="Input Enter Writer"
+                                       name="writer-url"
+                                       placeholder="Input Enter Writer Url"
                                        class="form-control">
                               </div>
                             </div>
-                            <div class="col-6">
-                              <label class="form-label empty-label"></label>
-                              <input type="text"
-                                     name="writer-url"
-                                     placeholder="Input Enter Writer Url"
-                                     class="form-control">
+                            <div class="row join-writer-item">
+                              <div class="col-auto d-grid">
+                                <div class="mb-3">
+                                  <label class="form-label d-flex">
+                                    참여 작가
+                                    <span onclick="javascript:void(0);"
+                                          data-action="move"
+                                          class="cursor-pointer badge bg-dark float-end my-auto ms-1">Move</span>
+                                    <span onclick="javascript:void(0);"
+                                          data-action="delete"
+                                          class="cursor-pointer badge bg-danger float-end my-auto ms-1">Delete</span>
+                                  </label>
+                                  <input type="text"
+                                         name="writer"
+                                         placeholder="Input Enter Writer"
+                                         class="form-control">
+                                </div>
+                              </div>
+                              <div class="col-6">
+                                <label class="form-label empty-label"></label>
+                                <input type="text"
+                                       name="writer-url"
+                                       placeholder="Input Enter Writer Url"
+                                       class="form-control">
+                              </div>
+                            </div>
+                            <div class="row join-writer-item">
+                              <div class="col-auto d-grid">
+                                <div class="mb-3">
+                                  <label class="form-label d-flex">
+                                    참여 작가
+                                    <span onclick="javascript:void(0);"
+                                          data-action="move"
+                                          class="cursor-pointer badge bg-dark float-end my-auto ms-1">Move</span>
+                                    <span onclick="javascript:void(0);"
+                                          data-action="delete"
+                                          class="cursor-pointer badge bg-danger float-end my-auto ms-1">Delete</span>
+                                  </label>
+                                  <input type="text"
+                                         name="writer"
+                                         placeholder="Input Enter Writer"
+                                         class="form-control">
+                                </div>
+                              </div>
+                              <div class="col-6">
+                                <label class="form-label empty-label"></label>
+                                <input type="text"
+                                       name="writer-url"
+                                       placeholder="Input Enter Writer Url"
+                                       class="form-control">
+                              </div>
+                            </div>
+                            <div class="row join-writer-item">
+                              <div class="col-auto d-grid">
+                                <div class="mb-3">
+                                  <label class="form-label d-flex">
+                                    참여 작가
+                                    <span onclick="javascript:void(0);"
+                                          data-action="move"
+                                          class="cursor-pointer badge bg-dark float-end my-auto ms-1">Move</span>
+                                    <span onclick="javascript:void(0);"
+                                          data-action="delete"
+                                          class="cursor-pointer badge bg-danger float-end my-auto ms-1">Delete</span>
+                                  </label>
+                                  <input type="text"
+                                         name="writer"
+                                         placeholder="Input Enter Writer"
+                                         class="form-control">
+                                </div>
+                              </div>
+                              <div class="col-6">
+                                <label class="form-label empty-label"></label>
+                                <input type="text"
+                                       name="writer-url"
+                                       placeholder="Input Enter Writer Url"
+                                       class="form-control">
+                              </div>
                             </div>
                           </div>
-                          <div class="row join-writer-item">
-                            <div class="col-auto d-grid">
-                              <div class="mb-3">
-                                <label class="form-label d-flex">
-                                  참여 작가
-                                  <span onclick="javascript:void(0);"
-                                        class="cursor-pointer badge bg-dark float-end my-auto ms-1">Move</span>
-                                  <span onclick="javascript:void(0);"
-                                        class="cursor-pointer badge bg-danger float-end my-auto ms-1">Delete</span>
-                                </label>
-                                <input type="text"
-                                       name="writer"
-                                       placeholder="Input Enter Writer"
-                                       class="form-control">
-                              </div>
-                            </div>
-                            <div class="col-6">
-                              <label class="form-label empty-label"></label>
-                              <input type="text"
-                                     name="writer-url"
-                                     placeholder="Input Enter Writer Url"
-                                     class="form-control">
+                          <div class="col-12 join-writer-plus mb-3">
+                            <button type="button"
+                                    onclick="addJoinWriter();"
+                                    class="btn btn-primary waves-effect waves-light">추가하기
+                            </button>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-3">
+                            <div class="mb-3">
+                              <label for="example-select"
+                                     class="form-label">Exhibition Type</label>
+                              <select class="form-select"
+                                      id="example-select">
+                                <option selected>Photograph</option>
+                                <option>Writer</option>
+                                <option>Picture</option>
+                                <option>Video</option>
+                                <option>Image</option>
+                              </select>
                             </div>
                           </div>
-                          <div class="row join-writer-item">
-                            <div class="col-auto d-grid">
-                              <div class="mb-3">
-                                <label class="form-label d-flex">
-                                  참여 작가
-                                  <span onclick="javascript:void(0);"
-                                        class="cursor-pointer badge bg-dark float-end my-auto ms-1">Move</span>
-                                  <span onclick="javascript:void(0);"
-                                        class="cursor-pointer badge bg-danger float-end my-auto ms-1">Delete</span>
-                                </label>
-                                <input type="text"
-                                       name="writer"
-                                       placeholder="Input Enter Writer"
-                                       class="form-control">
-                              </div>
+                          <div class="col-6 d-grid">
+                            <div class="mb-3">
+                              <label class="form-label">Recommend Hashtag</label>
+                              <select id="selectize-optgroup"
+                                      multiple
+                                      placeholder="Recommend Hashtag">
+                                <option value="">Recommend Hashtag</option>
+                                <optgroup label="Climbing">
+                                  <option value="pitons">Pitons</option>
+                                  <option value="cams">Cams</option>
+                                  <option value="nuts">Nuts</option>
+                                  <option value="bolts">Bolts</option>
+                                  <option value="stoppers">Stoppers</option>
+                                  <option value="sling">Sling</option>
+                                </optgroup>
+                                <optgroup label="Skiing">
+                                  <option value="skis">Skis</option>
+                                  <option value="skins">Skins</option>
+                                  <option value="poles">Poles</option>
+                                </optgroup>
+                              </select>
                             </div>
-                            <div class="col-6">
-                              <label class="form-label empty-label"></label>
+                            <div class="mb-3">
+                              <label class="form-label">Recommend Hashtag Other Type</label>
                               <input type="text"
-                                     name="writer-url"
-                                     placeholder="Input Enter Writer Url"
-                                     class="form-control">
-                            </div>
-                          </div>
-                          <div class="row join-writer-item">
-                            <div class="col-auto d-grid">
-                              <div class="mb-3">
-                                <label class="form-label d-flex">
-                                  참여 작가
-                                  <span onclick="javascript:void(0);"
-                                        class="cursor-pointer badge bg-dark float-end my-auto ms-1">Move</span>
-                                  <span onclick="javascript:void(0);"
-                                        class="cursor-pointer badge bg-danger float-end my-auto ms-1">Delete</span>
-                                </label>
-                                <input type="text"
-                                       name="writer"
-                                       placeholder="Input Enter Writer"
-                                       class="form-control">
-                              </div>
-                            </div>
-                            <div class="col-6">
-                              <label class="form-label empty-label"></label>
-                              <input type="text"
-                                     name="writer-url"
-                                     placeholder="Input Enter Writer Url"
-                                     class="form-control">
+                                     class="selectize-close-btn"
+                                     value="awesome,neat">
                             </div>
                           </div>
                         </div>
-                        <div class="col-12 join-writer-plus mb-3">
+                        <div class="mb-3">
+                          <label class="form-label d-flex">Detail Description</label>
+                          <textarea class="form-control"
+                                    id="detail-description"
+                                    placeholder="Smart Editor"
+                                    rows="5"></textarea>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label d-flex">관련 상품</label>
+                          <div class="row row-cols-4">
+                            <div class="col">
+                              <div class="card product-box">
+                                <div class="card-body">
+                                  <div class="product-action">
+                                    <a href="javascript: void(0);"
+                                       class="btn btn-danger btn-xs waves-effect waves-light"><i class="mdi mdi-close"></i></a>
+                                  </div>
+
+                                  <div class="bg-light">
+                                    <img src="../../resources/admin/assets/images/products/product-1.png"
+                                         alt="product-pic"
+                                         class="img-fluid">
+                                  </div>
+
+                                  <div class="product-info">
+                                    <div class="row align-items-center">
+                                      <div class="col">
+                                        <h5 class="font-16 mt-0 sp-line-1"><a href="ecommerce-product-detail.html"
+                                                                              class="text-dark">Adirondack Chair</a>
+                                        </h5>
+                                        <div class="text-warning mb-2 font-13">
+                                          <i class="fa fa-star"></i>
+                                          <i class="fa fa-star"></i>
+                                          <i class="fa fa-star"></i>
+                                          <i class="fa fa-star"></i>
+                                          <i class="fa fa-star"></i>
+                                        </div>
+                                        <h5 class="m-0"><span class="text-muted"> Stocks : 98 pcs</span></h5>
+                                      </div>
+                                      <div class="col-auto">
+                                        <div class="product-price-tag">
+                                          $39
+                                        </div>
+                                      </div>
+                                    </div> <!-- end row -->
+                                  </div> <!-- end product info-->
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                           <button type="button"
-                                  class="btn btn-primary waves-effect waves-light">추가하기
+                                  data-bs-target="#full-width-modal"
+                                  data-bs-toggle="modal"
+                                  class="btn btn-primary waves-effect waves-light">관련상품 추가하기
                           </button>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col-3">
-                          <div class="mb-3">
-                            <label for="example-select"
-                                   class="form-label">Exhibition Type</label>
-                            <select class="form-select"
-                                    id="example-select">
-                              <option selected>Photograph</option>
-                              <option>Writer</option>
-                              <option>Picture</option>
-                              <option>Video</option>
-                              <option>Image</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="col-6 d-grid">
-                          <div class="mb-3">
-                            <label class="form-label">Recommend Hashtag</label>
-                            <select id="selectize-optgroup"
-                                    multiple
-                                    placeholder="Recommend Hashtag">
-                              <option value="">Recommend Hashtag</option>
-                              <optgroup label="Climbing">
-                                <option value="pitons">Pitons</option>
-                                <option value="cams">Cams</option>
-                                <option value="nuts">Nuts</option>
-                                <option value="bolts">Bolts</option>
-                                <option value="stoppers">Stoppers</option>
-                                <option value="sling">Sling</option>
-                              </optgroup>
-                              <optgroup label="Skiing">
-                                <option value="skis">Skis</option>
-                                <option value="skins">Skins</option>
-                                <option value="poles">Poles</option>
-                              </optgroup>
-                            </select>
-                          </div>
-                          <div class="mb-3">
-                            <label class="form-label">Recommend Hashtag Other Type</label>
-                            <input type="text"
-                                   class="selectize-close-btn"
-                                   value="awesome,neat">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label d-flex">Detail Description</label>
-                        <textarea class="form-control"
-                                  id="detail-description"
-                                  placeholder="Smart Editor"
-                                  rows="5"></textarea>
+                      <div class="col-12 text-end">
+                        <button type="submit"
+                                class="btn btn-primary waves-effect waves-light">수정하기
+                        </button>
                       </div>
                     </div>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div> <!-- end card-body-->
@@ -843,230 +911,6 @@
               </button>
             </td>
           </tr>
-          <tr>
-            <td>1</td>
-            <td>Lorem ipsum</td>
-            <td><span class="badge bg-blue">Photography</span></td>
-            <td>2022.12.12</td>
-            <td>2022.12.12</td>
-            <td>Garrett Winters</td>
-            <td>2022.11.12</td>
-            <td>32</td>
-            <td>16</td>
-            <td>
-              <button type="button"
-                      data-bs-target="#exhibition-abled-modal"
-                      data-bs-exhibition-no="1"
-                      data-bs-toggle="modal"
-                      class="btn btn-sm btn-primary waves-effect waves-light">
-                활성화
-              </button>
-              <button type="button"
-                      class="btn btn-sm btn-danger waves-effect waves-light"
-                      data-bs-target="#exhibition-disabled-modal"
-                      data-bs-exhibition-no="1"
-                      data-bs-toggle="modal">
-                비활성화
-              </button>
-              <button type="button"
-                      onclick="javascript:void(0);"
-                      class="btn btn-sm btn-info waves-effect waves-light">
-                상세보기
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Lorem ipsum</td>
-            <td><span class="badge bg-success">Photography</span></td>
-            <td>2022.12.12</td>
-            <td>2022.12.12</td>
-            <td>Garrett Winters</td>
-            <td>2022.11.12</td>
-            <td>32</td>
-            <td>16</td>
-            <td>
-              <button type="button"
-                      data-bs-target="#exhibition-abled-modal"
-                      data-bs-exhibition-no="1"
-                      data-bs-toggle="modal"
-                      class="btn btn-sm btn-primary waves-effect waves-light">
-                활성화
-              </button>
-              <button type="button"
-                      class="btn btn-sm btn-danger waves-effect waves-light"
-                      data-bs-target="#exhibition-disabled-modal"
-                      data-bs-exhibition-no="1"
-                      data-bs-toggle="modal">
-                비활성화
-              </button>
-              <button type="button"
-                      onclick="javascript:void(0);"
-                      class="btn btn-sm btn-info waves-effect waves-light">
-                상세보기
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Lorem ipsum</td>
-            <td><span class="badge bg-info">Photography</span></td>
-            <td>2022.12.12</td>
-            <td>2022.12.12</td>
-            <td>Garrett Winters</td>
-            <td>2022.11.12</td>
-            <td>32</td>
-            <td>16</td>
-            <td>
-              <button type="button"
-                      data-bs-target="#exhibition-abled-modal"
-                      data-bs-exhibition-no="1"
-                      data-bs-toggle="modal"
-                      class="btn btn-sm btn-primary waves-effect waves-light">
-                활성화
-              </button>
-              <button type="button"
-                      class="btn btn-sm btn-danger waves-effect waves-light"
-                      data-bs-target="#exhibition-disabled-modal"
-                      data-bs-exhibition-no="1"
-                      data-bs-toggle="modal">
-                비활성화
-              </button>
-              <button type="button"
-                      onclick="javascript:void(0);"
-                      class="btn btn-sm btn-info waves-effect waves-light">
-                상세보기
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Lorem ipsum</td>
-            <td><span class="badge bg-primary">Photography</span></td>
-            <td>2022.12.12</td>
-            <td>2022.12.12</td>
-            <td>Garrett Winters</td>
-            <td>2022.11.12</td>
-            <td>32</td>
-            <td>16</td>
-            <td>
-              <button type="button"
-                      data-bs-target="#exhibition-abled-modal"
-                      data-bs-exhibition-no="1"
-                      data-bs-toggle="modal"
-                      class="btn btn-sm btn-primary waves-effect waves-light">
-                활성화
-              </button>
-              <button type="button"
-                      class="btn btn-sm btn-danger waves-effect waves-light"
-                      data-bs-target="#exhibition-disabled-modal"
-                      data-bs-exhibition-no="1"
-                      data-bs-toggle="modal">
-                비활성화
-              </button>
-              <button type="button"
-                      onclick="javascript:void(0);"
-                      class="btn btn-sm btn-info waves-effect waves-light">
-                상세보기
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Lorem ipsum</td>
-            <td><span class="badge bg-primary">Photography</span></td>
-            <td>2022.12.12</td>
-            <td>2022.12.12</td>
-            <td>Garrett Winters</td>
-            <td>2022.11.12</td>
-            <td>32</td>
-            <td>16</td>
-            <td>
-              <button type="button"
-                      data-bs-target="#exhibition-abled-modal"
-                      data-bs-exhibition-no="1"
-                      data-bs-toggle="modal"
-                      class="btn btn-sm btn-primary waves-effect waves-light">
-                활성화
-              </button>
-              <button type="button"
-                      class="btn btn-sm btn-danger waves-effect waves-light"
-                      data-bs-target="#exhibition-disabled-modal"
-                      data-bs-exhibition-no="1"
-                      data-bs-toggle="modal">
-                비활성화
-              </button>
-              <button type="button"
-                      onclick="javascript:void(0);"
-                      class="btn btn-sm btn-info waves-effect waves-light">
-                상세보기
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Lorem ipsum</td>
-            <td><span class="badge bg-primary">Photography</span></td>
-            <td>2022.12.12</td>
-            <td>2022.12.12</td>
-            <td>Garrett Winters</td>
-            <td>2022.11.12</td>
-            <td>32</td>
-            <td>16</td>
-            <td>
-              <button type="button"
-                      data-bs-target="#exhibition-abled-modal"
-                      data-bs-exhibition-no="1"
-                      data-bs-toggle="modal"
-                      class="btn btn-sm btn-primary waves-effect waves-light">
-                활성화
-              </button>
-              <button type="button"
-                      class="btn btn-sm btn-danger waves-effect waves-light"
-                      data-bs-target="#exhibition-disabled-modal"
-                      data-bs-exhibition-no="1"
-                      data-bs-toggle="modal">
-                비활성화
-              </button>
-              <button type="button"
-                      onclick="javascript:void(0);"
-                      class="btn btn-sm btn-info waves-effect waves-light">
-                상세보기
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Lorem ipsum</td>
-            <td><span class="badge bg-primary">Photography</span></td>
-            <td>2022.12.12</td>
-            <td>2022.12.12</td>
-            <td>Garrett Winters</td>
-            <td>2022.11.12</td>
-            <td>32</td>
-            <td>16</td>
-            <td>
-              <button type="button"
-                      data-bs-target="#exhibition-abled-modal"
-                      data-bs-exhibition-no="1"
-                      data-bs-toggle="modal"
-                      class="btn btn-sm btn-primary waves-effect waves-light">
-                활성화
-              </button>
-              <button type="button"
-                      class="btn btn-sm btn-danger waves-effect waves-light"
-                      data-bs-target="#exhibition-disabled-modal"
-                      data-bs-exhibition-no="1"
-                      data-bs-toggle="modal">
-                비활성화
-              </button>
-              <button type="button"
-                      onclick="javascript:void(0);"
-                      class="btn btn-sm btn-info waves-effect waves-light">
-                상세보기
-              </button>
-            </td>
-          </tr>
           </tbody>
         </table>
       </div>
@@ -1158,11 +1002,50 @@
             modal.find('.modal-footer button.btn-primary').click(function () {
                 console.log(this);
                 /** Fetch Process Deposit Settle*/
-                modal.hide('modal');
+                modal.modal('hide');
                 $(this).off('click');
             });
         });
+
+        /** Init Join Writer EventListener*/
+        $('.join-writer-item .form-label span[data-action="move"]').on('click', function (e) {
+            console.log(this, e, e.currentTarget);
+        });
+        $('.join-writer-item .form-label span[data-action="delete"]').on('click', function (e) {
+            console.log(this, e, e.currentTarget);
+        });
     });
+
+    const addJoinWriter = () => {
+        $('.join-writer-wrapper .join-writer-inner').append(appendJoinWriter());
+    }
+
+    const appendJoinWriter = () => {
+        return `<div class="row join-writer-item">
+                  <div class="col-auto d-grid">
+                    <div class="mb-3">
+                      <label class="form-label d-flex">
+                        참여 작가
+                        <span onclick="javascript:void(0);" data-action="move"
+                              class="cursor-pointer badge bg-dark float-end my-auto ms-1">Move</span>
+                        <span onclick="javascript:void(0);" data-action="delete"
+                              class="cursor-pointer badge bg-danger float-end my-auto ms-1">Delete</span>
+                      </label>
+                      <input type="text"
+                             name="writer"
+                             placeholder="Input Enter Writer"
+                             class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <label class="form-label empty-label"></label>
+                    <input type="text"
+                           name="writer-url"
+                           placeholder="Input Enter Writer Url"
+                           class="form-control">
+                  </div>
+                </div>`;
+    }
 </script>
 </body>
 </html>

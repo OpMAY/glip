@@ -1,37 +1,30 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!-- Topbar Start -->
 <div class="navbar-custom">
     <div class="container-fluid">
 
+        <ul class="list-unstyled topnav-menu float-end mb-0" style="padding: 1rem">
+            <li class="dropdown notification-list">
+                <button id="log-out" class="btn btn-primary">로그아웃</button>
+            </li>
+        </ul>
+
         <!-- LOGO -->
         <div class="logo-box">
             <a href="index.html"
-               class="logo logo-dark text-center">
-          <span class="logo-sm">
-            <img src="../../resources/admin/assets/images/logo-sm.png"
-                 alt=""
-                 height="22">
-              <!-- <span class="logo-lg-text-light">UBold</span> -->
-          </span>
-                <span class="logo-lg">
-            <img src="../../resources/admin/assets/images/logo-dark.png"
-                 alt=""
-                 height="20">
-                    <!-- <span class="logo-lg-text-light">U</span> -->
-          </span>
-            </a>
-
-            <a href="index.html"
                class="logo logo-light text-center">
           <span class="logo-sm">
-            <img src="../../resources/admin/assets/images/logo-sm.png"
+            <img src="../../../../resources/assets/images/glip/main_logo_bg.svg"
                  alt=""
                  height="22">
           </span>
                 <span class="logo-lg">
-            <img src="../../resources/admin/assets/images/logo-light.png"
-                 alt=""
-                 height="20">
+            <img src="../../../../resources/assets/images/glip/main_logo_bg.svg"
+                 alt="" style="vertical-align:baseline"
+                 height="25">
+                    <span class="logo-text">GLIP</span>
           </span>
+
             </a>
         </div>
 

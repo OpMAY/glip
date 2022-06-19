@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -408,31 +409,32 @@
                         <label class="form-label">Title</label>
                         <input type="text"
                                name="title"
-                               readonly
                                placeholder="Input Title"
-                               class="form-control readonly">
+                               class="form-control">
                       </div>
                       <div class="mb-3">
                         <label class="form-label">Main Image</label>
-                        <div class="background"
-                             style="padding-top: 30%; background-image:
-                        url('../../resources/admin/assets/images/small/img-2.jpg')"></div>
+                        <input type="file"
+                               name="main_image"
+                               data-plugins="dropify"
+                               data-max-file-size="5M"
+                               data-default-file="../../resources/admin/assets/images/small/img-2.jpg"
+                               data-height="400"/>
                       </div>
                       <div class="mb-3">
                         <label class="form-label">Simple Description</label>
                         <input type="text"
-                               readonly
                                name="simple_desc"
                                placeholder="Input Simple Description"
-                               class="form-control readonly">
+                               class="form-control">
                       </div>
                       <div class="row">
                         <div class="col-4">
                           <div class="mb-3">
                             <label class="form-label">Start Date And Finish Date</label>
                             <input type="text"
-                                   readonly
-                                   class="form-control readonly"
+                                   id="range-datepicker"
+                                   class="form-control"
                                    placeholder="2018-10-03 to 2018-10-10">
                           </div>
                         </div>
@@ -440,8 +442,7 @@
                           <div class="mb-3">
                             <label class="form-label">Start Date</label>
                             <input type="text"
-                                   readonly
-                                   class="form-control readonly"
+                                   class="form-control 24hours-timepicker"
                                    placeholder="16:21">
                           </div>
                         </div>
@@ -449,8 +450,7 @@
                           <div class="mb-3">
                             <label class="form-label">End Date</label>
                             <input type="text"
-                                   readonly
-                                   class="form-control readonly"
+                                   class="form-control 24hours-timepicker"
                                    placeholder="16:21">
                           </div>
                         </div>
@@ -462,9 +462,11 @@
                             <div class="input-group">
                               <input type="text"
                                      name="exhibition-address"
-                                     readonly
                                      placeholder="Input Exhibition Address"
-                                     class="form-control readonly">
+                                     class="form-control">
+                              <button class="btn input-group-text btn-dark waves-effect waves-light"
+                                      type="button">Search...
+                              </button>
                             </div>
                           </div>
                         </div>
@@ -473,9 +475,8 @@
                             <label class="form-label">Exhibition Address Detail</label>
                             <input type="text"
                                    name="exhibition-address-detail"
-                                   readonly
                                    placeholder="Input Exhibition Address Detail"
-                                   class="form-control readonly">
+                                   class="form-control">
                           </div>
                         </div>
                       </div>
@@ -487,9 +488,8 @@
                       </div>
                       <div class="mb-3">
                         <label class="form-label">Description</label>
-                        <textarea class="form-control readonly"
+                        <textarea class="form-control"
                                   name="description"
-                                  readonly
                                   id="example-textarea"
                                   placeholder="Input Description"
                                   rows="5"></textarea>
@@ -501,9 +501,8 @@
                             이동</span></label>
                         <input type="text"
                                name="homepage-url"
-                               readonly
                                placeholder="Input Homepage Url"
-                               class="form-control readonly">
+                               class="form-control">
                       </div>
                       <div class="row join-writer-wrapper">
                         <div class="col-12 join-writer-inner">
@@ -514,21 +513,21 @@
                                   참여 작가
                                   <span onclick="javascript:void(0);"
                                         class="cursor-pointer badge bg-dark float-end my-auto ms-1">Move</span>
+                                  <span onclick="javascript:void(0);"
+                                        class="cursor-pointer badge bg-danger float-end my-auto ms-1">Delete</span>
                                 </label>
                                 <input type="text"
                                        name="writer"
-                                       readonly
                                        placeholder="Input Enter Writer"
-                                       class="form-control readonly">
+                                       class="form-control">
                               </div>
                             </div>
                             <div class="col-6">
                               <label class="form-label empty-label"></label>
                               <input type="text"
                                      name="writer-url"
-                                     readonly
                                      placeholder="Input Enter Writer Url"
-                                     class="form-control readonly">
+                                     class="form-control">
                             </div>
                           </div>
                           <div class="row join-writer-item">
@@ -538,124 +537,130 @@
                                   참여 작가
                                   <span onclick="javascript:void(0);"
                                         class="cursor-pointer badge bg-dark float-end my-auto ms-1">Move</span>
+                                  <span onclick="javascript:void(0);"
+                                        class="cursor-pointer badge bg-danger float-end my-auto ms-1">Delete</span>
                                 </label>
                                 <input type="text"
                                        name="writer"
-                                       readonly
                                        placeholder="Input Enter Writer"
-                                       class="form-control readonly">
+                                       class="form-control">
                               </div>
                             </div>
                             <div class="col-6">
                               <label class="form-label empty-label"></label>
                               <input type="text"
                                      name="writer-url"
-                                     readonly
                                      placeholder="Input Enter Writer Url"
-                                     class="form-control readonly">
+                                     class="form-control">
                             </div>
                           </div>
+                          <div class="row join-writer-item">
+                            <div class="col-auto d-grid">
+                              <div class="mb-3">
+                                <label class="form-label d-flex">
+                                  참여 작가
+                                  <span onclick="javascript:void(0);"
+                                        class="cursor-pointer badge bg-dark float-end my-auto ms-1">Move</span>
+                                  <span onclick="javascript:void(0);"
+                                        class="cursor-pointer badge bg-danger float-end my-auto ms-1">Delete</span>
+                                </label>
+                                <input type="text"
+                                       name="writer"
+                                       placeholder="Input Enter Writer"
+                                       class="form-control">
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <label class="form-label empty-label"></label>
+                              <input type="text"
+                                     name="writer-url"
+                                     placeholder="Input Enter Writer Url"
+                                     class="form-control">
+                            </div>
+                          </div>
+                          <div class="row join-writer-item">
+                            <div class="col-auto d-grid">
+                              <div class="mb-3">
+                                <label class="form-label d-flex">
+                                  참여 작가
+                                  <span onclick="javascript:void(0);"
+                                        class="cursor-pointer badge bg-dark float-end my-auto ms-1">Move</span>
+                                  <span onclick="javascript:void(0);"
+                                        class="cursor-pointer badge bg-danger float-end my-auto ms-1">Delete</span>
+                                </label>
+                                <input type="text"
+                                       name="writer"
+                                       placeholder="Input Enter Writer"
+                                       class="form-control">
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <label class="form-label empty-label"></label>
+                              <input type="text"
+                                     name="writer-url"
+                                     placeholder="Input Enter Writer Url"
+                                     class="form-control">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 join-writer-plus mb-3">
+                          <button type="button"
+                                  class="btn btn-primary waves-effect waves-light">추가하기
+                          </button>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-3">
                           <div class="mb-3">
-                            <label class="form-label">Exhibition Type</label>
-                            <input type="text"
-                                   name="exhibition-type"
-                                   readonly
-                                   placeholder="Input Enter Exhibition Type"
-                                   class="form-control readonly">
+                            <label for="example-select"
+                                   class="form-label">Exhibition Type</label>
+                            <select class="form-select"
+                                    id="example-select">
+                              <option selected>Photograph</option>
+                              <option>Writer</option>
+                              <option>Picture</option>
+                              <option>Video</option>
+                              <option>Image</option>
+                            </select>
                           </div>
                         </div>
                         <div class="col-6 d-grid">
                           <div class="mb-3">
+                            <label class="form-label">Recommend Hashtag</label>
+                            <select id="selectize-optgroup"
+                                    multiple
+                                    placeholder="Recommend Hashtag">
+                              <option value="">Recommend Hashtag</option>
+                              <optgroup label="Climbing">
+                                <option value="pitons">Pitons</option>
+                                <option value="cams">Cams</option>
+                                <option value="nuts">Nuts</option>
+                                <option value="bolts">Bolts</option>
+                                <option value="stoppers">Stoppers</option>
+                                <option value="sling">Sling</option>
+                              </optgroup>
+                              <optgroup label="Skiing">
+                                <option value="skis">Skis</option>
+                                <option value="skins">Skins</option>
+                                <option value="poles">Poles</option>
+                              </optgroup>
+                            </select>
+                          </div>
+                          <div class="mb-3">
                             <label class="form-label">Recommend Hashtag Other Type</label>
                             <input type="text"
-                                   readonly
-                                   class="form-control readonly"
+                                   class="selectize-close-btn"
                                    value="awesome,neat">
                           </div>
                         </div>
                       </div>
                       <div class="mb-3">
                         <label class="form-label d-flex">Detail Description</label>
-                        <textarea class="form-control readonly"
-                                  readonly
+                        <textarea class="form-control"
                                   id="detail-description"
                                   placeholder="Smart Editor"
                                   rows="5"></textarea>
                       </div>
-                      <div class="mb-3">
-                        <label class="form-label d-flex">관련 상품</label>
-                        <div class="row row-cols-4">
-                          <div class="col">
-                            <div class="card product-box">
-                              <div class="card-body">
-                                <div class="product-action">
-                                  <a href="javascript: void(0);"
-                                     class="btn btn-info btn-xs waves-effect waves-light"><i class="mdi mdi-details"></i></a>
-                                </div>
-                                <div class="bg-light">
-                                  <img src="../../resources/admin/assets/images/products/product-1.png"
-                                       alt="product-pic"
-                                       class="img-fluid">
-                                </div>
-
-                                <div class="product-info">
-                                  <div class="row align-items-center">
-                                    <div class="col">
-                                      <h5 class="font-16 mt-0 sp-line-1"><a href="javascript:void(0);"
-                                                                            class="text-dark">Adirondack Chair</a></h5>
-                                      <div class="text-warning mb-2 font-13">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                      </div>
-                                      <h5 class="m-0"><span class="text-muted"> Stocks : 98 pcs</span></h5>
-                                    </div>
-                                    <div class="col-auto">
-                                      <div class="product-price-tag">
-                                        $39
-                                      </div>
-                                    </div>
-                                  </div> <!-- end row -->
-                                </div> <!-- end product info-->
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-12 text-end">
-                      <button type="button"
-                              data-bs-toggle="modal"
-                              data-bs-target="#exhibition-inactive-modal"
-                              data-bs-exhibition-no="1"
-                              class="btn btn-secondary waves-effect waves-light">비활성화
-                      </button>
-                      <button type="button"
-                              data-bs-toggle="modal"
-                              data-bs-target="#exhibition-agree-modal"
-                              data-bs-exhibition-no="1"
-                              class="btn btn-success waves-effect waves-light">전시 승인
-                      </button>
-                      <button type="button"
-                              data-bs-toggle="modal"
-                              data-bs-target="#exhibition-reject-modal"
-                              class="btn btn-danger waves-effect waves-light">전시 반려
-                      </button>
-                      <button type="button"
-                              class="btn btn-dark waves-effect waves-light">수정하기
-                      </button>
-                      <button type="button"
-                              data-bs-toggle="modal"
-                              data-bs-target="#exhibition-delete-modal"
-                              data-bs-exhibition-no="1"
-                              class="btn btn-danger waves-effect waves-light">삭제
-                      </button>
                     </div>
                   </div>
                 </div>
@@ -698,144 +703,386 @@
 </div>
 <!-- END wrapper -->
 
-
 <!-- Modal -->
-<div class="modal fade"
-     id="exhibition-delete-modal"
+<!-- 추가하기 모달-->
+<div id="full-width-modal"
+     class="modal fade"
      tabindex="-1"
      role="dialog"
+     aria-labelledby="fullWidthModalLabel"
      aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-full-width modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header bg-light">
+      <div class="modal-header">
         <h4 class="modal-title"
-            id="exhibitionDeleteModalLabel">Exhibition Delete</h4>
+            id="fullWidthModalLabel">관련 상품 등록</h4>
         <button type="button"
                 class="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"></button>
       </div>
-      <div class="modal-body p-4">
-        <p>Would you like to cancel service suspension for 'Yoo Byung-jun'?</p>
-        <div class="mt-3">
-          <div class="btn-container mt-3 text-end">
-            <button data-bs-dismiss="modal"
-                    class="btn btn-sm btn-dark waves-effect waves-light"
-                    type="button">Cancel
-            </button>
-            <button data-bs-dismiss="modal"
-                    class="btn btn-sm btn-danger waves-effect waves-light">Delete
-            </button>
-          </div>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-</div>
-<div class="modal fade"
-     id="exhibition-agree-modal"
-     tabindex="-1"
-     role="dialog"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header bg-light">
-        <h4 class="modal-title"
-            id="exhibitionAgreeModalLabel">Exhibition Agree</h4>
-        <button type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"></button>
-      </div>
-      <div class="modal-body p-4">
-        <p>Would you like to cancel service suspension for 'Yoo Byung-jun'?</p>
-        <div class="mt-3">
-          <div class="btn-container mt-3 text-end">
-            <button data-bs-dismiss="modal"
-                    class="btn btn-sm btn-dark waves-effect waves-light"
-                    type="button">Cancel
-            </button>
-            <button data-bs-dismiss="modal"
-                    class="btn btn-sm btn-success waves-effect waves-light">Agree
-            </button>
-          </div>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-</div>
-<div class="modal fade"
-     id="exhibition-reject-modal"
-     tabindex="-1"
-     role="dialog"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header bg-light">
-        <h4 class="modal-title"
-            id="exhibitionRejectModalLabel">Exhibition Reject</h4>
-        <button type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"></button>
-      </div>
-      <div class="modal-body p-4">
-        <p>Would you like to cancel service suspension for 'Yoo Byung-jun'?</p>
-        <div class="mb-3">
-          <label class="form-label">반려 사유</label>
-          <input type="text"
-                 name="rejected-cause"
-                 placeholder="Input Rejected Cause"
-                 class="form-control">
-        </div>
-        <div class="mt-3">
-          <div class="btn-container mt-3 text-end">
-            <button data-bs-dismiss="modal"
-                    class="btn btn-sm btn-dark waves-effect waves-light"
-                    type="button">Cancel
-            </button>
-            <button data-bs-dismiss="modal"
-                    class="btn btn-sm btn-danger waves-effect waves-light">Reject
-            </button>
-          </div>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-</div>
-<div class="modal fade"
-     id="exhibition-inactive-modal"
-     tabindex="-1"
-     role="dialog"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header bg-light">
-        <h4 class="modal-title"
-            id="exhibitionInActiveModalLabel">Exhibition InActive</h4>
-        <button type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"></button>
-      </div>
-      <div class="modal-body p-4">
-        <p>Would you like to cancel service suspension for 'Yoo Byung-jun'?</p>
-        <div class="mt-3">
-          <div class="btn-container mt-3 text-end">
-            <button data-bs-dismiss="modal"
-                    class="btn btn-sm btn-dark waves-effect waves-light"
-                    type="button">Cancel
-            </button>
-            <button data-bs-dismiss="modal"
-                    class="btn btn-sm btn-secondary waves-effect waves-light">InActive
-            </button>
-          </div>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-</div>
+      <div class="modal-body">
+        <h6>Text in a modal</h6>
+        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+        <hr>
+        <h6>Overflowing text to show scroll behavior</h6>
+        <table class="table dt-responsive nowrap w-100 alternative-page-datatable">
+          <thead>
+          <tr>
+            <th>No</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Start Date</th>
+            <th>Finish Date</th>
+            <th>Writer</th>
+            <th>Register Date</th>
+            <th>Scraps</th>
+            <th>Views</th>
+            <th>Action</th>
+          </tr>
+          </thead>
 
+
+          <tbody>
+          <tr>
+            <td>1</td>
+            <td>Lorem ipsum</td>
+            <td><span class="badge bg-primary">Photography</span></td>
+            <td>2022.12.12</td>
+            <td>2022.12.12</td>
+            <td>Garrett Winters</td>
+            <td>2022.11.12</td>
+            <td>32</td>
+            <td>16</td>
+            <td>
+              <div class="form-check d-inline-block me-1">
+                <input type="checkbox"
+                       class="form-check-input"
+                       id="customCheck1">
+                <label class="form-check-label"
+                       for="customCheck1">선택하기</label>
+              </div>
+              <button type="button"
+                      onclick="javascript:void(0);"
+                      class="btn btn-sm btn-info waves-effect waves-light">
+                상세보기
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Lorem ipsum</td>
+            <td><span class="badge bg-warning">Photography</span></td>
+            <td>2022.12.12</td>
+            <td>2022.12.12</td>
+            <td>Garrett Winters</td>
+            <td>2022.11.12</td>
+            <td>32</td>
+            <td>16</td>
+            <td>
+              <div class="form-check d-inline-block me-1">
+                <input type="checkbox"
+                       class="form-check-input"
+                       id="customCheck2">
+                <label class="form-check-label"
+                       for="customCheck2">선택하기</label>
+              </div>
+              <button type="button"
+                      onclick="javascript:void(0);"
+                      class="btn btn-sm btn-info waves-effect waves-light">
+                상세보기
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Lorem ipsum</td>
+            <td><span class="badge bg-dark">Photography</span></td>
+            <td>2022.12.12</td>
+            <td>2022.12.12</td>
+            <td>Garrett Winters</td>
+            <td>2022.11.12</td>
+            <td>32</td>
+            <td>16</td>
+            <td>
+              <div class="form-check d-inline-block me-1">
+                <input type="checkbox"
+                       class="form-check-input"
+                       id="customCheck3">
+                <label class="form-check-label"
+                       for="customCheck3">선택하기</label>
+              </div>
+              <button type="button"
+                      onclick="javascript:void(0);"
+                      class="btn btn-sm btn-info waves-effect waves-light">
+                상세보기
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Lorem ipsum</td>
+            <td><span class="badge bg-secondary">Photography</span></td>
+            <td>2022.12.12</td>
+            <td>2022.12.12</td>
+            <td>Garrett Winters</td>
+            <td>2022.11.12</td>
+            <td>32</td>
+            <td>16</td>
+            <td>
+              <div class="form-check d-inline-block me-1">
+                <input type="checkbox"
+                       class="form-check-input"
+                       id="customCheck4">
+                <label class="form-check-label"
+                       for="customCheck4">선택하기</label>
+              </div>
+              <button type="button"
+                      onclick="javascript:void(0);"
+                      class="btn btn-sm btn-info waves-effect waves-light">
+                상세보기
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Lorem ipsum</td>
+            <td><span class="badge bg-blue">Photography</span></td>
+            <td>2022.12.12</td>
+            <td>2022.12.12</td>
+            <td>Garrett Winters</td>
+            <td>2022.11.12</td>
+            <td>32</td>
+            <td>16</td>
+            <td>
+              <button type="button"
+                      data-bs-target="#exhibition-abled-modal"
+                      data-bs-exhibition-no="1"
+                      data-bs-toggle="modal"
+                      class="btn btn-sm btn-primary waves-effect waves-light">
+                활성화
+              </button>
+              <button type="button"
+                      class="btn btn-sm btn-danger waves-effect waves-light"
+                      data-bs-target="#exhibition-disabled-modal"
+                      data-bs-exhibition-no="1"
+                      data-bs-toggle="modal">
+                비활성화
+              </button>
+              <button type="button"
+                      onclick="javascript:void(0);"
+                      class="btn btn-sm btn-info waves-effect waves-light">
+                상세보기
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Lorem ipsum</td>
+            <td><span class="badge bg-success">Photography</span></td>
+            <td>2022.12.12</td>
+            <td>2022.12.12</td>
+            <td>Garrett Winters</td>
+            <td>2022.11.12</td>
+            <td>32</td>
+            <td>16</td>
+            <td>
+              <button type="button"
+                      data-bs-target="#exhibition-abled-modal"
+                      data-bs-exhibition-no="1"
+                      data-bs-toggle="modal"
+                      class="btn btn-sm btn-primary waves-effect waves-light">
+                활성화
+              </button>
+              <button type="button"
+                      class="btn btn-sm btn-danger waves-effect waves-light"
+                      data-bs-target="#exhibition-disabled-modal"
+                      data-bs-exhibition-no="1"
+                      data-bs-toggle="modal">
+                비활성화
+              </button>
+              <button type="button"
+                      onclick="javascript:void(0);"
+                      class="btn btn-sm btn-info waves-effect waves-light">
+                상세보기
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Lorem ipsum</td>
+            <td><span class="badge bg-info">Photography</span></td>
+            <td>2022.12.12</td>
+            <td>2022.12.12</td>
+            <td>Garrett Winters</td>
+            <td>2022.11.12</td>
+            <td>32</td>
+            <td>16</td>
+            <td>
+              <button type="button"
+                      data-bs-target="#exhibition-abled-modal"
+                      data-bs-exhibition-no="1"
+                      data-bs-toggle="modal"
+                      class="btn btn-sm btn-primary waves-effect waves-light">
+                활성화
+              </button>
+              <button type="button"
+                      class="btn btn-sm btn-danger waves-effect waves-light"
+                      data-bs-target="#exhibition-disabled-modal"
+                      data-bs-exhibition-no="1"
+                      data-bs-toggle="modal">
+                비활성화
+              </button>
+              <button type="button"
+                      onclick="javascript:void(0);"
+                      class="btn btn-sm btn-info waves-effect waves-light">
+                상세보기
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Lorem ipsum</td>
+            <td><span class="badge bg-primary">Photography</span></td>
+            <td>2022.12.12</td>
+            <td>2022.12.12</td>
+            <td>Garrett Winters</td>
+            <td>2022.11.12</td>
+            <td>32</td>
+            <td>16</td>
+            <td>
+              <button type="button"
+                      data-bs-target="#exhibition-abled-modal"
+                      data-bs-exhibition-no="1"
+                      data-bs-toggle="modal"
+                      class="btn btn-sm btn-primary waves-effect waves-light">
+                활성화
+              </button>
+              <button type="button"
+                      class="btn btn-sm btn-danger waves-effect waves-light"
+                      data-bs-target="#exhibition-disabled-modal"
+                      data-bs-exhibition-no="1"
+                      data-bs-toggle="modal">
+                비활성화
+              </button>
+              <button type="button"
+                      onclick="javascript:void(0);"
+                      class="btn btn-sm btn-info waves-effect waves-light">
+                상세보기
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Lorem ipsum</td>
+            <td><span class="badge bg-primary">Photography</span></td>
+            <td>2022.12.12</td>
+            <td>2022.12.12</td>
+            <td>Garrett Winters</td>
+            <td>2022.11.12</td>
+            <td>32</td>
+            <td>16</td>
+            <td>
+              <button type="button"
+                      data-bs-target="#exhibition-abled-modal"
+                      data-bs-exhibition-no="1"
+                      data-bs-toggle="modal"
+                      class="btn btn-sm btn-primary waves-effect waves-light">
+                활성화
+              </button>
+              <button type="button"
+                      class="btn btn-sm btn-danger waves-effect waves-light"
+                      data-bs-target="#exhibition-disabled-modal"
+                      data-bs-exhibition-no="1"
+                      data-bs-toggle="modal">
+                비활성화
+              </button>
+              <button type="button"
+                      onclick="javascript:void(0);"
+                      class="btn btn-sm btn-info waves-effect waves-light">
+                상세보기
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Lorem ipsum</td>
+            <td><span class="badge bg-primary">Photography</span></td>
+            <td>2022.12.12</td>
+            <td>2022.12.12</td>
+            <td>Garrett Winters</td>
+            <td>2022.11.12</td>
+            <td>32</td>
+            <td>16</td>
+            <td>
+              <button type="button"
+                      data-bs-target="#exhibition-abled-modal"
+                      data-bs-exhibition-no="1"
+                      data-bs-toggle="modal"
+                      class="btn btn-sm btn-primary waves-effect waves-light">
+                활성화
+              </button>
+              <button type="button"
+                      class="btn btn-sm btn-danger waves-effect waves-light"
+                      data-bs-target="#exhibition-disabled-modal"
+                      data-bs-exhibition-no="1"
+                      data-bs-toggle="modal">
+                비활성화
+              </button>
+              <button type="button"
+                      onclick="javascript:void(0);"
+                      class="btn btn-sm btn-info waves-effect waves-light">
+                상세보기
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Lorem ipsum</td>
+            <td><span class="badge bg-primary">Photography</span></td>
+            <td>2022.12.12</td>
+            <td>2022.12.12</td>
+            <td>Garrett Winters</td>
+            <td>2022.11.12</td>
+            <td>32</td>
+            <td>16</td>
+            <td>
+              <button type="button"
+                      data-bs-target="#exhibition-abled-modal"
+                      data-bs-exhibition-no="1"
+                      data-bs-toggle="modal"
+                      class="btn btn-sm btn-primary waves-effect waves-light">
+                활성화
+              </button>
+              <button type="button"
+                      class="btn btn-sm btn-danger waves-effect waves-light"
+                      data-bs-target="#exhibition-disabled-modal"
+                      data-bs-exhibition-no="1"
+                      data-bs-toggle="modal">
+                비활성화
+              </button>
+              <button type="button"
+                      onclick="javascript:void(0);"
+                      class="btn btn-sm btn-info waves-effect waves-light">
+                상세보기
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button"
+                class="btn btn-light"
+                data-bs-dismiss="modal">Close
+        </button>
+        <button type="button"
+                class="btn btn-primary">Save changes
+        </button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <!-- Vendor js -->
 <script src="../../resources/admin/assets/js/vendor.min.js"></script>
 
@@ -892,44 +1139,27 @@
 <script src="../../resources/admin/assets/js/pages/form-advanced.init.js"></script>
 <script>
     $(document).ready(function () {
-        /** Modal Event Listener */
-        $('#exhibition-delete-modal').on('show.bs.modal', function (event) {
-            // do something...
-            let $button = $(event.relatedTarget)
-            console.log($button.data());
-            let $modal = $(this);
-            $modal.find('.btn-container button:nth-child(2)').click(function (e) {
-                console.log('click event');
-                $(this).off('click');
-            });
+        /** Table Initialize */
+        $('.alternative-page-datatable').DataTable({
+            pagingType: 'full_numbers',
+            drawCallback: function () {
+                $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
+                $(this).find('tbody tr').each((i, e) => {
+                    $(e).click(function () {
+                        /* TODO This Right Side Open And Refreshing Event Init */
+                    });
+                });
+            }
         });
-        $('#exhibition-agree-modal').on('show.bs.modal', function (event) {
-            // do something...
-            let $button = $(event.relatedTarget)
-            console.log($button.data());
-            let $modal = $(this);
-            $modal.find('.btn-container button:nth-child(2)').click(function (e) {
-                console.log('click event');
-                $(this).off('click');
-            });
-        });
-        $('#exhibition-reject-modal').on('show.bs.modal', function (event) {
-            // do something...
-            let $button = $(event.relatedTarget)
-            console.log($button.data());
-            let $modal = $(this);
-            $modal.find('.btn-container button:nth-child(2)').click(function (e) {
-                console.log('click event');
-                $(this).off('click');
-            });
-        });
-        $('#exhibition-inactive-modal').on('show.bs.modal', function (event) {
-            // do something...
-            let $button = $(event.relatedTarget)
-            console.log($button.data());
-            let $modal = $(this);
-            $modal.find('.btn-container button:nth-child(2)').click(function (e) {
-                console.log('click event');
+
+        /** 모달 생성시 모달 버튼에서 데이터 따오기 (필독하고 사용하세요.)*/
+        $('#full-width-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var modal = $(this);
+            modal.find('.modal-footer button.btn-primary').click(function () {
+                console.log(this);
+                /** Fetch Process Deposit Settle*/
+                modal.hide('modal');
                 $(this).off('click');
             });
         });
