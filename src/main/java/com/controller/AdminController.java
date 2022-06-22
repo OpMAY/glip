@@ -2,6 +2,7 @@ package com.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.UnsatisfiedServletRequestParameterException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+    private ModelAndView VIEW;
     /* Service AutoWired */
 
     /* Service AutoWired END */
@@ -22,32 +24,61 @@ public class AdminController {
 
     @GetMapping("/dashboard.do")
     public ModelAndView DashboardPage() {
-        return new ModelAndView("/admin/dashboard-2");
+        VIEW = new ModelAndView("/admin/dashboard-2");
+        // TODO Dashboard Data
+        return VIEW;
     }
 
     @GetMapping("/user/registered.do")
     public ModelAndView UserRegisteredPage() {
-        return new ModelAndView("/admin/join-user-list");
+        VIEW = new ModelAndView("/admin/join-user-list");
+        // TODO User Registered Page Data
+        return VIEW;
     }
 
     @GetMapping("/user/suspended.do")
     public ModelAndView UserSuspendedPage() {
-        return new ModelAndView("/admin/freeze-user-list");
+        VIEW = new ModelAndView("/admin/freeze-user-list");
+        // TODO User Suspended Page Data
+        return VIEW;
     }
 
-    @GetMapping("/exhibition.do")
-    public ModelAndView ExhibitionOnListPage(@RequestParam("type") String type) {
-        return new ModelAndView("/admin/exhibition-on-list");
+    @GetMapping("/exhibition/planned.do")
+    public ModelAndView ExhibitionOnListPlannedPage() {
+        VIEW = new ModelAndView("/admin/exhibition-on-list");
+        VIEW.addObject("typeText", ExhibitionTypeText("planned"));
+        // TODO Exhibition On List data differed by type
+        return VIEW;
+    }
+
+    @GetMapping("/exhibition/process.do")
+    public ModelAndView ExhibitionOnListProcessPage() {
+        VIEW = new ModelAndView("/admin/exhibition-on-list");
+        VIEW.addObject("typeText", ExhibitionTypeText("process"));
+        // TODO Exhibition On List data differed by type
+        return VIEW;
+    }
+
+    @GetMapping("/exhibition/finished.do")
+    public ModelAndView ExhibitionOnListFinishedPage() {
+        VIEW = new ModelAndView("/admin/exhibition-on-list");
+        VIEW.addObject("typeText", ExhibitionTypeText("finished"));
+        // TODO Exhibition On List data differed by type
+        return VIEW;
     }
 
     @GetMapping("/exhibition/request.do")
     public ModelAndView ExhibitionRequestListPage() {
-        return new ModelAndView("/admin/exhibition-request-list");
+        VIEW = new ModelAndView("/admin/exhibition-request-list");
+        // TODO Exhibition Request list Data
+        return VIEW;
     }
 
     @GetMapping("/exhibition/detail.do")
     public ModelAndView ExhibitionDetailPage(@RequestParam("no") int no) {
-        return new ModelAndView("/admin/exhibition-detail");
+        VIEW = new ModelAndView("/admin/exhibition-detail");
+        // TODO Exhibition Detail Data
+        return VIEW;
     }
 
     @GetMapping("/exhibition/register.do")
@@ -57,17 +88,23 @@ public class AdminController {
 
     @GetMapping("/exhibition/update.do")
     public ModelAndView ExhibitionUpdatePage(@RequestParam("no") int no) {
-        return new ModelAndView("/admin/exhibition-detail-update");
+        VIEW =  new ModelAndView("/admin/exhibition-detail-update");
+        // TODO Exhibition Detail Data
+        return VIEW;
     }
 
     @GetMapping("/product.do")
     public ModelAndView ProductOnPage() {
-        return new ModelAndView("/admin/product-on-display");
+        VIEW = new ModelAndView("/admin/product-on-display");
+        // TODO product data
+        return VIEW;
     }
 
     @GetMapping("/product/detail.do")
     public ModelAndView ProductDetailPage(@RequestParam("no") int no) {
-        return new ModelAndView("/admin/product-detail");
+        VIEW = new ModelAndView("/admin/product-detail");
+        // TODO Product detail data
+        return VIEW;
     }
 
     @GetMapping("/product/register.do")
@@ -77,16 +114,32 @@ public class AdminController {
 
     @GetMapping("/product/update.do")
     public ModelAndView ProductUpdatePage(@RequestParam("no") int no) {
-        return new ModelAndView("/admin/product-detail-update");
+        VIEW = new ModelAndView("/admin/product-detail-update");
+        // TODO Product Detail data
+        return VIEW;
     }
 
     @GetMapping("/banner.do")
     public ModelAndView BannerManagePage() {
-        return new ModelAndView("/admin/banner-manage");
+        VIEW = new ModelAndView("/admin/banner-manage");
+        // TODO Banner List data
+        return VIEW;
     }
 
     @GetMapping("/category.do")
     public ModelAndView CategoryManagePage() {
-        return new ModelAndView("/admin/category-manage");
+        VIEW = new ModelAndView("/admin/category-manage");
+        // TODO Default category data
+        return VIEW;
+    }
+
+    private String ExhibitionTypeText(String type) {
+        switch (type) {
+            case "process" : return "전시 중";
+            case "planned" : return "전시 예정";
+            case "finished" : return "전시 종료";
+            // TODO default Throw Exception
+            default: return "";
+        }
     }
 }

@@ -59,13 +59,13 @@
                                      id="exhibitionMultilevel2">
                                     <ul class="nav-second-level">
                                         <li>
-                                            <a href="/admin/exhibition.do?type=process">전시 중</a>
+                                            <a href="/admin/exhibition/process.do">전시 중</a>
                                         </li>
                                         <li>
-                                            <a href="/admin/exhibition.do?type=planned">전시 예정</a>
+                                            <a href="/admin/exhibition/planned.do">전시 예정</a>
                                         </li>
                                         <li>
-                                            <a href="/admin/exhibition.do?type=finished">전시 종료</a>
+                                            <a href="/admin/exhibition/finished.do">전시 종료</a>
                                         </li>
                                     </ul>
                                 </div>
