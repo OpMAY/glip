@@ -159,20 +159,18 @@
                                         <div class="col-3 offset-5 d-flex justify-content-end">
                                             <%--TODO 전시 상태 별 버튼 배치 변경 --%>
                                             <button type="button"
-                                                    class="btn btn-dark waves-effect waves-light">수정하기
+                                                    class="btn btn-dark waves-effect waves-light top-right-button last">수정하기
                                             </button>
                                             <button type="button"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#exhibition-agree-modal"
                                                     data-bs-exhibition-no="1"
-                                                    class="btn btn-success waves-effect waves-light"
-                                                    style="margin-left: 10px;">전시 승인
+                                                    class="btn btn-success waves-effect waves-light top-right-button">전시 승인
                                             </button>
                                             <button type="button"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#exhibition-reject-modal"
-                                                    class="btn btn-danger waves-effect waves-light"
-                                                    style="margin-left: 10px;">전시 반려
+                                                    class="btn btn-danger waves-effect waves-light top-right-button">전시 반려
                                             </button>
                                         </div>
                                     </div>
@@ -208,7 +206,7 @@
                                                         <input type="text"
                                                                readonly
                                                                class="form-control readonly"
-                                                               placeholder="16:00">
+                                                               placeholder="16:00" value="16:00">
                                                     </div>
                                                 </div>
                                                 <div class="col-auto">
@@ -217,7 +215,7 @@
                                                         <input type="text"
                                                                readonly
                                                                class="form-control readonly"
-                                                               placeholder="19:00">
+                                                               placeholder="19:00" value="19:00">
                                                     </div>
                                                 </div>
                                             </div>
@@ -255,7 +253,7 @@
                                             <div class="mb-3">
                                                 <label class="form-label d-flex">홈페이지 주소<span
                                                         data-sns-url="https://www.naver.com/"
-                                                        class="cursor-pointer badge bg-dark float-end my-auto ms-1 exhibition-link-move">링크 이동</span></label>
+                                                        class="cursor-pointer badge bg-dark float-end my-auto ms-1 link-move">링크 이동</span></label>
                                                 <input type="text"
                                                        name="homepage-url"
                                                        readonly
@@ -270,7 +268,7 @@
                                                                 <label class="form-label d-flex">
                                                                     참여 작가
                                                                     <span data-sns-url="https://www.naver.com/"
-                                                                          class="cursor-pointer badge bg-dark float-end my-auto ms-1 exhibition-link-move">링크 이동</span>
+                                                                          class="cursor-pointer badge bg-dark float-end my-auto ms-1 link-move">링크 이동</span>
                                                                 </label>
                                                                 <input type="text"
                                                                        name="writer"
@@ -447,6 +445,7 @@
                                                         <div class="card product-box">
                                                             <div class="card-body">
                                                                 <div class="product-action">
+                                                                    <%-- TODO 새 창에서 상품 열기 --%>
                                                                     <a href="javascript: void(0);"
                                                                        class="btn btn-info btn-xs waves-effect waves-light"><i
                                                                             class="mdi mdi-details"></i></a>
@@ -518,23 +517,7 @@
         </div> <!-- content -->
 
         <!-- Footer Start -->
-        <footer class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-6">
-                        <script>document.write(new Date().getFullYear())</script> &copy; Glip theme by <a
-                            href="">Okiwi</a>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="text-md-end footer-links d-none d-sm-block">
-                            <a href="javascript:void(0);">About Us</a>
-                            <a href="javascript:void(0);">Help</a>
-                            <a href="javascript:void(0);">Contact Us</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <jsp:include page="common/footer.jsp" flush="true"></jsp:include>
         <!-- end Footer -->
 
     </div>
@@ -788,7 +771,7 @@
     });
 </script>
 <script>
-    $('.exhibition-link-move').on('click', function () {
+    $('.link-move').on('click', function () {
         window.open($(this).data('sns-url'), '_blank');
     })
 </script>
