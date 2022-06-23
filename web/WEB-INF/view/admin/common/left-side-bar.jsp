@@ -75,11 +75,6 @@
                                     <span> 전시 요청 </span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="/admin/exhibition/register.do">
-                                    <span> 전시 등록 </span>
-                                </a>
-                            </li>
                         </ul>
                     </div>
                 </li>

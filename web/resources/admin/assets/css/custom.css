@@ -69,6 +69,14 @@ textarea[readonly].readonly {
     overflow: auto;
 }
 
+.exhibition-detail #exhibition-detail-header {
+    margin-bottom: 2rem;
+}
+
+.exhibition-detail #exhibition-detail-header .header-title {
+    font-size : 1.5rem;
+}
+
 .selectable-tr {
     cursor: pointer;
 } .selectable-tr:hover {
