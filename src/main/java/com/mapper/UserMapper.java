@@ -1,6 +1,7 @@
 package com.mapper;
 
 import com.model.admin.user.request.AdminUserSuspendRequest;
+import com.model.admin.user.request.AdminUserUnSuspendRequest;
 import com.model.admin.user.response.AdminUserDetailData;
 import com.model.admin.user.response.AdminUserListPage;
 
@@ -12,4 +13,6 @@ public interface UserMapper {
     AdminUserDetailData getUserAdminDetailData(int user_no);
 
     void suspendUser(AdminUserSuspendRequest request);
+
+    void unsuspendUser(AdminUserUnSuspendRequest request);
 }

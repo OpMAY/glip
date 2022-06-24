@@ -2,6 +2,7 @@ package com.service;
 
 import com.dao.UserDao;
 import com.model.admin.user.request.AdminUserSuspendRequest;
+import com.model.admin.user.request.AdminUserUnSuspendRequest;
 import com.model.admin.user.response.AdminUserDetailData;
 import com.model.admin.user.response.AdminUserListPage;
 import com.response.DefaultRes;
@@ -45,6 +46,17 @@ public class UserService {
     public ResponseEntity suspendUser(AdminUserSuspendRequest request) {
         try{
             userDao.suspendUser(request);
+            return new ResponseEntity(DefaultRes.res(StatusCode.OK), HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity(DefaultRes.res(StatusCode.INTERNAL_SERVER_ERROR), HttpStatus.OK);
+        }
+    }
+
+    @Transactional
+    public ResponseEntity unsuspendUser(AdminUserUnSuspendRequest request) {
+        try{
+            userDao.unsuspendUser(request);
             return new ResponseEntity(DefaultRes.res(StatusCode.OK), HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();

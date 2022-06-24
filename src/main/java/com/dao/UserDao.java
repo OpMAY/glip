@@ -2,6 +2,7 @@ package com.dao;
 
 import com.mapper.UserMapper;
 import com.model.admin.user.request.AdminUserSuspendRequest;
+import com.model.admin.user.request.AdminUserUnSuspendRequest;
 import com.model.admin.user.response.AdminUserDetailData;
 import com.model.admin.user.response.AdminUserListPage;
 import lombok.extern.slf4j.Slf4j;
@@ -31,5 +32,9 @@ public class UserDao {
 
     public void suspendUser(AdminUserSuspendRequest request) {
         getMapper().suspendUser(request);
+    }
+
+    public void unsuspendUser(AdminUserUnSuspendRequest request) {
+        getMapper().unsuspendUser(request);
     }
 }

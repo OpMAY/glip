@@ -2,6 +2,7 @@ package com.restcontroller;
 
 import com.model.admin.auth.request.AdminLoginRequest;
 import com.model.admin.user.request.AdminUserSuspendRequest;
+import com.model.admin.user.request.AdminUserUnSuspendRequest;
 import com.response.DefaultRes;
 import com.response.StatusCode;
 import com.service.UserService;
@@ -56,6 +57,11 @@ public class AdminAjaxController {
     @PostMapping("/user/suspend")
     public ResponseEntity SuspendUser(@RequestBody AdminUserSuspendRequest request) {
         return userService.suspendUser(request);
+    }
+
+    @PostMapping("/user/unsuspend")
+    public ResponseEntity UnSuspendUser(@RequestBody AdminUserUnSuspendRequest request) {
+        return userService.unsuspendUser(request);
     }
 
 }
