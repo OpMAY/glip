@@ -9,4 +9,23 @@
         WHERE suspend_status = #{is_suspended}
         ORDER BY reg_date DESC
     </select>
+    <select id="getUserAdminDetailData" resultType="AdminUserDetailData">
+        select name,
+               gender,
+               nick_name,
+               email,
+               phone,
+               gender,
+               reg_date,
+               final_login,
+               img
+        from user
+        WHERE no = #{user_no}
+    </select>
+    <update id="suspendUser">
+        update user
+        SET suspend_status = true,
+            suspend_date   = #{suspend_days}
+        WHERE no = #{user_no}
+    </update>
 </mapper>

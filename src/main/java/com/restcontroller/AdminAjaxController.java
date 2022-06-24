@@ -1,17 +1,16 @@
 package com.restcontroller;
 
 import com.model.admin.auth.request.AdminLoginRequest;
+import com.model.admin.user.request.AdminUserSuspendRequest;
 import com.response.DefaultRes;
 import com.response.StatusCode;
+import com.service.UserService;
 import com.util.FileUploadUtility;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -21,6 +20,9 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/admin")
 public class AdminAjaxController {
     /* Service AutoWired */
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private FileUploadUtility fileUploadUtility;
@@ -44,6 +46,16 @@ public class AdminAjaxController {
         // SESSION REMOVE
         session.removeAttribute("adminLogin");
         return new ResponseEntity(DefaultRes.res(StatusCode.OK), HttpStatus.OK);
+    }
+
+    @GetMapping("/user/detail")
+    public ResponseEntity GetAdminUserDetailData(@RequestParam("no") int user_no) {
+        return userService.getAdminUserDetailData(user_no);
+    }
+
+    @PostMapping("/user/suspend")
+    public ResponseEntity SuspendUser(@RequestBody AdminUserSuspendRequest request) {
+        return userService.suspendUser(request);
     }
 
 }

@@ -36,7 +36,7 @@ public class AdminController {
     public ModelAndView UserRegisteredPage() {
         VIEW = new ModelAndView("/admin/join-user-list");
         // TODO User Registered Page Data
-        VIEW.addObject("userList", userService.getUserListPage(false));
+        VIEW.addObject("user_list", userService.getUserListPage(false));
         return VIEW;
     }
 
@@ -44,7 +44,7 @@ public class AdminController {
     public ModelAndView UserSuspendedPage() {
         VIEW = new ModelAndView("/admin/freeze-user-list");
         // TODO User Suspended Page Data
-        VIEW.addObject("userList", userService.getUserListPage(true));
+        VIEW.addObject("user_list", userService.getUserListPage(true));
         return VIEW;
     }
 

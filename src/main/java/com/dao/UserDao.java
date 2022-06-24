@@ -1,6 +1,8 @@
 package com.dao;
 
 import com.mapper.UserMapper;
+import com.model.admin.user.request.AdminUserSuspendRequest;
+import com.model.admin.user.response.AdminUserDetailData;
 import com.model.admin.user.response.AdminUserListPage;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
@@ -21,5 +23,13 @@ public class UserDao {
 
     public List<AdminUserListPage> getUserListPage(boolean is_suspended) {
         return getMapper().getUserListPage(is_suspended);
+    }
+
+    public AdminUserDetailData getUserAdminDetailData(int user_no) {
+        return getMapper().getUserAdminDetailData(user_no);
+    }
+
+    public void suspendUser(AdminUserSuspendRequest request) {
+        getMapper().suspendUser(request);
     }
 }

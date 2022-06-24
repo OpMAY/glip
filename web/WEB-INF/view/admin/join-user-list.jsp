@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -97,7 +98,7 @@
                                     <li class="breadcrumb-item active">가입 회원</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">총 30명의 가입 회원</h4>
+                            <h4 class="page-title">총 ${user_list.size()}명의 가입 회원</h4>
                         </div>
                     </div>
                 </div>
@@ -122,38 +123,16 @@
                                         </tr>
                                         </thead>
                                         <tbody id="userTableBody">
-                                        <tr class="selectable-tr" data-key="1">
-                                            <td>1</td>
-                                            <td>유병준</td>
-                                            <td>유병준짱짱</td>
-                                            <td>asszxc@naver.com</td>
-                                            <td>010-9431-1977</td>
-                                            <td>2022.12.22</td>
-                                        </tr>
-                                        <tr class="selectable-tr" data-key="2">
-                                            <td>2</td>
-                                            <td>유병준</td>
-                                            <td>유병준짱짱</td>
-                                            <td>asszxc@naver.com</td>
-                                            <td>010-9431-1977</td>
-                                            <td>2022.12.22</td>
-                                        </tr>
-                                        <tr class="selectable-tr" data-key="3">
-                                            <td>3</td>
-                                            <td>유병준</td>
-                                            <td>유병준짱짱</td>
-                                            <td>asszxc@naver.com</td>
-                                            <td>010-9431-1977</td>
-                                            <td>2022.12.22</td>
-                                        </tr>
-                                        <tr class="selectable-tr" data-key="4">
-                                            <td>4</td>
-                                            <td>유병준</td>
-                                            <td>유병준짱짱</td>
-                                            <td>asszxc@naver.com</td>
-                                            <td>010-9431-1977</td>
-                                            <td>2022.12.22</td>
-                                        </tr>
+                                        <c:forEach var="i" begin="1" end="${user_list.size()}">
+                                            <tr class="selectable-tr" data-key="${user_list[i-1].no}">
+                                                <td>${i}</td>
+                                                <td>${user_list[i-1].name}</td>
+                                                <td>${user_list[i-1].nick_name}</td>
+                                                <td>${user_list[i-1].email}</td>
+                                                <td>${user_list[i-1].phone}</td>
+                                                <td>${user_list[i-1].reg_date}</td>
+                                            </tr>
+                                        </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
@@ -165,12 +144,12 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex align-items-start mb-3">
-                                    <img class="d-flex me-3 rounded-circle avatar-lg"
-                                         src="../../../resources/admin/assets/images/users/user-8.jpg"
+                                    <img class="d-flex me-3 rounded-circle avatar-lg" id="detail-img"
+                                         src="../../../resources/assets/images/glip/icon_user_outline.svg"
                                          alt="Generic placeholder image">
                                     <div class="w-100">
-                                        <h4 class="mt-0 mb-1">유병준짱짱</h4>
-                                        <p class="text-muted">asszxc@naver.com</p>
+                                        <h4 class="mt-0 mb-1" id="detail-nickname">유병준짱짱</h4>
+                                        <p class="text-muted" id="detail-email">asszxc@naver.com</p>
 
                                         <a href="javascript: void(0);"
                                            data-bs-target="#freeze-modal"
@@ -186,23 +165,23 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <h4 class="font-13 text-muted text-uppercase mb-1">이름 :</h4>
-                                            <p class="mb-3">유병준</p>
+                                            <p class="mb-3" id="detail-name">유병준</p>
                                         </div>
                                         <div class="col-6">
                                             <h4 class="font-13 text-muted text-uppercase mb-1">성별 :</h4>
-                                            <p class="mb-3">남자</p>
+                                            <p class="mb-3" id="detail-gender">남자</p>
                                         </div>
                                         <div class="col-6">
                                             <h4 class="font-13 text-muted text-uppercase mb-1">연락처 :</h4>
-                                            <p class="mb-3">010-4529-9453</p>
+                                            <p class="mb-3" id="detail-phone">010-4529-9453</p>
                                         </div>
                                         <div class="col-6">
                                             <h4 class="font-13 text-muted text-uppercase mb-1">가입 일자 :</h4>
-                                            <p class="mb-0">2022.12.12</p>
+                                            <p class="mb-0" id="detail-reg-date">2022.12.12</p>
                                         </div>
                                         <div class="col-6">
                                             <h4 class="font-13 text-muted text-uppercase mb-1">마지막 로그인 일자 :</h4>
-                                            <p class="mb-0">2022.12.11 16:00</p>
+                                            <p class="mb-0" id="detail-final-login">2022.12.11 16:00</p>
                                         </div>
                                     </div>
                                 </div>
@@ -247,12 +226,13 @@
                         aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
-                <p>'유병준'님을 서비스 이용 정지하시겠어요?</p>
+                <p>'<span id="modal-nickname">유병준</span>'님을 서비스 이용 정지하시겠어요?</p>
                 <div class="mt-3">
                     <div class="form-check">
                         <input type="radio"
                                id="customRadio1"
                                name="customRadio"
+                               value="7"
                                class="form-check-input">
                         <label class="form-check-label"
                                for="customRadio1">1 주일</label>
@@ -261,6 +241,7 @@
                         <input type="radio"
                                id="customRadio2"
                                name="customRadio"
+                               value="30"
                                class="form-check-input">
                         <label class="form-check-label"
                                for="customRadio2">1 개월</label>
@@ -269,6 +250,7 @@
                         <input type="radio"
                                id="customRadio3"
                                name="customRadio"
+                               value="91"
                                class="form-check-input">
                         <label class="form-check-label"
                                for="customRadio3">3 개월</label>
@@ -277,6 +259,7 @@
                         <input type="radio"
                                id="customRadio4"
                                name="customRadio"
+                               value="183"
                                class="form-check-input">
                         <label class="form-check-label"
                                for="customRadio4">6 개월</label>
@@ -285,6 +268,7 @@
                         <input type="radio"
                                id="customRadio5"
                                name="customRadio"
+                               value="-1"
                                class="form-check-input">
                         <label class="form-check-label"
                                for="customRadio5">영구</label>
@@ -332,6 +316,9 @@
 <!-- Common js -->
 <script src="../../../resources/admin/assets/js/common.js"></script>
 
+<!-- Server js -->
+<script src="../../../resources/admin/assets/js/server.js"></script>
+
 <script>
     $(document).ready(function () {
         /** Table Initialize */
@@ -341,13 +328,14 @@
                 $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
                 $(this).find('tbody tr').each((i, e) => {
                     $(e).click(function () {
-                        /* TODO This Right Side Open And Refreshing Event Init */
+                        /* This Right Side Open And Refreshing Event Init */
                         $('.selectable-tr.tr-clicked').removeClass('tr-clicked');
                         console.log($(this).data('key'));
                         $(this).addClass('tr-clicked');
                         $('#freezeButton').data('bs-user-no', $(this).data('key'));
                         console.log($('#freezeButton').data('bs-user-no'));
-                        // TODO FETCH USER DETAIL
+                        // FETCH USER DETAIL
+                        normalFetchFunction('/admin/user/detail?no=' + $(this).data('key'), 'GET', null, userDetailUpdateFunction);
                     });
                 });
             }
@@ -359,12 +347,20 @@
             let $button = $(event.relatedTarget)
             console.log($button.data());
             let $modal = $(this);
+            let $name = $button.data().bsUserName;
+            $modal.find('#modal-nickname').text($name);
             $modal.find('.btn-container button:nth-child(2)').click(function (e) {
-                console.log('click event');
-                $(this).off('click');
+                console.log(e);
+                if (confirm('\'' + $name + '\'님을 정지하시겠어요?')) {
+                    const data = {
+                        "user_no": $button.data().bsUserNo,
+                        "suspend_days": $('input[name=customRadio]:checked').val()
+                    }
+                    normalFetchFunction('/admin/user/suspend', 'POST', data, suspendDoneFunction)
+                }
             });
         });
-        $('#freeze-modal').on('hide.bs.modal', function (event) {
+        $('#freeze-modal').on('hidden.bs.modal', function (event) {
             // do something...
             let $button = $(event.relatedTarget)
             console.log($button.data());
@@ -373,6 +369,30 @@
             $modal.find('input[type=radio]:checked').prop('checked', false);
         });
     });
+
+    const userDetailUpdateFunction = (res) => {
+        if (res.status === 200) {
+            const userData = res.data.user_data;
+            $('#detail-img').attr('src', userData.img !== null ? 'https://dannaguii.s3.ap-northeast-2.amazonaws.com/' + userData.img : '../../../resources/assets/images/glip/icon_user_outline.svg');
+            $('#detail-nickname').text(userData.nick_name);
+            $('#detail-email').text(userData.email);
+            $('#detail-name').text(userData.name);
+            $('#detail-gender').text(userData.gender === true ? '남자' : '여자');
+            $('#detail-phone').text(userData.phone);
+            $('#detail-reg-date').text(userData.reg_date);
+            $('#detail-final-login').text(userData.final_login);
+            $('#freezeButton').data('bs-user-name', userData.nick_name);
+        }
+    }
+
+    const suspendDoneFunction = (res) => {
+        if(res.status === 200) {
+            alert('회원이 정지되었습니다.');
+            window.location.reload();
+        } else {
+            // TODO 예외 - 이미 정지되었거나 탈퇴한 유저
+        }
+    }
 </script>
 </body>
 </html>
