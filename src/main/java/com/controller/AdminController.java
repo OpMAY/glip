@@ -1,6 +1,8 @@
 package com.controller;
 
+import com.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.UnsatisfiedServletRequestParameterException;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminController {
     private ModelAndView VIEW;
     /* Service AutoWired */
-
+    @Autowired
+    private UserService userService;
     /* Service AutoWired END */
 
     @GetMapping("/login.do")
@@ -33,6 +36,7 @@ public class AdminController {
     public ModelAndView UserRegisteredPage() {
         VIEW = new ModelAndView("/admin/join-user-list");
         // TODO User Registered Page Data
+        VIEW.addObject("userList", userService.getUserListPage(false));
         return VIEW;
     }
 
@@ -40,6 +44,7 @@ public class AdminController {
     public ModelAndView UserSuspendedPage() {
         VIEW = new ModelAndView("/admin/freeze-user-list");
         // TODO User Suspended Page Data
+        VIEW.addObject("userList", userService.getUserListPage(true));
         return VIEW;
     }
 

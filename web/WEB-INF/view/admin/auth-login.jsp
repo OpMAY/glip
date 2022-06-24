@@ -123,19 +123,21 @@
 <!-- App js -->
 <script src="../../../resources/admin/assets/js/app.min.js"></script>
 
+<script src="../../../resources/admin/assets/js/server.js"></script>
+
 <script>
     $('#login').on('click', function () {
         login()
     })
 
-    $('#adminId').on('keypress', function(e){
-        if(e.which === 13){
+    $('#adminId').on('keypress', function (e) {
+        if (e.which === 13) {
             login();
         }
     });
 
     $('#password').on('keypress', function (e) {
-        if(e.which === 13){
+        if (e.which === 13) {
             login();
         }
     })
@@ -144,23 +146,13 @@
         const data = {};
         data.id = $('#adminId').val();
         data.password = $('#password').val();
-        const options = {
-            method: 'POST',
-            headers : {
-                'Content-Type' : 'application/json;charset=utf-8'
-            },
-            body: JSON.stringify(data)
-        }
-        fetch('/admin/login', options)
-            .then(res => res.json())
-            .then((res) => {
-                if(res.status === 200) {
-                    window.location.replace('/admin/dashboard.do');
-                } else {
-                    alert('로그인 실패');
-                }
-            })
-            .catch(rej => console.error(rej));
+        normalFetchFunction('/admin/login', 'POST', data, function (res) {
+            if (res.status === 200) {
+                window.location.replace('/admin/dashboard.do');
+            } else {
+                alert('로그인 실패');
+            }
+        })
     }
 </script>
 
