@@ -165,7 +165,8 @@
                                                     <button type="button"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#exhibition-inactive-modal"
-                                                            data-bs-product-no="${product.no}" data-bs-product-title="${product.title}"
+                                                            data-bs-product-no="${product.no}"
+                                                            data-bs-product-title="${product.title}"
                                                             class="btn btn-secondary waves-effect waves-light top-right-button last">
                                                         비활성화
                                                     </button>
@@ -174,18 +175,22 @@
                                                     <button type="button"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#exhibition-active-modal"
-                                                            data-bs-product-no="${product.no}" data-bs-product-title="${product.title}"
+                                                            data-bs-product-no="${product.no}"
+                                                            data-bs-product-title="${product.title}"
                                                             class="btn btn-primary waves-effect waves-light">활성화
                                                     </button>
                                                 </c:otherwise>
                                             </c:choose>
-                                            <button type="button" id="edit-button" data-bs-product-no="${product.no}" data-bs-product-title="${product.title}"
+                                            <button type="button" id="edit-button" data-bs-product-no="${product.no}"
+                                                    data-bs-product-title="${product.title}" data-bs-toggle="modal"
+                                                    data-bs-target="#exhibition-edit-modal"
                                                     class="btn btn-dark waves-effect waves-light top-right-button">수정하기
                                             </button>
                                             <button type="button"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#exhibition-delete-modal"
-                                                    data-bs-product-no="${product.no}" data-bs-product-title="${product.title}"
+                                                    data-bs-product-no="${product.no}"
+                                                    data-bs-product-title="${product.title}"
                                                     class="btn btn-danger waves-effect waves-light top-right-button">삭제
                                             </button>
                                         </div>
@@ -402,6 +407,38 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 </div>
+<div class="modal fade"
+     id="exhibition-edit-modal"
+     tabindex="-1"
+     role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h4 class="modal-title"
+                    id="exhibitionEditModalLabel">상품 수정</h4>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <p>'<span id="modal-title"></span>' 상품을 수정하시겠어요?</p>
+                <div class="mt-3">
+                    <div class="btn-container mt-3 text-end">
+                        <button data-bs-dismiss="modal"
+                                class="btn btn-sm btn-dark waves-effect waves-light"
+                                type="button">취소
+                        </button>
+                        <button data-bs-dismiss="modal"
+                                class="btn btn-sm btn-primary waves-effect waves-light">수정
+                        </button>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
 
 <!-- Vendor js -->
 <script src="../../../resources/admin/assets/js/vendor.min.js"></script>
@@ -457,6 +494,10 @@
 <!-- third party js form end -->
 <!-- Init js-->
 <script src="../../../resources/admin/assets/js/pages/form-advanced.init.js"></script>
+<!-- common js -->
+<script src="../../../resources/admin/assets/js/common.js"></script>
+<!-- server js -->
+<script src="../../../resources/admin/assets/js/server.js"></script>
 <script>
     $(document).ready(function () {
         /** Modal Event Listener */
@@ -467,8 +508,8 @@
             let $modal = $(this);
             $modal.find('#modal-title').text($button.data().bsProductTitle);
             $modal.find('.btn-container button:nth-child(2)').click(function (e) {
-                console.log('click event');
-                $(this).off('click');
+                const data = {"product_no": $button.data().bsProductNo};
+                normalFetchFunction('/admin/product/delete', 'POST', data, deleteDoneFunction)
             });
         });
         $('#exhibition-inactive-modal').on('show.bs.modal', function (event) {
@@ -478,8 +519,8 @@
             let $modal = $(this);
             $modal.find('#modal-title').text($button.data().bsProductTitle);
             $modal.find('.btn-container button:nth-child(2)').click(function (e) {
-                console.log('click event');
-                $(this).off('click');
+                const data = {"product_no": $button.data().bsProductNo};
+                normalFetchFunction('/admin/product/active', 'POST', data, switchDoneFunction)
             });
         });
         $('#exhibition-active-modal').on('show.bs.modal', function (event) {
@@ -489,22 +530,72 @@
             let $modal = $(this);
             $modal.find('#modal-title').text($button.data().bsProductTitle);
             $modal.find('.btn-container button:nth-child(2)').click(function (e) {
-                console.log('click event');
-                $(this).off('click');
+                const data = {"product_no": $button.data().bsProductNo};
+                normalFetchFunction('/admin/product/active', 'POST', data, switchDoneFunction)
             });
+        });
+
+        $('#exhibition-edit-modal').on('show.bs.modal', function (event) {
+            // do something...
+            let $button = $(event.relatedTarget)
+            console.log($button.data());
+            let $modal = $(this);
+            $modal.find('#modal-title').text($button.data().bsProductTitle);
+            $modal.find('.btn-container button:nth-child(2)').click(function (e) {
+                window.location.href = '/admin/product/update.do?no=' + $button.data().bsProductNo;
+            });
+        });
+
+        $('#exhibition-delete-modal').on('hidden.bs.modal', function (event) {
+            // do something...
+            let $button = $(event.relatedTarget)
+            console.log($button.data());
+            let $modal = $(this);
+            $modal.find('.btn-container button:nth-child(2)').off('click');
+        });
+        $('#exhibition-inactive-modal').on('hidden.bs.modal', function (event) {
+            // do something...
+            let $button = $(event.relatedTarget)
+            console.log($button.data());
+            let $modal = $(this);
+            $modal.find('.btn-container button:nth-child(2)').off('click');
+        });
+        $('#exhibition-active-modal').on('hidden.bs.modal', function (event) {
+            // do something...
+            let $button = $(event.relatedTarget)
+            console.log($button.data());
+            let $modal = $(this);
+            $modal.find('.btn-container button:nth-child(2)').off('click');
+        });
+
+        $('#exhibition-edit-modal').on('hidden.bs.modal', function (event) {
+            // do something...
+            let $button = $(event.relatedTarget)
+            console.log($button.data());
+            let $modal = $(this);
+            $modal.find('.btn-container button:nth-child(2)').off('click');
         });
     });
 
-    $('#edit-button').on('click', function () {
-        if (confirm('해당 상품을 수정하시겠어요?')) {
-            window.location.href = '/admin/product/update.do?no=' + $(this).data('bsProductNo');
-        }
-    })
 </script>
 <script>
     $('.link-move').on('click', function () {
-        window.open($(this).data('sns-url'), '_blank');
+        window.open($(this).data().snsUrl, '_blank');
     })
+
+    const switchDoneFunction = (res) => {
+        if (res.status === 200) {
+            alert('변경되었습니다.');
+            window.location.reload();
+        }
+    }
+
+    const deleteDoneFunction = (res) => {
+        if (res.status === 200) {
+            alert('삭제되었습니다.');
+            window.location.replace('/admin/product.do');
+        }
+    }
 
 </script>
 </body>

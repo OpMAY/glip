@@ -1,9 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>Glip Admin Theme</title>
+    <title>Glip 관리자 - 상품 수정</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc."
@@ -102,6 +104,12 @@
           rel="stylesheet"
           type="text/css"/>
     <!-- third party css form end -->
+
+    <!-- SMART EDITOR -->
+    <link rel="stylesheet"
+          href="../../../resources/css/summernote/summernote.css">
+    <link rel="stylesheet"
+          href="../../../resources/css/summernote/summernote-custom.css">
 </head>
 
 <!-- body start -->
@@ -153,14 +161,27 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="product-detail">
+                                    <div class="row" id="product-detail-header">
+                                        <div class="col-4">
+                                        </div>
+                                        <div class="col-3 offset-5 d-flex justify-content-end">
+                                            <button type="button" data-bs-product-no="${product.no}" data-bs-toggle="modal" data-bs-target="#product-edit-confirm-modal"
+                                                    class="btn btn-dark waves-effect waves-light top-right-button last">수정
+                                            </button>
+                                            <button type="button" data-bs-product-no="${product.no}" data-bs-toggle="modal" data-bs-target="#product-edit-cancel-modal"
+                                                    class="btn btn-secondary waves-effect waves-light top-right-button">상품으로
+                                            </button>
+                                        </div>
+                                    </div>
+
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="mb-3">
                                                 <label class="form-label">상품 이름</label>
                                                 <input type="text"
                                                        name="product_name"
-                                                       placeholder="Input Product Name"
-                                                       value="블랙으로 돌아온 루이스 폴센"
+                                                       placeholder="상품 이름을 입력하세요."
+                                                       value="${product.title}"
                                                        class="form-control">
                                             </div>
                                             <span>상품 이미지</span>
@@ -171,7 +192,10 @@
                                                         <input type="file"
                                                                data-plugins="dropify"
                                                                data-max-file-size="5M"
-                                                               data-default-file="../../../resources/admin/assets/images/small/img-2.jpg"/>
+                                                                <c:if test="${product.img.size() >= 1}">
+                                                                    data-default-file="${product.img[0].replace("\"", "")}"
+                                                                </c:if>
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div class="col image-item"
@@ -180,7 +204,10 @@
                                                         <input type="file"
                                                                data-plugins="dropify"
                                                                data-max-file-size="5M"
-                                                               data-default-file="../../../resources/admin/assets/images/small/img-2.jpg"/>
+                                                                <c:if test="${product.img.size() >= 2}">
+                                                                    data-default-file="${product.img[1].replace("\"", "")}"
+                                                                </c:if>
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div class="col image-item"
@@ -189,7 +216,10 @@
                                                         <input type="file"
                                                                data-plugins="dropify"
                                                                data-max-file-size="5M"
-                                                               data-default-file="../../../resources/admin/assets/images/small/img-2.jpg"/>
+                                                                <c:if test="${product.img.size() >= 3}">
+                                                                    data-default-file="${product.img[2].replace("\"", "")}"
+                                                                </c:if>
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div class="col image-item"
@@ -198,7 +228,10 @@
                                                         <input type="file"
                                                                data-plugins="dropify"
                                                                data-max-file-size="5M"
-                                                               data-default-file="../../../resources/admin/assets/images/small/img-2.jpg"/>
+                                                                <c:if test="${product.img.size() >= 4}">
+                                                                    data-default-file="${product.img[3].replace("\"", "")}"
+                                                                </c:if>
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div class="col image-item"
@@ -207,7 +240,10 @@
                                                         <input type="file"
                                                                data-plugins="dropify"
                                                                data-max-file-size="5M"
-                                                               data-default-file="../../../resources/admin/assets/images/small/img-2.jpg"/>
+                                                                <c:if test="${product.img.size() >= 5}">
+                                                                    data-default-file="${product.img[4].replace("\"", "")}"
+                                                                </c:if>
+                                                        />
                                                     </div>
                                                 </div>
                                             </div>
@@ -215,19 +251,18 @@
                                                 <label class="form-label">간단 설명</label>
                                                 <input type="text"
                                                        name="simple_desc"
-                                                       placeholder="Input Simple Description"
-                                                       value="아폴론의 화살"
+                                                       placeholder="간단 설명을 입력하세요."
+                                                       value="${product.subtitle}"
                                                        class="form-control">
                                             </div>
                                             <div class="row">
                                                 <div class="col-auto">
                                                     <div class="mb-3">
                                                         <label class="form-label">카테고리</label>
-                                                        <input type="text"
-                                                               name="product_category"
-                                                               placeholder="Input Product Category"
-                                                               value="포스터(Poster)"
-                                                               class="form-control">
+                                                        <select id="product_category"
+                                                                class="form-select">
+                                                            <option selected>${product.category}</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-auto">
@@ -235,8 +270,10 @@
                                                         <label class="form-label">가격</label>
                                                         <input type="text"
                                                                name="product_price"
-                                                               placeholder="Input Product Price"
-                                                               value="20000"
+                                                               pattern=".{4,}"
+                                                               oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');autoCalculateFunction();"
+                                                               placeholder="상품 가격을 입력하세요."
+                                                               value="<fmt:formatNumber value="${product.price}"/>"
                                                                class="form-control">
                                                     </div>
                                                 </div>
@@ -244,9 +281,11 @@
                                                     <div class="mb-3">
                                                         <label class="form-label">할인율</label>
                                                         <input type="text"
+                                                               pattern="^[0-9][0-9]?$|^100$"
+                                                               oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');autoCalculateFunction();"
                                                                name="product_sale_rate"
-                                                               placeholder="Input Product Sale Rate"
-                                                               value="20"
+                                                               placeholder="상품 할인율을 입력하세요."
+                                                               value="${product.sales}"
                                                                class="form-control">
                                                     </div>
                                                 </div>
@@ -255,8 +294,9 @@
                                                         <label class="form-label">판매가</label>
                                                         <input type="text"
                                                                name="product_sale"
-                                                               placeholder="Input Product Sale"
-                                                               value="16000"
+                                                               placeholder="판매가는 자동으로 계산됩니다."
+                                                               disabled
+                                                               value="<fmt:formatNumber value="${product.price * (100 - product.sales) / 100}"/>"
                                                                class="form-control">
                                                     </div>
                                                 </div>
@@ -265,27 +305,14 @@
                                                 <label class="form-label d-flex">판매 링크</label>
                                                 <input type="text"
                                                        name="sell_link"
-                                                       placeholder="Input Sell Links"
-                                                       value="https://www.naver.com/"
+                                                       placeholder="판매 링크를 입력하세요."
+                                                       value="${product.link}"
                                                        class="form-control">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">상세 설명</label>
-                                                <%-- TODO 스마트 에디터 --%>
-                                                <textarea class="form-control"
-                                                          name="description"
-                                                          id="example-textarea"
-                                                          placeholder="Input Description"
-                                                          rows="5"></textarea>
+                                                <div id="summernote">${product.details}</div>
                                             </div>
-                                        </div>
-                                        <div class="col-12 text-end">
-                                            <button type="button"
-                                                    class="btn btn-dark waves-effect waves-light">수정하기
-                                            </button>
-                                            <button type="button"
-                                                    class="btn btn-primary waves-effect waves-light">상품으로
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -312,6 +339,71 @@
 
 </div>
 <!-- END wrapper -->
+<div class="modal fade"
+     id="product-edit-confirm-modal"
+     tabindex="-1"
+     role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h4 class="modal-title"
+                    id="productEditConfirmModalLabel">상품 수정</h4>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <p>상품을 수정하시겠어요?</p>
+                <div class="mt-3">
+                    <div class="btn-container mt-3 text-end">
+                        <button data-bs-dismiss="modal"
+                                class="btn btn-sm btn-dark waves-effect waves-light"
+                                type="button">취소
+                        </button>
+                        <button data-bs-dismiss="modal"
+                                class="btn btn-sm btn-primary waves-effect waves-light">수정
+                        </button>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
+
+<div class="modal fade"
+     id="product-edit-cancel-modal"
+     tabindex="-1"
+     role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h4 class="modal-title"
+                    id="productEditCancelModalLabel">상품 수정 취소</h4>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <p>상품을 수정을 취소하시겠어요?</p>
+                <div class="mt-3">
+                    <div class="btn-container mt-3 text-end">
+                        <button data-bs-dismiss="modal"
+                                class="btn btn-sm btn-dark waves-effect waves-light"
+                                type="button">닫기
+                        </button>
+                        <button data-bs-dismiss="modal"
+                                class="btn btn-sm btn-primary waves-effect waves-light">취소
+                        </button>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
 
 
 <!-- Vendor js -->
@@ -368,94 +460,153 @@
 <!-- third party js form end -->
 <!-- Init js-->
 <script src="../../../resources/admin/assets/js/pages/form-advanced.init.js"></script>
+<!-- common js -->
+<script src="../../../resources/admin/assets/js/common.js"></script>
+<!-- server js -->
+<script src="../../../resources/admin/assets/js/server.js"></script>
+<!-- SMART EDITOR js -->
+<script src="../../../resources/js/module/summernote/summernote.js"></script>
+<script src="../../../resources/js/module/summernote/summernote-kr.js"></script>
+
 <script>
     $(document).ready(function () {
         /** Image Item Control */
-        let $image_items = $('.image-item-wrapper .image-item');
-        console.log($('.image-item-wrapper .image-item label span:last-child'));
-        $('.image-item-wrapper').on('click', 'div.image-item label span:last-child', function (e) {
-            console.log(e);
-            /** Delete Item*/
-            $(e.currentTarget).closest('.image-item').remove();
-            updateImageWrapperUI();
-        });
+        // let $image_items = $('.image-item-wrapper .image-item');
+        // console.log($('.image-item-wrapper .image-item label span:last-child'));
+        // $('.image-item-wrapper').on('click', 'div.image-item label span:last-child', function (e) {
+        //     console.log(e);
+        //     /** Delete Item*/
+        //     $(e.currentTarget).closest('.image-item').remove();
+        //     updateImageWrapperUI();
+        // });
         /** Image Item Control End*/
         /** Modal Event Listener */
-        $('#exhibition-delete-modal').on('show.bs.modal', function (event) {
+        $('#product-edit-confirm-modal').on('show.bs.modal', function (event) {
             // do something...
             let $button = $(event.relatedTarget)
             console.log($button.data());
             let $modal = $(this);
             $modal.find('.btn-container button:nth-child(2)').click(function (e) {
-                console.log('click event');
-                $(this).off('click');
-            });
-        });
-        $('#exhibition-inactive-modal').on('show.bs.modal', function (event) {
-            // do something...
-            let $button = $(event.relatedTarget)
-            console.log($button.data());
-            let $modal = $(this);
-            $modal.find('.btn-container button:nth-child(2)').click(function (e) {
-                console.log('click event');
-                $(this).off('click');
-            });
-        });
-        $('#exhibition-active-modal').on('show.bs.modal', function (event) {
-            // do something...
-            let $button = $(event.relatedTarget)
-            console.log($button.data());
-            let $modal = $(this);
-            $modal.find('.btn-container button:nth-child(2)').click(function (e) {
-                console.log('click event');
-                $(this).off('click');
+                // TODO input valid check
+                const formData = new FormData();
+                const data = {};
+                data.no = $button.data().bsProductNo;
+                data.title = $('input[name=product_name]').val();
+                data.subtitle = $('input[name=simple_desc]').val();
+                data.category = $('select[id=product_category] option:selected').val();
+                data.price = unCommaFunction($('input[name=product_price]').val());
+                data.sales = $('input[name=product_sale_rate]').val() * 1;
+                data.link = $('input[name=sell_link]').val();
+                data.details = $('#summernote').summernote('code');
+                data.img = [];
+                $('input[data-plugins=dropify]').each((index, element) => {
+                    if(element.files.length === 1) {
+                        formData.append('product_img' + index, element.files[0]);
+                        data.img[index] = 'product_img' + index;
+                    } else if ($(element).data().defaultFile !== undefined) {
+                        data.img[index] = $(element).data().defaultFile;
+                    } else {
+                        data.img[index] = null;
+                    }
+                })
+                formData.append('product', JSON.stringify(data));
+
+                formData.forEach((value, key) => {
+                    console.log(key);
+                    console.log(value);
+                })
+
+                fileUploadFetchFunction('/admin/product/edit', formData, function (res) {
+                    if(res.status === 200) {
+                        alert('수정이 완료되었습니다.');
+                        window.location.replace('/admin/product/detail.do?no=' + $button.data().bsProductNo);
+                    }
+                })
             });
         });
 
-        $('.image-item-add-wrapper button').click(addImageItem);
+        $('#product-edit-cancel-modal').on('show.bs.modal', function (event) {
+            // do something...
+            let $button = $(event.relatedTarget)
+            console.log($button.data());
+            let $modal = $(this);
+            $modal.find('.btn-container button:nth-child(2)').click(function (e) {
+                window.location.replace('/admin/product/detail.do?no=' + $button.data().bsProductNo);
+            });
+        });
+
+        $('#product-edit-cancel-modal').on('hidden.bs.modal', function (event) {
+            // do something...
+            let $button = $(event.relatedTarget)
+            console.log($button.data());
+            let $modal = $(this);
+            $modal.find('.btn-container button:nth-child(2)').off('click');
+        });
+
+        $('#product-edit-confirm-modal').on('hidden.bs.modal', function (event) {
+            // do something...
+            let $button = $(event.relatedTarget)
+            console.log($button.data());
+            let $modal = $(this);
+            $modal.find('.btn-container button:nth-child(2)').off('click');
+        });
+
+        // $('.image-item-add-wrapper button').click(addImageItem);
+
+        $('#summernote').summernote({
+            placeholder: '내용을 입력해주세요.',
+            tabsize: 2,
+            height: 600,
+            lang: 'ko-KR',
+            focus: true, // 활성화 시 input focus
+            disableResizeEditor: true, // Size 조절
+            toolbar: [ // Toolbar Set
+                ['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['insert', ['picture', 'link']],
+                ['view', ['help']]
+            ],
+            maxUploadSize: 1024 * 1024 * 10,
+            maxUploadOnError: () => {
+                alert('사진 용량이 너무 큽니다. 다른 사진을 이용해주세요.\n파일 당 최대 업로드 용량 : 10MB');
+                $('[data-dismiss="modal"]').click();
+            },
+            /**
+             * Description : 스마트에디터 파일 업로더 Ajax
+             * Prerequisite : Summernote Smarteditor가 존재 해야한다.
+             * Parameter : deferred -> smarteditor 내무에 존재하는 변수
+             * Return : Non
+             * Date : 2021-07-12
+             * Version : 1
+             * */
+            imageUploader: (deferred, file) => {
+                let formData = new FormData(); // HTML5
+                formData.append("file", file);
+                fileUploadFetchFunction('/smarteditor/image/upload', formData, function (res) {
+                    if (res.status === 200) {
+                        deferred.resolve(res.data.url);
+                    }
+                })
+            }
+        });
     });
 
-    const updateImageWrapperUI = () => {
-        // $('.image-item-wrapper .image-item').each(function (index, item) {
-        //     $(item).find('.form-label span:first-child').text('Main Image (' + (index + 1) + '/' +
-        //         5 + ')');
-        // });
-    }
-
-    const addImageItem = () => {
-        let count = $('.image-item-wrapper .image-item').length;
-        console.log(count);
-        if (count >= 5) {
-            return;
+    const autoCalculateFunction = () => {
+        const price = $('input[name=product_price]').val();
+        const sales = $('input[name=product_sale_rate]').val();
+        const numRegex = /[0-9]/g;
+        const salesRegex = /^[0-9][0-9]?$|^100$/g;
+        let result = ''
+        if (numRegex.test(unCommaFunction(price)) && salesRegex.test(sales) ) {
+            // 천 원 단위 이상, 숫자 정규식 모두 통과 시 계산
+            result = unCommaFunction(price) * 1 * (100 - sales * 1) / 100;
+            console.log('in ; ', result);
         }
-        $('.image-item-wrapper').append(createImageItem({count: (count + 1)}));
-        $('[data-plugins="dropify"][data-count="' + (count + 1) + '"]').dropify({
-            messages: {
-                default: "클릭하거나 이미지를 여기에 드래그해주세요.",
-                replace: "수정하려면 클릭하거나 이미지를 여기에 드래그해주세요.",
-                remove: "삭제",
-                error: "오류가 발생했어요."
-            }, error: {fileSize: "파일 크기가 너무 커요 (최대 크기 : 10MB)"}
-        });
-        $('[data-plugins="dropify"][data-count="' + (count + 1) + '"]').removeAttr('data-count');
+        $('input[name=product_sale]').val(commaFunction(result));
+        $('input[name=product_price]').val(commaFunction(price));
     }
 
-    const createImageItem = ({count}) => {
-        return `<div class="col image-item"
-                     data-count="${count}">
-                  <div class="mb-3">
-                    <label class="form-label">
-                      <span>Main Image (${count}/5)</span>
-                      <span class="badge badge-soft-danger cursor-pointer my-auto ms-1">삭제</span>
-                    </label>
-                    <input type="file"
-                           data-count="${count}"
-                           data-plugins="dropify"
-                           data-max-file-size="10M"
-                           data-default-file="../../../resources/admin/assets/images/small/img-2.jpg"/>
-                  </div>
-                </div>`;
-    }
 </script>
 </body>
 </html>

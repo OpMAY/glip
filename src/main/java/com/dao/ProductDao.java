@@ -5,6 +5,9 @@ import com.model.admin.exhibition.request.AdminExhibitionProductSelectRequest;
 import com.model.admin.exhibition.response.AdminExhibitionSelectableProduct;
 import com.model.admin.exhibition.response.ExhibitionRelatedProduct;
 import com.model.admin.product.request.AdminProductActiveSwitchRequest;
+import com.model.admin.product.request.AdminProductDeleteRequest;
+import com.model.admin.product.request.ProductEditRequest;
+import com.model.admin.product.request.ProductMakeRequest;
 import com.model.admin.product.response.AdminProductDetailPage;
 import com.model.admin.product.response.AdminProductListPage;
 import lombok.extern.slf4j.Slf4j;
@@ -42,5 +45,17 @@ public class ProductDao {
 
     public AdminProductDetailPage getAdminProductDetailPage(int no) {
         return getMapper().getAdminProductDetailPage(no);
+    }
+
+    public void deleteProduct(AdminProductDeleteRequest request) {
+        getMapper().deleteProduct(request);
+    }
+
+    public void editProduct(ProductEditRequest request) {
+        getMapper().editProduct(request);
+    }
+
+    public void makeProduct(ProductMakeRequest request) {
+        getMapper().makeProduct(request);
     }
 }

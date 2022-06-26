@@ -112,3 +112,7 @@ textarea[readonly].readonly {
     width: 400%;
     color: #4F4F4F;
 }
+
+.form-control:invalid {
+    border-color: red;
+}

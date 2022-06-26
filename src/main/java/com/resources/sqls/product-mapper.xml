@@ -60,4 +60,26 @@
         from product
         WHERE no = #{no}
     </select>
+    <delete id="deleteProduct">
+        delete
+        from product
+        WHERE no = #{product_no}
+    </delete>
+    <update id="editProduct">
+        update product
+        SET title    = #{title},
+            subtitle = #{subtitle},
+            category = #{category},
+            price    = #{price},
+            sales    = #{sales},
+            link     = #{link},
+            details  = #{details},
+            img      = #{img, typeHandler=com.middleware.JsonArrayObjectTypeHandler}
+        WHERE no = #{no}
+    </update>
+    <insert id="makeProduct" keyProperty="no" useGeneratedKeys="true">
+        insert into product(title, subtitle, img, category, price, sales, link, details, views, active_status, reg_date)
+        VALUES (#{title}, #{subtitle}, #{img, typeHandler=com.middleware.JsonArrayObjectTypeHandler}, #{category},
+                #{price}, #{sales}, #{link}, #{details}, 0, false, now())
+    </insert>
 </mapper>

@@ -54,7 +54,7 @@
   <link href="../../../resources/admin/assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css"
         rel="stylesheet"
         type="text/css"/>
-  <link href="../../../resources/admin/assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css"
+  <link href="../../../resources/admin/assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css"
         rel="stylesheet"
         type="text/css"/>
   <!-- third party css end -->
@@ -102,6 +102,12 @@
         rel="stylesheet"
         type="text/css"/>
   <!-- third party css form end -->
+
+  <!-- SMART EDITOR -->
+  <link rel="stylesheet"
+        href="../../../resources/css/summernote/summernote.css">
+  <link rel="stylesheet"
+        href="../../../resources/css/summernote/summernote-custom.css">
 </head>
 
 <!-- body start -->
@@ -154,13 +160,25 @@
             <div class="card">
               <div class="card-body">
                 <div class="product-detail">
+                  <div class="row" id="product-detail-header">
+                    <div class="col-4">
+                    </div>
+                    <div class="col-3 offset-5 d-flex justify-content-end">
+                      <button type="button" data-bs-toggle="modal" data-bs-target="#product-save-confirm-modal"
+                              class="btn btn-dark waves-effect waves-light top-right-button last">저장
+                      </button>
+                      <button type="button" data-bs-toggle="modal" data-bs-target="#product-save-cancel-modal"
+                              class="btn btn-secondary waves-effect waves-light top-right-button">목록으로
+                      </button>
+                    </div>
+                  </div>
                   <div class="row">
                     <div class="col-12">
                       <div class="mb-3">
                         <label class="form-label">상품 이름</label>
                         <input type="text"
                                name="product_name"
-                               placeholder="Input Product Name"
+                               placeholder="상품 이름을 입력하세요."
                                class="form-control">
                       </div>
                       <span>상품 이미지</span>
@@ -210,17 +228,17 @@
                         <label class="form-label">간단 설명</label>
                         <input type="text"
                                name="simple_desc"
-                               placeholder="Input Simple Description"
+                               placeholder="간단 설명을 입력하세요."
                                class="form-control">
                       </div>
                       <div class="row">
                         <div class="col-auto">
                           <div class="mb-3">
                             <label class="form-label">카테고리</label>
-                            <input type="text"
-                                   name="product_category"
-                                   placeholder="Input Product Category"
-                                   class="form-control">
+                            <select id="product_category"
+                                    class="form-select">
+                              <option selected>포스터(Poster)</option>
+                            </select>
                           </div>
                         </div>
                         <div class="col-auto">
@@ -228,7 +246,9 @@
                             <label class="form-label">가격</label>
                             <input type="text"
                                    name="product_price"
-                                   placeholder="Input Product Price"
+                                   pattern=".{4,}"
+                                   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');autoCalculateFunction();"
+                                   placeholder="상품 가격을 입력하세요."
                                    class="form-control">
                           </div>
                         </div>
@@ -236,8 +256,10 @@
                           <div class="mb-3">
                             <label class="form-label">할인율</label>
                             <input type="text"
+                                   pattern="^[0-9][0-9]?$|^100$"
+                                   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');autoCalculateFunction();"
                                    name="product_sale_rate"
-                                   placeholder="Input Product Sale Rate"
+                                   placeholder="상품 할인율을 입력하세요."
                                    class="form-control">
                           </div>
                         </div>
@@ -246,7 +268,8 @@
                             <label class="form-label">판매가</label>
                             <input type="text"
                                    name="product_sale"
-                                   placeholder="Input Product Sale"
+                                   placeholder="판매가는 자동으로 계산됩니다."
+                                   disabled
                                    class="form-control">
                           </div>
                         </div>
@@ -255,26 +278,13 @@
                         <label class="form-label d-flex">판매 링크</label>
                         <input type="text"
                                name="sell_link"
-                               placeholder="Input Sell Links"
+                               placeholder="판매 링크를 입력하세요."
                                class="form-control">
                       </div>
                       <div class="mb-3">
                         <label class="form-label">상세 설명</label>
-                        <%-- TODO 스마트 에디터 --%>
-                        <textarea class="form-control"
-                                  name="description"
-                                  id="example-textarea"
-                                  placeholder="Input Description"
-                                  rows="5"></textarea>
+                        <div id="summernote"></div>
                       </div>
-                    </div>
-                    <div class="col-12 text-end">
-                      <button type="button"
-                              class="btn btn-dark waves-effect waves-light">저장하기
-                      </button>
-                      <button type="button"
-                              class="btn btn-primary waves-effect waves-light">목록으로
-                      </button>
                     </div>
                   </div>
                 </div>
@@ -301,6 +311,72 @@
 
 </div>
 <!-- END wrapper -->
+
+<div class="modal fade"
+     id="product-save-confirm-modal"
+     tabindex="-1"
+     role="dialog"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <h4 class="modal-title"
+            id="productSaveConfirmModalLabel">상품 제작</h4>
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <p>상품을 제작하시겠어요?</p>
+        <div class="mt-3">
+          <div class="btn-container mt-3 text-end">
+            <button data-bs-dismiss="modal"
+                    class="btn btn-sm btn-dark waves-effect waves-light"
+                    type="button">취소
+            </button>
+            <button data-bs-dismiss="modal"
+                    class="btn btn-sm btn-primary waves-effect waves-light">제작
+            </button>
+          </div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>
+
+<div class="modal fade"
+     id="product-save-cancel-modal"
+     tabindex="-1"
+     role="dialog"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <h4 class="modal-title"
+            id="productSaveCancelModalLabel">상품 제작 취소</h4>
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <p>상품을 제작을 취소하시겠어요?</p>
+        <div class="mt-3">
+          <div class="btn-container mt-3 text-end">
+            <button data-bs-dismiss="modal"
+                    class="btn btn-sm btn-dark waves-effect waves-light"
+                    type="button">닫기
+            </button>
+            <button data-bs-dismiss="modal"
+                    class="btn btn-sm btn-primary waves-effect waves-light">취소
+            </button>
+          </div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>
 
 
 <!-- Vendor js -->
@@ -357,94 +433,140 @@
 <!-- third party js form end -->
 <!-- Init js-->
 <script src="../../../resources/admin/assets/js/pages/form-advanced.init.js"></script>
+<!-- common js -->
+<script src="../../../resources/admin/assets/js/common.js"></script>
+<!-- server js -->
+<script src="../../../resources/admin/assets/js/server.js"></script>
+<!-- SMART EDITOR js -->
+<script src="../../../resources/js/module/summernote/summernote.js"></script>
+<script src="../../../resources/js/module/summernote/summernote-kr.js"></script>
 <script>
     $(document).ready(function () {
-        /** Image Item Control */
-        let $image_items = $('.image-item-wrapper .image-item');
-        console.log($('.image-item-wrapper .image-item label span:last-child'));
-        $('.image-item-wrapper').on('click', 'div.image-item label span:last-child', function (e) {
-            console.log(e);
-            /** Delete Item*/
-            $(e.currentTarget).closest('.image-item').remove();
-            updateImageWrapperUI();
-        });
-        /** Image Item Control End*/
         /** Modal Event Listener */
-        $('#exhibition-delete-modal').on('show.bs.modal', function (event) {
-            // do something...
-            let $button = $(event.relatedTarget)
-            console.log($button.data());
-            let $modal = $(this);
-            $modal.find('.btn-container button:nth-child(2)').click(function (e) {
-                console.log('click event');
-                $(this).off('click');
-            });
-        });
-        $('#exhibition-inactive-modal').on('show.bs.modal', function (event) {
-            // do something...
-            let $button = $(event.relatedTarget)
-            console.log($button.data());
-            let $modal = $(this);
-            $modal.find('.btn-container button:nth-child(2)').click(function (e) {
-                console.log('click event');
-                $(this).off('click');
-            });
-        });
-        $('#exhibition-active-modal').on('show.bs.modal', function (event) {
-            // do something...
-            let $button = $(event.relatedTarget)
-            console.log($button.data());
-            let $modal = $(this);
-            $modal.find('.btn-container button:nth-child(2)').click(function (e) {
-                console.log('click event');
-                $(this).off('click');
-            });
+        $('#product-save-confirm-modal').on('show.bs.modal', function (event) {
+          // do something...
+          let $button = $(event.relatedTarget)
+          console.log($button.data());
+          let $modal = $(this);
+          $modal.find('.btn-container button:nth-child(2)').click(function (e) {
+            // TODO input valid check
+            const formData = new FormData();
+            const data = {};
+            data.title = $('input[name=product_name]').val();
+            data.subtitle = $('input[name=simple_desc]').val();
+            data.category = $('select[id=product_category] option:selected').val();
+            data.price = unCommaFunction($('input[name=product_price]').val());
+            data.sales = $('input[name=product_sale_rate]').val() * 1;
+            data.link = $('input[name=sell_link]').val();
+            data.details = $('#summernote').summernote('code');
+            data.img = [];
+            $('input[data-plugins=dropify]').each((index, element) => {
+              if(element.files.length === 1) {
+                formData.append('product_img' + index, element.files[0]);
+                data.img[index] = 'product_img' + index;
+              } else if ($(element).data().defaultFile !== undefined) {
+                data.img[index] = $(element).data().defaultFile;
+              } else {
+                data.img[index] = null;
+              }
+            })
+            formData.append('product', JSON.stringify(data));
+
+            formData.forEach((value, key) => {
+              console.log(key);
+              console.log(value);
+            })
+
+            fileUploadFetchFunction('/admin/product/make', formData, function (res) {
+              if(res.status === 200) {
+                alert('상품 제작이 완료되었습니다.');
+                window.location.replace('/admin/product/detail.do?no=' + res.data.no);
+              }
+            })
+          });
         });
 
-        $('.image-item-add-wrapper button').click(addImageItem);
+      $('#product-save-cancel-modal').on('show.bs.modal', function (event) {
+        // do something...
+        let $button = $(event.relatedTarget)
+        console.log($button.data());
+        let $modal = $(this);
+        $modal.find('.btn-container button:nth-child(2)').click(function (e) {
+          window.location.replace('/admin/product/detail.do?no=' + $button.data().bsProductNo);
+        });
+      });
+
+      $('#product-save-cancel-modal').on('hidden.bs.modal', function (event) {
+        // do something...
+        let $button = $(event.relatedTarget)
+        console.log($button.data());
+        let $modal = $(this);
+        $modal.find('.btn-container button:nth-child(2)').off('click');
+      });
+
+      $('#product-save-confirm-modal').on('hidden.bs.modal', function (event) {
+        // do something...
+        let $button = $(event.relatedTarget)
+        console.log($button.data());
+        let $modal = $(this);
+        $modal.find('.btn-container button:nth-child(2)').off('click');
+      });
+
+
+      $('#summernote').summernote({
+        placeholder: '내용을 입력해주세요.',
+        tabsize: 2,
+        height: 600,
+        lang: 'ko-KR',
+        focus: true, // 활성화 시 input focus
+        disableResizeEditor: true, // Size 조절
+        toolbar: [ // Toolbar Set
+          ['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['insert', ['picture', 'link']],
+          ['view', ['help']]
+        ],
+        maxUploadSize: 1024 * 1024 * 10,
+        maxUploadOnError: () => {
+          alert('사진 용량이 너무 큽니다. 다른 사진을 이용해주세요.\n파일 당 최대 업로드 용량 : 10MB');
+          $('[data-dismiss="modal"]').click();
+        },
+        /**
+         * Description : 스마트에디터 파일 업로더 Ajax
+         * Prerequisite : Summernote Smarteditor가 존재 해야한다.
+         * Parameter : deferred -> smarteditor 내무에 존재하는 변수
+         * Return : Non
+         * Date : 2021-07-12
+         * Version : 1
+         * */
+        imageUploader: (deferred, file) => {
+          let formData = new FormData(); // HTML5
+          formData.append("file", file);
+          fileUploadFetchFunction('/smarteditor/image/upload', formData, function(res) {
+            if(res.status === 200) {
+              deferred.resolve(res.data.url);
+            }
+          })
+        }
+      });
     });
 
-    const updateImageWrapperUI = () => {
-        $('.image-item-wrapper .image-item').each(function (index, item) {
-            $(item).find('.form-label span:first-child').text('Main Image (' + (index + 1) + '/' +
-                5 + ')');
-        });
+    const autoCalculateFunction = () => {
+      const price = $('input[name=product_price]').val();
+      const sales = $('input[name=product_sale_rate]').val();
+      const numRegex = /[0-9]/g;
+      const salesRegex = /^[0-9][0-9]?$|^100$/g;
+      let result = ''
+      if (numRegex.test(unCommaFunction(price)) && salesRegex.test(sales) ) {
+        // 천 원 단위 이상, 숫자 정규식 모두 통과 시 계산
+        result = unCommaFunction(price) * 1 * (100 - sales * 1) / 100;
+        console.log('in ; ', result);
+      }
+      $('input[name=product_sale]').val(commaFunction(result));
+      $('input[name=product_price]').val(commaFunction(price));
     }
 
-    const addImageItem = () => {
-        let count = $('.image-item-wrapper .image-item').length;
-        console.log(count);
-        if (count >= 5) {
-            return;
-        }
-        $('.image-item-wrapper').append(createImageItem({count: (count + 1)}));
-        $('[data-plugins="dropify"][data-count="' + (count + 1) + '"]').dropify({
-          messages: {
-            default: "클릭하거나 이미지를 여기에 드래그해주세요.",
-            replace: "수정하려면 클릭하거나 이미지를 여기에 드래그해주세요.",
-            remove: "삭제",
-            error: "오류가 발생했어요."
-          }, error: {fileSize: "파일 크기가 너무 커요 (최대 크기 : 10MB)"}
-        });
-        $('[data-plugins="dropify"][data-count="' + (count + 1) + '"]').removeAttr('data-count');
-    }
-
-    const createImageItem = ({count}) => {
-        return `<div class="col image-item"
-                     data-count="${count}">
-                  <div class="mb-3">
-                    <label class="form-label">
-                      <span>Main Image (${count}/5)</span>
-                      <span class="badge badge-soft-danger cursor-pointer my-auto ms-1">삭제</span>
-                    </label>
-                    <input type="file"
-                           data-count="${count}"
-                           data-plugins="dropify"
-                           data-max-file-size="5M"
-                           data-default-file="../../../resources/admin/assets/images/small/img-2.jpg"/>
-                  </div>
-                </div>`;
-    }
 </script>
 </body>
 </html>

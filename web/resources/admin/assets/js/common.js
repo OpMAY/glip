@@ -23,3 +23,7 @@ const commaFunction = (str) => {
     str = String(str);
     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 }
+
+const unCommaFunction = (str) => {
+    return str.replaceAll(',', '') * 1;
+}
