@@ -13,8 +13,7 @@
                 <li class="menu-title">Home</li>
 
                 <li>
-                    <a href="/admin/dashboard.do"
-                       data-bs-toggle="collapse">
+                    <a href="/admin/dashboard.do">
                         <i data-feather="airplay"></i>
                         <span> Dashboard </span>
                     </a>

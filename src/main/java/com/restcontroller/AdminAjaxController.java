@@ -3,12 +3,14 @@ package com.restcontroller;
 import com.google.gson.Gson;
 import com.model.admin.auth.request.AdminLoginRequest;
 import com.model.admin.exhibition.request.*;
+import com.model.admin.product.request.AdminProductActiveSwitchRequest;
 import com.model.admin.user.request.AdminUserSuspendRequest;
 import com.model.admin.user.request.AdminUserUnSuspendRequest;
 import com.model.common.MFile;
 import com.response.DefaultRes;
 import com.response.StatusCode;
 import com.service.ExhibitionService;
+import com.service.ProductService;
 import com.service.UserService;
 import com.util.Constant;
 import com.util.FileUploadUtility;
@@ -35,6 +37,9 @@ public class AdminAjaxController {
 
     @Autowired
     private ExhibitionService exhibitionService;
+
+    @Autowired
+    private ProductService productService;
 
     @Autowired
     private FileUploadUtility fileUploadUtility;
@@ -119,6 +124,11 @@ public class AdminAjaxController {
             }
         }
         return exhibitionService.editExhibition(request);
+    }
+
+    @PostMapping("/product/active")
+    public ResponseEntity SwitchProductActiveStatus(@RequestBody AdminProductActiveSwitchRequest request) {
+        return productService.switchProductActiveStatus(request);
     }
 
 }

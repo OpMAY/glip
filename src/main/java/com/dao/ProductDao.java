@@ -4,6 +4,9 @@ import com.mapper.ProductMapper;
 import com.model.admin.exhibition.request.AdminExhibitionProductSelectRequest;
 import com.model.admin.exhibition.response.AdminExhibitionSelectableProduct;
 import com.model.admin.exhibition.response.ExhibitionRelatedProduct;
+import com.model.admin.product.request.AdminProductActiveSwitchRequest;
+import com.model.admin.product.response.AdminProductDetailPage;
+import com.model.admin.product.response.AdminProductListPage;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +30,17 @@ public class ProductDao {
 
     public List<ExhibitionRelatedProduct> getSelectedProductInfoForExhibition(AdminExhibitionProductSelectRequest request) {
         return getMapper().getSelectedProductInfoForExhibition(request);
+    }
+
+    public List<AdminProductListPage> getAdminProductListPage() {
+        return getMapper().getAdminProductListPage();
+    }
+
+    public void switchProductActiveStatus(AdminProductActiveSwitchRequest request) {
+        getMapper().switchProductActiveStatus(request);
+    }
+
+    public AdminProductDetailPage getAdminProductDetailPage(int no) {
+        return getMapper().getAdminProductDetailPage(no);
     }
 }

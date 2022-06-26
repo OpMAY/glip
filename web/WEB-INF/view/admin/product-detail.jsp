@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -154,67 +156,53 @@
                                 <div class="product-detail">
                                     <div class="row" id="product-detail-header">
                                         <div class="col-4">
-                                            <h4 class="header-title">블랙으로 돌아온 루이스 폴센</h4>
+                                            <h4 class="header-title">${product.title}</h4>
                                         </div>
                                         <div class="col-3 offset-5 d-flex justify-content-end">
                                             <%--TODO 상품 상태 별 버튼 (활성화 / 비활성화) 변경 --%>
-                                            <button type="button"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#exhibition-inactive-modal"
-                                                    data-bs-product-no="1"
-                                                    class="btn btn-secondary waves-effect waves-light top-right-button last">
-                                                비활성화
-                                            </button>
-                                            <button type="button" id="edit-button" data-bs-product-no="1"
+                                            <c:choose>
+                                                <c:when test="${product.active_status == true}">
+                                                    <button type="button"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#exhibition-inactive-modal"
+                                                            data-bs-product-no="${product.no}" data-bs-product-title="${product.title}"
+                                                            class="btn btn-secondary waves-effect waves-light top-right-button last">
+                                                        비활성화
+                                                    </button>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <button type="button"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#exhibition-active-modal"
+                                                            data-bs-product-no="${product.no}" data-bs-product-title="${product.title}"
+                                                            class="btn btn-primary waves-effect waves-light">활성화
+                                                    </button>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <button type="button" id="edit-button" data-bs-product-no="${product.no}" data-bs-product-title="${product.title}"
                                                     class="btn btn-dark waves-effect waves-light top-right-button">수정하기
                                             </button>
                                             <button type="button"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#exhibition-delete-modal"
-                                                    data-bs-product-no="1"
+                                                    data-bs-product-no="${product.no}" data-bs-product-title="${product.title}"
                                                     class="btn btn-danger waves-effect waves-light top-right-button">삭제
                                             </button>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
-                                            <label class="form-label">상품 이미지 (5/5)</label>
+                                            <label class="form-label">상품 이미지 (${product.img.size()}/5)</label>
                                             <div class="row row-cols-5">
-                                                <div class="col">
-                                                    <div class="mb-3">
-                                                        <div class="background"
-                                                             style="padding-top: 80%; background-image:
-                        url('../../../resources/admin/assets/images/small/img-2.jpg')"></div>
+                                                <c:forEach items="${product.img}" var="img">
+                                                    <div class="col">
+                                                        <div class="mb-3">
+                                                            <div class="background"
+                                                                 style="padding-top: 80%; background-image:
+                                                                         url('${img.replaceAll("\"", "")}')"></div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="mb-3">
-                                                        <div class="background"
-                                                             style="padding-top: 80%; background-image:
-                        url('../../../resources/admin/assets/images/small/img-2.jpg')"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="mb-3">
-                                                        <div class="background"
-                                                             style="padding-top: 80%; background-image:
-                        url('../../../resources/admin/assets/images/small/img-2.jpg')"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="mb-3">
-                                                        <div class="background"
-                                                             style="padding-top: 80%; background-image:
-                        url('../../../resources/admin/assets/images/small/img-2.jpg')"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="mb-3">
-                                                        <div class="background"
-                                                             style="padding-top: 80%; background-image:
-                        url('../../../resources/admin/assets/images/small/img-2.jpg')"></div>
-                                                    </div>
-                                                </div>
+                                                </c:forEach>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">간단 설명</label>
@@ -222,7 +210,7 @@
                                                        readonly
                                                        name="simple_desc"
                                                        placeholder="Input Simple Description"
-                                                       value="아폴론의 화살"
+                                                       value="${product.subtitle}"
                                                        class="form-control readonly">
                                             </div>
                                             <div class="row">
@@ -233,7 +221,7 @@
                                                                readonly
                                                                name="product_category"
                                                                placeholder="Input Product Category"
-                                                               value="포스터(Poster)"
+                                                               value="${product.category}"
                                                                class="form-control readonly">
                                                     </div>
                                                 </div>
@@ -244,7 +232,7 @@
                                                                readonly
                                                                name="product_price"
                                                                placeholder="Input Product Price"
-                                                               value="20,000원"
+                                                               value="<fmt:formatNumber value="${product.price}"/>원"
                                                                class="form-control readonly">
                                                     </div>
                                                 </div>
@@ -255,7 +243,7 @@
                                                                readonly
                                                                name="product_sale_rate"
                                                                placeholder="Input Product Sale Rate"
-                                                               value="20%"
+                                                               value="${product.sales}%"
                                                                class="form-control readonly">
                                                     </div>
                                                 </div>
@@ -266,55 +254,29 @@
                                                                readonly
                                                                name="product_sale"
                                                                placeholder="Input Product Sale"
-                                                               value="16,000원"
+                                                               value="<fmt:formatNumber value="${product.price * (100 - product.sales) / 100}"/>원"
                                                                class="form-control readonly">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label d-flex">판매 링크<span
-                                                        data-sns-url="https://www.naver.com/"
+                                                        data-sns-url="${product.link}"
                                                         class="cursor-pointer my-auto badge badge-soft-primary ms-1 link-move">링크 확인</span></label>
                                                 <input type="text"
                                                        readonly
                                                        name="sell_link"
                                                        placeholder="Input Sell Links"
-                                                       value="https://www.naver.com/"
+                                                       value="${product.link}"
                                                        class="form-control readonly">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">상세 설명</label>
                                                 <%-- TODO HTML TO TEXTAREA --%>
-                                                <textarea class="form-control readonly"
-                                                          name="description"
-                                                          readonly
-                                                          id="example-textarea"
-                                                          placeholder="Input Description"
-                                                          rows="5"></textarea>
+                                                <div class="smart-editor-content-div">
+                                                    ${product.details}
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-12 text-end">
-                                            <button type="button"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#exhibition-active-modal"
-                                                    data-bs-exhibition-no="1"
-                                                    class="btn btn-primary waves-effect waves-light">활성화
-                                            </button>
-                                            <button type="button"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#exhibition-inactive-modal"
-                                                    data-bs-exhibition-no="1"
-                                                    class="btn btn-secondary waves-effect waves-light">비활성화
-                                            </button>
-                                            <button type="button"
-                                                    class="btn btn-dark waves-effect waves-light">수정하기
-                                            </button>
-                                            <button type="button"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#exhibition-delete-modal"
-                                                    data-bs-exhibition-no="1"
-                                                    class="btn btn-danger waves-effect waves-light">삭제
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -353,22 +315,22 @@
         <div class="modal-content">
             <div class="modal-header bg-light">
                 <h4 class="modal-title"
-                    id="exhibitionDeleteModalLabel">Product Delete</h4>
+                    id="exhibitionDeleteModalLabel">상품 삭제</h4>
                 <button type="button"
                         class="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
-                <p>Would you like to cancel service suspension for 'Yoo Byung-jun'?</p>
+                <p>'<span id="modal-title"></span>' 상품을 삭제하시겠어요?</p>
                 <div class="mt-3">
                     <div class="btn-container mt-3 text-end">
                         <button data-bs-dismiss="modal"
                                 class="btn btn-sm btn-dark waves-effect waves-light"
-                                type="button">Cancel
+                                type="button">취소
                         </button>
                         <button data-bs-dismiss="modal"
-                                class="btn btn-sm btn-danger waves-effect waves-light">Delete
+                                class="btn btn-sm btn-danger waves-effect waves-light">삭제
                         </button>
                     </div>
                 </div>
@@ -385,22 +347,22 @@
         <div class="modal-content">
             <div class="modal-header bg-light">
                 <h4 class="modal-title"
-                    id="exhibitionInActiveModalLabel">Product InActive</h4>
+                    id="exhibitionInActiveModalLabel">상품 비활성화</h4>
                 <button type="button"
                         class="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
-                <p>Would you like to cancel service suspension for 'Yoo Byung-jun'?</p>
+                <p>'<span id="modal-title"></span>' 상품을 비활성화하시겠어요?</p>
                 <div class="mt-3">
                     <div class="btn-container mt-3 text-end">
                         <button data-bs-dismiss="modal"
                                 class="btn btn-sm btn-dark waves-effect waves-light"
-                                type="button">Cancel
+                                type="button">취소
                         </button>
                         <button data-bs-dismiss="modal"
-                                class="btn btn-sm btn-secondary waves-effect waves-light">InActive
+                                class="btn btn-sm btn-secondary waves-effect waves-light">비활성화
                         </button>
                     </div>
                 </div>
@@ -417,22 +379,22 @@
         <div class="modal-content">
             <div class="modal-header bg-light">
                 <h4 class="modal-title"
-                    id="exhibitionActiveModalLabel">Product Active</h4>
+                    id="exhibitionActiveModalLabel">상품 활성화</h4>
                 <button type="button"
                         class="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
-                <p>Would you like to cancel service suspension for 'Yoo Byung-jun'?</p>
+                <p>'<span id="modal-title"></span>' 상품을 활성화하시겠어요?</p>
                 <div class="mt-3">
                     <div class="btn-container mt-3 text-end">
                         <button data-bs-dismiss="modal"
                                 class="btn btn-sm btn-dark waves-effect waves-light"
-                                type="button">Cancel
+                                type="button">취소
                         </button>
                         <button data-bs-dismiss="modal"
-                                class="btn btn-sm btn-primary waves-effect waves-light">Active
+                                class="btn btn-sm btn-primary waves-effect waves-light">활성화
                         </button>
                     </div>
                 </div>
@@ -503,6 +465,7 @@
             let $button = $(event.relatedTarget)
             console.log($button.data());
             let $modal = $(this);
+            $modal.find('#modal-title').text($button.data().bsProductTitle);
             $modal.find('.btn-container button:nth-child(2)').click(function (e) {
                 console.log('click event');
                 $(this).off('click');
@@ -513,6 +476,7 @@
             let $button = $(event.relatedTarget)
             console.log($button.data());
             let $modal = $(this);
+            $modal.find('#modal-title').text($button.data().bsProductTitle);
             $modal.find('.btn-container button:nth-child(2)').click(function (e) {
                 console.log('click event');
                 $(this).off('click');
@@ -523,6 +487,7 @@
             let $button = $(event.relatedTarget)
             console.log($button.data());
             let $modal = $(this);
+            $modal.find('#modal-title').text($button.data().bsProductTitle);
             $modal.find('.btn-container button:nth-child(2)').click(function (e) {
                 console.log('click event');
                 $(this).off('click');
@@ -530,9 +495,9 @@
         });
     });
 
-    $('#edit-button').on('click', function() {
-        if(confirm('해당 상품을 수정하시겠어요?')) {
-            window.location.href='/admin/product/update.do?no=' + $(this).data('bsProductNo');
+    $('#edit-button').on('click', function () {
+        if (confirm('해당 상품을 수정하시겠어요?')) {
+            window.location.href = '/admin/product/update.do?no=' + $(this).data('bsProductNo');
         }
     })
 </script>

@@ -140,7 +140,7 @@
                         </div> <!-- end card-->
                     </div> <!-- end col -->
 
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 d-none" id="right-user-box">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex align-items-start mb-3">
@@ -382,6 +382,9 @@
             $('#detail-reg-date').text(userData.reg_date);
             $('#detail-final-login').text(userData.final_login);
             $('#freezeButton').data('bs-user-name', userData.nick_name);
+            if($('#right-user-box').hasClass('d-none')){
+                $('#right-user-box').removeClass('d-none');
+            }
         }
     }
 

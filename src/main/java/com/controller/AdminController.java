@@ -2,6 +2,7 @@ package com.controller;
 
 import com.model.basic.exhibition.ExhibitionStatus;
 import com.service.ExhibitionService;
+import com.service.ProductService;
 import com.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class AdminController {
 
     @Autowired
     private ExhibitionService exhibitionService;
+
+    @Autowired
+    private ProductService productService;
     /* Service AutoWired END */
 
     @GetMapping("/login.do")
@@ -110,6 +114,7 @@ public class AdminController {
     public ModelAndView ProductOnPage() {
         VIEW = new ModelAndView("/admin/product-on-display");
         // TODO product data
+        VIEW.addObject("product", productService.getAdminProductListPage());
         return VIEW;
     }
 
@@ -117,6 +122,7 @@ public class AdminController {
     public ModelAndView ProductDetailPage(@RequestParam("no") int no) {
         VIEW = new ModelAndView("/admin/product-detail");
         // TODO Product detail data
+        VIEW.addObject("product", productService.getAdminProductDetailPage(no));
         return VIEW;
     }
 
@@ -129,6 +135,7 @@ public class AdminController {
     public ModelAndView ProductUpdatePage(@RequestParam("no") int no) {
         VIEW = new ModelAndView("/admin/product-detail-update");
         // TODO Product Detail data
+        VIEW.addObject("product", productService.getAdminProductDetailPage(no));
         return VIEW;
     }
 

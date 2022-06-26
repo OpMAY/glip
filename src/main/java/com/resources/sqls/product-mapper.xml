@@ -3,6 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mapper.ProductMapper">
+    <resultMap id="AdminProductDetailPage" type="com.model.admin.product.response.AdminProductDetailPage">
+        <result column="img" property="img" typeHandler="com.middleware.StringArrayListTypeHandler"/>
+    </resultMap>
     <select id="getProductListForExhibition" resultType="AdminExhibitionSelectableProduct">
         select no,
                title,
@@ -22,5 +25,39 @@
         <foreach collection="product_list" item="item" index="index" open="(" separator="," close=")">
             #{item}
         </foreach>
+    </select>
+    <select id="getAdminProductListPage" resultType="AdminProductListPage">
+        select no,
+               title,
+               category,
+               price,
+               sales,
+               views,
+               COUNT(ps.product_no) as scrap_count,
+               product.reg_date,
+               active_status
+        from product
+                 left join product_scrap ps on product.no = ps.product_no
+        GROUP BY product.no, product.reg_date
+        ORDER BY reg_date DESC
+    </select>
+    <update id="switchProductActiveStatus">
+        update product
+        SET active_status = !active_status
+        WHERE no = #{product_no}
+    </update>
+    <select id="getAdminProductDetailPage" resultType="AdminProductDetailPage" resultMap="AdminProductDetailPage">
+        select no,
+               title,
+               img,
+               category,
+               subtitle,
+               price,
+               sales,
+               link,
+               details,
+               active_status
+        from product
+        WHERE no = #{no}
     </select>
 </mapper>

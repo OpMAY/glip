@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -97,7 +99,7 @@
                                     <li class="breadcrumb-item active">상품 목록</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">총 30개의 상품</h4>
+                            <h4 class="page-title">총 ${product.size()}개의 상품</h4>
                         </div>
                     </div>
                 </div>
@@ -122,58 +124,50 @@
                                             <th>조회 수</th>
                                             <th>스크랩 수</th>
                                             <th>등록 일자</th>
-                                            <th>Action</th>
+                                            <th data-orderable="false">Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>블랙으로 돌아온 루이스 폴센</td>
-                                            <td>포스터(Poster)</td>
-                                            <td>23,000원</td>
-                                            <td>0%</td>
-                                            <td>23,000원</td>
-                                            <td>23</td>
-                                            <td>2</td>
-                                            <td>2022.12.22</td>
-                                            <td>
-                                                <button type="button"
-                                                        data-bs-target="#exhibition-abled-modal"
-                                                        data-bs-product-no="1" data-bs-title="블랙으로 돌아온 루이스 폴센1"
-                                                        data-bs-toggle="modal"
-                                                        class="btn btn-sm btn-primary waves-effect waves-light">
-                                                    활성화
-                                                </button>
-                                                <button type="button" data-bs-product-no="1"
-                                                        class="btn btn-sm btn-info waves-effect waves-light product-detail">
-                                                    상세보기
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>블랙으로 돌아온 루이스 폴센</td>
-                                            <td>포스터(Poster)</td>
-                                            <td>23,000원</td>
-                                            <td>0%</td>
-                                            <td>23,000원</td>
-                                            <td>23</td>
-                                            <td>2</td>
-                                            <td>2022.12.22</td>
-                                            <td>
-                                                <button type="button"
-                                                        class="btn btn-sm btn-danger waves-effect waves-light"
-                                                        data-bs-target="#exhibition-disabled-modal"
-                                                        data-bs-product-no="2" data-bs-title="블랙으로 돌아온 루이스 폴센2"
-                                                        data-bs-toggle="modal">
-                                                    비활성화
-                                                </button>
-                                                <button type="button" data-bs-product-no="2"
-                                                        class="btn btn-sm btn-info waves-effect waves-light product-detail">
-                                                    상세보기
-                                                </button>
-                                            </td>
-                                        </tr>
+                                        <c:forEach var="i" begin="1" end="${product.size()}">
+                                            <tr>
+                                                <td>${i}</td>
+                                                <td>${product[i-1].title}</td>
+                                                <td>${product[i-1].category}</td>
+                                                <td><fmt:formatNumber value="${product[i-1].price}"/>원</td>
+                                                <td>${product[i-1].sales}%</td>
+                                                <td><fmt:formatNumber value="${product[i-1].price * (100 - product[i-1].sales) / 100}"/>원</td>
+                                                <td>${product[i-1].views}</td>
+                                                <td>${product[i-1].scrap_count}</td>
+                                                <td>${product[i-1].reg_date}</td>
+                                                <td>
+                                                    <c:choose>
+                                                        <c:when test="${product[i-1].active_status == true}">
+                                                            <button type="button"
+                                                                    class="btn btn-sm btn-danger waves-effect waves-light"
+                                                                    data-bs-target="#exhibition-disabled-modal"
+                                                                    data-bs-product-no="${product[i-1].no}" data-bs-title="${product[i-1].title}"
+                                                                    data-bs-toggle="modal">
+                                                                비활성화
+                                                            </button>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <button type="button"
+                                                                    data-bs-target="#exhibition-abled-modal"
+                                                                    data-bs-product-no="${product[i-1].no}" data-bs-title="${product[i-1].title}"
+                                                                    data-bs-toggle="modal"
+                                                                    class="btn btn-sm btn-primary waves-effect waves-light">
+                                                                활성화
+                                                            </button>
+                                                        </c:otherwise>
+                                                    </c:choose>
+
+                                                    <button type="button" data-bs-product-no="${product[i-1].no}"
+                                                            class="btn btn-sm btn-info waves-effect waves-light product-detail">
+                                                        상세보기
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
@@ -287,8 +281,13 @@
 <script src="../../../resources/admin/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
 <script src="../../../resources/admin/assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
 <script src="../../../resources/admin/assets/libs/pdfmake/build/pdfmake.min.js"></script>
-<script src="../../../ㅊresources/admin/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+<script src="../../../resources/admin/assets/libs/pdfmake/build/vfs_fonts.js"></script>
 <!-- third party js ends -->
+
+<!-- common js -->
+<script src="../../../resources/admin/assets/js/common.js"></script>
+<!-- server js -->
+<script src="../../../resources/admin/assets/js/server.js"></script>
 <script>
     $(document).ready(function () {
         /** Table Initialize */
@@ -296,11 +295,6 @@
             pagingType: 'full_numbers',
             drawCallback: function () {
                 $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
-                $(this).find('tbody tr').each((i, e) => {
-                    $(e).click(function () {
-                        /* TODO This Right Side Open And Refreshing Event Init */
-                    });
-                });
             }
         });
 
@@ -310,13 +304,13 @@
             let $button = $(event.relatedTarget)
             console.log($button.data());
             let $modal = $(this);
-            $modal.find('.modal-product-title').text($button.data('bsTitle'));
+            $modal.find('.modal-product-title').text($button.data().bsTitle);
             $modal.find('.btn-container button:nth-child(2)').click(function (e) {
-                console.log('click event');
-                $(this).off('click');
+                const data = {"product_no" : $button.data().bsProductNo};
+                normalFetchFunction('/admin/product/active', 'POST', data, switchDoneFunction)
             });
         });
-        $('#exhibition-disabled-modal').on('hide.bs.modal', function (event) {
+        $('#exhibition-disabled-modal').on('hidden.bs.modal', function (event) {
             // do something...
             let $button = $(event.relatedTarget)
             console.log($button.data());
@@ -328,13 +322,13 @@
             let $button = $(event.relatedTarget)
             console.log($button.data());
             let $modal = $(this);
-            $modal.find('.modal-product-title').text($button.data('bsTitle'));
+            $modal.find('.modal-product-title').text($button.data().bsTitle);
             $modal.find('.btn-container button:nth-child(2)').click(function (e) {
-                console.log('click event');
-                $(this).off('click');
+                const data = {"product_no" : $button.data().bsProductNo};
+                normalFetchFunction('/admin/product/active', 'POST', data, switchDoneFunction)
             });
         });
-        $('#exhibition-abled-modal').on('hide.bs.modal', function (event) {
+        $('#exhibition-abled-modal').on('hidden.bs.modal', function (event) {
             // do something...
             let $button = $(event.relatedTarget)
             console.log($button.data());
@@ -346,6 +340,13 @@
             window.location.href='/admin/product/detail.do?no=' + $(this).data('bsProductNo');
         })
     });
+
+    const switchDoneFunction = (res) => {
+        if(res.status === 200) {
+            alert('변경되었습니다.');
+            window.location.reload();
+        }
+    }
 </script>
 </body>
 </html>
