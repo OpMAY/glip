@@ -3,5 +3,26 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mapper.RelatedMapper">
-
+    <select id="getExhibitionRelatedProducts" resultType="ExhibitionRelatedProduct">
+        select product.no,
+               IF(product.img = '[]', null, REPLACE(JSON_EXTRACT(product.img, '$[0]'), '"', '')) as img,
+               product.title,
+               product.price,
+               product.sales
+        from related
+                 left join product on product.no = related.product_no
+        WHERE related.exhibition_no = #{exhibition_no}
+        ORDER BY rand()
+    </select>
+    <insert id="updateExhibitionRelatedProducts">
+        insert into related(product_no, exhibition_no) VALUES
+        <foreach collection="related_list" item="item" index="index">
+            (#{item}, #{no})<if test="index != related_list.size() - 1">, </if>
+        </foreach>
+    </insert>
+    <delete id="resetExhibitionRelatedProducts">
+        delete
+        from related
+        WHERE exhibition_no = #{no}
+    </delete>
 </mapper>

@@ -3,5 +3,93 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mapper.ExhibitionMapper">
-
+    <resultMap id="AdminExhibitionDetailPage" type="com.model.admin.exhibition.response.AdminExhibitionDetailPage">
+        <result column="author" property="author" javaType="com.model.basic.exhibition.Author"
+                typeHandler="com.middleware.JsonArrayObjectTypeHandler"/>
+        <result column="hashtag" property="hashtag" typeHandler="com.middleware.StringArrayListTypeHandler"/>
+    </resultMap>
+    <select id="getAdminExhibitionListPage" resultType="AdminExhibitionListPage">
+        select exhibition.no,
+               title,
+               category,
+               start_date,
+               end_date,
+               exhibition.reg_date,
+               views,
+               user.nick_name          as user_nickname,
+               COUNT(es.exhibition_no) as scrap_count,
+               active_status
+        from exhibition
+                 left join user on user.no = exhibition.user_no
+                 left join exhibition_scrap es on exhibition.no = es.exhibition_no
+        WHERE exhibition.exhibition_status = #{status}
+          AND exhibition.register_status = 'REGISTERED'
+        GROUP BY exhibition.no, exhibition.reg_date
+        ORDER BY exhibition.reg_date DESC
+    </select>
+    <update id="switchExhibitionActiveStatus">
+        update exhibition
+        SET active_status = !active_status
+        WHERE no = #{exhibition_no}
+    </update>
+    <select id="getAdminExhibitionRequestListPage" resultType="AdminExhibitionRequestListPage">
+        select exhibition.no,
+               title,
+               category,
+               start_date,
+               end_date,
+               request_date,
+               register_status,
+               user.nick_name as user_nickname
+        from exhibition
+                 left join user on user.no = exhibition.user_no
+        WHERE exhibition.register_status != 'REGISTERED'
+        ORDER BY request_date DESC
+    </select>
+    <select id="getAdminExhibitionDetailPage" resultType="AdminExhibitionDetailPage"
+            resultMap="AdminExhibitionDetailPage">
+        select *
+        from exhibition
+        WHERE no = #{no}
+    </select>
+    <delete id="deleteExhibition">
+        delete
+        from exhibition
+        WHERE no = #{exhibition_no}
+    </delete>
+    <update id="rejectExhibition">
+        update exhibition
+        SET register_status = 'REJECTED',
+            reject_details  = #{reject_details}
+        WHERE no = #{exhibition_no}
+    </update>
+    <update id="agreeExhibition">
+        update exhibition
+        SET register_status   = 'REGISTERED',
+            exhibition_status = CASE
+                                    WHEN start_date <![CDATA[>]]> curdate() THEN 'PLANNED'
+                                    WHEN start_date <![CDATA[<]]> curdate() AND end_date <![CDATA[>]]> curdate() THEN 'ON_EXHIBITION'
+                                    WHEN end_date <![CDATA[<]]> curdate() THEN 'FINISHED' END
+        WHERE no = #{exhibition_no}
+    </update>
+    <update id="editExhibition">
+        update exhibition
+        SET title           = #{title},
+            subtitle        = #{subtitle},
+            start_date      = #{start_date},
+            end_date        = #{end_date},
+            start_time      = #{start_time},
+            end_time        = #{end_time},
+            address         = #{address},
+            address_details = #{address_detail},
+            homepage        = #{homepage},
+            author          = #{author, typeHandler=com.middleware.JsonArrayObjectTypeHandler},
+            category        = #{category},
+            hashtag         = #{hashtag, typeHandler=com.middleware.JsonArrayObjectTypeHandler},
+            details         = #{details},
+            img             = IF(#{img} is null, img, #{img}),
+            address_x       = #{address_x},
+            address_y       = #{address_y}
+        WHERE no = #{no}
+    </update>
 </mapper>

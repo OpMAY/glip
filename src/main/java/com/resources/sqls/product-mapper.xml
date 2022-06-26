@@ -3,5 +3,24 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mapper.ProductMapper">
-
+    <select id="getProductListForExhibition" resultType="AdminExhibitionSelectableProduct">
+        select no,
+               title,
+               category,
+               price,
+               sales,
+               if(related.product_no = product.no, true, false) as product_related
+        from product
+                 left join related on related.product_no = product.no AND related.exhibition_no = #{exhibition_no}
+    </select>
+    <select id="getSelectedProductInfoForExhibition" resultType="ExhibitionRelatedProduct">
+        select product.no,
+        IF(product.img = '[]', null, REPLACE(JSON_EXTRACT(product.img, '$[0]'), '"', '')) as img,
+        product.title,
+        product.price,
+        product.sales from product WHERE product.no in
+        <foreach collection="product_list" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
 </mapper>

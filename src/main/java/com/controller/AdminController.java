@@ -1,5 +1,7 @@
 package com.controller;
 
+import com.model.basic.exhibition.ExhibitionStatus;
+import com.service.ExhibitionService;
 import com.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class AdminController {
     /* Service AutoWired */
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ExhibitionService exhibitionService;
     /* Service AutoWired END */
 
     @GetMapping("/login.do")
@@ -52,7 +57,7 @@ public class AdminController {
     public ModelAndView ExhibitionOnListPlannedPage() {
         VIEW = new ModelAndView("/admin/exhibition-on-list");
         VIEW.addObject("typeText", ExhibitionTypeText("planned"));
-        // TODO Exhibition On List data differed by type
+        VIEW.addObject("exhibition_list", exhibitionService.getAdminExhibitionListPage(ExhibitionStatus.PLANNED));
         return VIEW;
     }
 
@@ -60,7 +65,7 @@ public class AdminController {
     public ModelAndView ExhibitionOnListProcessPage() {
         VIEW = new ModelAndView("/admin/exhibition-on-list");
         VIEW.addObject("typeText", ExhibitionTypeText("process"));
-        // TODO Exhibition On List data differed by type
+        VIEW.addObject("exhibition_list", exhibitionService.getAdminExhibitionListPage(ExhibitionStatus.ON_EXHIBITION));
         return VIEW;
     }
 
@@ -68,7 +73,7 @@ public class AdminController {
     public ModelAndView ExhibitionOnListFinishedPage() {
         VIEW = new ModelAndView("/admin/exhibition-on-list");
         VIEW.addObject("typeText", ExhibitionTypeText("finished"));
-        // TODO Exhibition On List data differed by type
+        VIEW.addObject("exhibition_list", exhibitionService.getAdminExhibitionListPage(ExhibitionStatus.FINISHED));
         return VIEW;
     }
 
@@ -76,6 +81,7 @@ public class AdminController {
     public ModelAndView ExhibitionRequestListPage() {
         VIEW = new ModelAndView("/admin/exhibition-request-list");
         // TODO Exhibition Request list Data
+        VIEW.addObject("exhibition_list", exhibitionService.getAdminExhibitionRequestListPage());
         return VIEW;
     }
 
@@ -83,6 +89,7 @@ public class AdminController {
     public ModelAndView ExhibitionDetailPage(@RequestParam("no") int no) {
         VIEW = new ModelAndView("/admin/exhibition-detail");
         // TODO Exhibition Detail Data
+        VIEW.addObject("exhibition", exhibitionService.getAdminExhibitionDetailPage(no));
         return VIEW;
     }
 
@@ -95,6 +102,7 @@ public class AdminController {
     public ModelAndView ExhibitionUpdatePage(@RequestParam("no") int no) {
         VIEW =  new ModelAndView("/admin/exhibition-detail-update");
         // TODO Exhibition Detail Data
+        VIEW.addObject("exhibition", exhibitionService.getAdminExhibitionDetailPage(no));
         return VIEW;
     }
 

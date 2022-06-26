@@ -325,7 +325,7 @@
     const userDetailUpdateFunction = (res) => {
         if (res.status === 200) {
             const userData = res.data.user_data;
-            $('#detail-img').attr('src', userData.img !== null ? 'https://dannaguii.s3.ap-northeast-2.amazonaws.com/' + userData.img : '../../../resources/assets/images/glip/icon_user_outline.svg');
+            $('#detail-img').attr('src', userData.img !== null ? userData.img : '../../../resources/assets/images/glip/icon_user_outline.svg');
             $('#detail-nickname').text(userData.nick_name);
             $('#detail-email').text(userData.email);
             $('#detail-name').text(userData.name);

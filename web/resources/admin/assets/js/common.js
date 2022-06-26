@@ -18,3 +18,8 @@ $('#log-out').on('click', function() {
             .catch(rej => console.error(rej));
     }
 })
+
+const commaFunction = (str) => {
+    str = String(str);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}

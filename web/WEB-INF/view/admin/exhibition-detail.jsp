@@ -1,9 +1,10 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>[전시 제목] 전시 상세</title>
+    <title>[${exhibition.title}] 전시 상세</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc."
@@ -54,7 +55,7 @@
     <link href="../../../resources/admin/assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css"
           rel="stylesheet"
           type="text/css"/>
-    <link href="../../../resources/admin/assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css"
+    <link href="../../../resources/admin/assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css"
           rel="stylesheet"
           type="text/css"/>
     <!-- third party css end -->
@@ -154,24 +155,87 @@
                                 <div class="exhibition-detail">
                                     <div class="row" id="exhibition-detail-header">
                                         <div class="col-4">
-                                            <h4 class="header-title">아폴론의 화살</h4>
+                                            <h4 class="header-title">${exhibition.title}</h4>
                                         </div>
                                         <div class="col-3 offset-5 d-flex justify-content-end">
                                             <%--TODO 전시 상태 별 버튼 배치 변경 --%>
-                                            <button type="button"
-                                                    class="btn btn-dark waves-effect waves-light top-right-button last">수정하기
-                                            </button>
-                                            <button type="button"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#exhibition-agree-modal"
-                                                    data-bs-exhibition-no="1"
-                                                    class="btn btn-success waves-effect waves-light top-right-button">전시 승인
-                                            </button>
-                                            <button type="button"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#exhibition-reject-modal"
-                                                    class="btn btn-danger waves-effect waves-light top-right-button">전시 반려
-                                            </button>
+                                            <c:choose>
+                                                <c:when test="${exhibition.register_status == 'REGISTERED'}">
+                                                    <%-- 등록(승인)된 전시일 경우 --%>
+                                                    <c:choose>
+                                                        <c:when test="${exhibition.active_status == true}">
+                                                            <%-- 활성화된 전시일 경우 --%>
+                                                            <button type="button"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#exhibition-inactive-modal"
+                                                                    data-bs-exhibition-no="${exhibition.no}"
+                                                                    class="btn btn-secondary waves-effect waves-light top-right-button last">
+                                                                비활성화
+                                                            </button>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <%-- 비활성화된 전시일 경우 --%>
+                                                            <button type="button"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#exhibition-active-modal"
+                                                                    data-bs-exhibition-no="${exhibition.no}"
+                                                                    class="btn btn-primary waves-effect waves-light top-right-button last">
+                                                                활성화
+                                                            </button>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                    <button type="button" data-bs-exhibition-no="${exhibition.no}" id="exhibition-edit"
+                                                            class="btn btn-dark waves-effect waves-light top-right-button">
+                                                        수정
+                                                    </button>
+                                                    <button type="button"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#exhibition-delete-modal"
+                                                            data-bs-exhibition-no="${exhibition.no}"
+                                                            class="btn btn-danger waves-effect waves-light top-right-button">
+                                                        삭제
+                                                    </button>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <c:choose>
+                                                        <c:when test="${exhibition.register_status == 'REQUESTED'}">
+                                                            <button type="button"
+                                                                    data-bs-exhibition-no="${exhibition.no}" id="exhibition-edit"
+                                                                    class="btn btn-dark waves-effect waves-light top-right-button last">
+                                                                수정
+                                                            </button>
+                                                            <button type="button"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#exhibition-agree-modal"
+                                                                    data-bs-exhibition-no="${exhibition.no}"
+                                                                    class="btn btn-success waves-effect waves-light top-right-button">
+                                                                승인
+                                                            </button>
+                                                            <button type="button"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#exhibition-reject-modal"
+                                                                    data-bs-exhibition-no="${exhibition.no}"
+                                                                    class="btn btn-danger waves-effect waves-light top-right-button">
+                                                                반려
+                                                            </button>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <button type="button"
+                                                                    data-bs-exhibition-no="${exhibition.no}" id="exhibition-edit"
+                                                                    class="btn btn-dark waves-effect waves-light top-right-button last">
+                                                                수정
+                                                            </button>
+                                                            <button type="button"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#exhibition-delete-modal"
+                                                                    data-bs-exhibition-no="${exhibition.no}"
+                                                                    class="btn btn-danger waves-effect waves-light top-right-button">
+                                                                삭제
+                                                            </button>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -180,14 +244,15 @@
                                                 <label class="form-label">메인 이미지</label>
                                                 <div class="background"
                                                      style="padding-top: 30%; background-image:
-                        url('../../../resources/admin/assets/images/small/img-2.jpg')"></div>
+                                                             url('${exhibition.img}')"></div>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">간단 설명</label>
                                                 <input type="text"
                                                        readonly
                                                        name="simple_desc"
-                                                       placeholder="Input Simple Description"
+                                                       value="${exhibition.subtitle}"
+                                                       placeholder="${exhibition.subtitle}"
                                                        class="form-control readonly">
                                             </div>
                                             <div class="row">
@@ -197,7 +262,8 @@
                                                         <input type="text"
                                                                readonly
                                                                class="form-control readonly"
-                                                               placeholder="2021.12.12 ~ 2021.12.19">
+                                                               placeholder="${exhibition.start_date} ~ ${exhibition.end_date}"
+                                                               value="${exhibition.start_date} ~ ${exhibition.end_date}">
                                                     </div>
                                                 </div>
                                                 <div class="col-auto">
@@ -206,7 +272,8 @@
                                                         <input type="text"
                                                                readonly
                                                                class="form-control readonly"
-                                                               placeholder="16:00" value="16:00">
+                                                               placeholder="${exhibition.start_time}"
+                                                               value="${exhibition.start_time}">
                                                     </div>
                                                 </div>
                                                 <div class="col-auto">
@@ -215,7 +282,8 @@
                                                         <input type="text"
                                                                readonly
                                                                class="form-control readonly"
-                                                               placeholder="19:00" value="19:00">
+                                                               placeholder="${exhibition.end_time}"
+                                                               value="${exhibition.end_time}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -227,7 +295,8 @@
                                                             <input type="text"
                                                                    name="exhibition-address"
                                                                    readonly
-                                                                   placeholder="서울특별시 관악구 남부순환로 1892"
+                                                                   placeholder="${exhibition.address}"
+                                                                   value="${exhibition.address}"
                                                                    class="form-control readonly">
                                                         </div>
                                                     </div>
@@ -238,7 +307,8 @@
                                                         <input type="text"
                                                                name="exhibition-address-detail"
                                                                readonly
-                                                               placeholder="4층"
+                                                               placeholder="${exhibition.address_details}"
+                                                               value="${exhibition.address_details}"
                                                                class="form-control readonly">
                                                     </div>
                                                 </div>
@@ -248,68 +318,51 @@
                                                 <div class="w-100 background"
                                                      style="padding-top: 40%;
                              background-image:url('../../../resources/admin/assets/images/bg-auth.jpg');"
+                                                     data-bs-address="${exhibition.address}"
+                                                     data-bs-map-label="${exhibition.title}"
                                                      id="map-div"></div>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label d-flex">홈페이지 주소<span
-                                                        data-sns-url="https://www.naver.com/"
+                                                        data-sns-url="${exhibition.homepage}"
                                                         class="cursor-pointer badge bg-dark float-end my-auto ms-1 link-move">링크 이동</span></label>
                                                 <input type="text"
                                                        name="homepage-url"
                                                        readonly
-                                                       placeholder="https://www.naver.com/"
+                                                       placeholder="${exhibition.homepage}"
+                                                       value="${exhibition.homepage}"
                                                        class="form-control readonly">
                                             </div>
                                             <div class="row join-writer-wrapper">
                                                 <div class="col-12 join-writer-inner">
-                                                    <div class="row join-writer-item">
-                                                        <div class="col-auto d-grid">
-                                                            <div class="mb-3">
-                                                                <label class="form-label d-flex">
-                                                                    참여 작가
-                                                                    <span data-sns-url="https://www.naver.com/"
-                                                                          class="cursor-pointer badge bg-dark float-end my-auto ms-1 link-move">링크 이동</span>
-                                                                </label>
+                                                    <c:forEach items="${exhibition.author}" var="author">
+                                                        <div class="row join-writer-item">
+                                                            <div class="col-auto d-grid">
+                                                                <div class="mb-3">
+                                                                    <label class="form-label d-flex">
+                                                                        참여 작가
+                                                                        <span data-sns-url="${author.url}"
+                                                                              class="cursor-pointer badge bg-dark float-end my-auto ms-1 link-move">링크 이동</span>
+                                                                    </label>
+                                                                    <input type="text"
+                                                                           name="writer"
+                                                                           readonly
+                                                                           placeholder="${author.name}"
+                                                                           value="${author.name}"
+                                                                           class="form-control readonly">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <label class="form-label empty-label"></label>
                                                                 <input type="text"
-                                                                       name="writer"
+                                                                       name="writer-url"
                                                                        readonly
-                                                                       placeholder="유병준"
+                                                                       placeholder="${author.url}"
+                                                                       value="${author.url}"
                                                                        class="form-control readonly">
                                                             </div>
                                                         </div>
-                                                        <div class="col-6">
-                                                            <label class="form-label empty-label"></label>
-                                                            <input type="text"
-                                                                   name="writer-url"
-                                                                   readonly
-                                                                   placeholder="http://www.naver.com"
-                                                                   class="form-control readonly">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row join-writer-item">
-                                                        <div class="col-auto d-grid">
-                                                            <div class="mb-3">
-                                                                <label class="form-label d-flex">
-                                                                    참여 작가
-                                                                    <span onclick="javascript:void(0);"
-                                                                          class="cursor-pointer badge bg-dark float-end my-auto ms-1">Move</span>
-                                                                </label>
-                                                                <input type="text"
-                                                                       name="writer"
-                                                                       readonly
-                                                                       placeholder="Input Enter Writer"
-                                                                       class="form-control readonly">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <label class="form-label empty-label"></label>
-                                                            <input type="text"
-                                                                   name="writer-url"
-                                                                   readonly
-                                                                   placeholder="Input Enter Writer Url"
-                                                                   class="form-control readonly">
-                                                        </div>
-                                                    </div>
+                                                    </c:forEach>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -319,7 +372,8 @@
                                                         <input type="text"
                                                                name="exhibition-type"
                                                                readonly
-                                                               placeholder="사진(Photography)"
+                                                               placeholder="${exhibition.category}"
+                                                               value="${exhibition.category}"
                                                                class="form-control readonly">
                                                     </div>
                                                 </div>
@@ -329,180 +383,60 @@
                                                         <input type="text"
                                                                readonly
                                                                class="form-control readonly"
-                                                               value="#awesome #neat">
+                                                               value="<c:forEach items="${exhibition.hashtag}" var="hashtag">#${hashtag.replaceAll("\"", "")} </c:forEach>">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label d-flex">상세 설명</label>
                                                 <%--TODO smart editor data to HTML --%>
-                                                <textarea class="form-control readonly"
-                                                          readonly
-                                                          id="detail-description"
-                                                          placeholder="Smart Editor"
-                                                          rows="5"></textarea>
+                                                <div class="smart-editor-content-div">
+                                                    ${exhibition.details}
+                                                </div>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label d-flex">관련 상품</label>
                                                 <div class="row row-cols-4">
-                                                    <div class="col">
-                                                        <div class="card product-box">
-                                                            <div class="card-body">
-                                                                <div class="product-action">
-                                                                    <a href="javascript: void(0);"
-                                                                       class="btn btn-info btn-xs waves-effect waves-light"><i
-                                                                            class="mdi mdi-details"></i></a>
-                                                                </div>
-                                                                <div class="bg-light">
-                                                                    <img src="../../../resources/admin/assets/images/products/product-1.png"
-                                                                         alt="product-pic"
-                                                                         class="img-fluid">
-                                                                </div>
+                                                    <c:if test="${exhibition.related_products.size() == 0}">
+                                                        <h4 class="no-item-text">관련 상품이 존재하지 않습니다.</h4>
+                                                    </c:if>
+                                                    <c:forEach items="${exhibition.related_products}" var="product">
+                                                        <div class="col">
+                                                            <div class="card product-box">
+                                                                <div class="card-body">
+                                                                    <div class="product-action">
+                                                                            <%-- TODO 새 창에서 상품 열기 --%>
+                                                                        <a href="javascript: void(0);"
+                                                                           class="btn btn-info btn-xs waves-effect waves-light"><i
+                                                                                class="mdi mdi-details"></i></a>
+                                                                    </div>
+                                                                    <div class="bg-light">
+                                                                        <img src="${product.img}"
+                                                                             alt="product-pic"
+                                                                             class="img-fluid">
+                                                                    </div>
 
-                                                                <div class="product-info">
-                                                                    <div class="row align-items-center">
-                                                                        <div class="col">
-                                                                            <h5 class="font-16 mt-0 sp-line-1"><a
-                                                                                    href="javascript:void(0);"
-                                                                                    class="text-dark">아폴론의 화살 티셔츠</a></h5>
-                                                                        </div>
-                                                                        <div class="col-auto">
-                                                                            <div class="product-price-tag">
-                                                                                ₩23,000
+                                                                    <div class="product-info">
+                                                                        <div class="row align-items-center">
+                                                                            <div class="col">
+                                                                                <h5 class="font-16 mt-0 sp-line-1"><a
+                                                                                        href="javascript:void(0);"
+                                                                                        class="text-dark">${product.title}</a>
+                                                                                </h5>
                                                                             </div>
-                                                                        </div>
-                                                                    </div> <!-- end row -->
-                                                                </div> <!-- end product info-->
+                                                                            <div class="col-auto">
+                                                                                <div class="product-price-tag">
+                                                                                    ₩${product.price}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div> <!-- end row -->
+                                                                    </div> <!-- end product info-->
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-
-                                                    <div class="col">
-                                                        <div class="card product-box">
-                                                            <div class="card-body">
-                                                                <div class="product-action">
-                                                                    <a href="javascript: void(0);"
-                                                                       class="btn btn-info btn-xs waves-effect waves-light"><i
-                                                                            class="mdi mdi-details"></i></a>
-                                                                </div>
-                                                                <div class="bg-light">
-                                                                    <img src="../../../resources/admin/assets/images/products/product-1.png"
-                                                                         alt="product-pic"
-                                                                         class="img-fluid">
-                                                                </div>
-
-                                                                <div class="product-info">
-                                                                    <div class="row align-items-center">
-                                                                        <div class="col">
-                                                                            <h5 class="font-16 mt-0 sp-line-1"><a
-                                                                                    href="javascript:void(0);"
-                                                                                    class="text-dark">아폴론의 화살 티셔츠</a></h5>
-                                                                        </div>
-                                                                        <div class="col-auto">
-                                                                            <div class="product-price-tag">
-                                                                                ₩23,000
-                                                                            </div>
-                                                                        </div>
-                                                                    </div> <!-- end row -->
-                                                                </div> <!-- end product info-->
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col">
-                                                        <div class="card product-box">
-                                                            <div class="card-body">
-                                                                <div class="product-action">
-                                                                    <a href="javascript: void(0);"
-                                                                       class="btn btn-info btn-xs waves-effect waves-light"><i
-                                                                            class="mdi mdi-details"></i></a>
-                                                                </div>
-                                                                <div class="bg-light">
-                                                                    <img src="../../../resources/admin/assets/images/products/product-1.png"
-                                                                         alt="product-pic"
-                                                                         class="img-fluid">
-                                                                </div>
-
-                                                                <div class="product-info">
-                                                                    <div class="row align-items-center">
-                                                                        <div class="col">
-                                                                            <h5 class="font-16 mt-0 sp-line-1"><a
-                                                                                    href="javascript:void(0);"
-                                                                                    class="text-dark">아폴론의 화살 티셔츠</a></h5>
-                                                                        </div>
-                                                                        <div class="col-auto">
-                                                                            <div class="product-price-tag">
-                                                                                ₩23,000
-                                                                            </div>
-                                                                        </div>
-                                                                    </div> <!-- end row -->
-                                                                </div> <!-- end product info-->
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col">
-                                                        <div class="card product-box">
-                                                            <div class="card-body">
-                                                                <div class="product-action">
-                                                                    <%-- TODO 새 창에서 상품 열기 --%>
-                                                                    <a href="javascript: void(0);"
-                                                                       class="btn btn-info btn-xs waves-effect waves-light"><i
-                                                                            class="mdi mdi-details"></i></a>
-                                                                </div>
-                                                                <div class="bg-light">
-                                                                    <img src="../../../resources/admin/assets/images/products/product-1.png"
-                                                                         alt="product-pic"
-                                                                         class="img-fluid">
-                                                                </div>
-
-                                                                <div class="product-info">
-                                                                    <div class="row align-items-center">
-                                                                        <div class="col">
-                                                                            <h5 class="font-16 mt-0 sp-line-1"><a
-                                                                                    href="javascript:void(0);"
-                                                                                    class="text-dark">아폴론의 화살 티셔츠</a></h5>
-                                                                        </div>
-                                                                        <div class="col-auto">
-                                                                            <div class="product-price-tag">
-                                                                                ₩23,000
-                                                                            </div>
-                                                                        </div>
-                                                                    </div> <!-- end row -->
-                                                                </div> <!-- end product info-->
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    </c:forEach>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-12 text-end">
-                                            <button type="button"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#exhibition-inactive-modal"
-                                                    data-bs-exhibition-no="1"
-                                                    class="btn btn-secondary waves-effect waves-light">비활성화
-                                            </button>
-                                            <button type="button"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#exhibition-agree-modal"
-                                                    data-bs-exhibition-no="1"
-                                                    class="btn btn-success waves-effect waves-light">전시 승인
-                                            </button>
-                                            <button type="button"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#exhibition-reject-modal"
-                                                    class="btn btn-danger waves-effect waves-light">전시 반려
-                                            </button>
-                                            <button type="button"
-                                                    class="btn btn-dark waves-effect waves-light">수정하기
-                                            </button>
-                                            <button type="button"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#exhibition-delete-modal"
-                                                    data-bs-exhibition-no="1"
-                                                    class="btn btn-danger waves-effect waves-light">삭제
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -541,22 +475,22 @@
         <div class="modal-content">
             <div class="modal-header bg-light">
                 <h4 class="modal-title"
-                    id="exhibitionDeleteModalLabel">Exhibition Delete</h4>
+                    id="exhibitionDeleteModalLabel">전시 삭제</h4>
                 <button type="button"
                         class="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
-                <p>Would you like to cancel service suspension for 'Yoo Byung-jun'?</p>
+                <p>'<span id="modal-title">${exhibition.title}</span>' 전시 정보를 삭제하시겠어요?</p>
                 <div class="mt-3">
                     <div class="btn-container mt-3 text-end">
                         <button data-bs-dismiss="modal"
                                 class="btn btn-sm btn-dark waves-effect waves-light"
-                                type="button">Cancel
+                                type="button">취소
                         </button>
                         <button data-bs-dismiss="modal"
-                                class="btn btn-sm btn-danger waves-effect waves-light">Delete
+                                class="btn btn-sm btn-danger waves-effect waves-light">삭제
                         </button>
                     </div>
                 </div>
@@ -573,22 +507,22 @@
         <div class="modal-content">
             <div class="modal-header bg-light">
                 <h4 class="modal-title"
-                    id="exhibitionAgreeModalLabel">Exhibition Agree</h4>
+                    id="exhibitionAgreeModalLabel">전시 승인</h4>
                 <button type="button"
                         class="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
-                <p>Would you like to cancel service suspension for 'Yoo Byung-jun'?</p>
+                <p>'<span id="modal-title">${exhibition.title}</span>' 전시를 승인하시겠어요?</p>
                 <div class="mt-3">
                     <div class="btn-container mt-3 text-end">
                         <button data-bs-dismiss="modal"
                                 class="btn btn-sm btn-dark waves-effect waves-light"
-                                type="button">Cancel
+                                type="button">취소
                         </button>
                         <button data-bs-dismiss="modal"
-                                class="btn btn-sm btn-success waves-effect waves-light">Agree
+                                class="btn btn-sm btn-success waves-effect waves-light">승인
                         </button>
                     </div>
                 </div>
@@ -605,29 +539,29 @@
         <div class="modal-content">
             <div class="modal-header bg-light">
                 <h4 class="modal-title"
-                    id="exhibitionRejectModalLabel">Exhibition Reject</h4>
+                    id="exhibitionRejectModalLabel">전시 반려</h4>
                 <button type="button"
                         class="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
-                <p>Would you like to cancel service suspension for 'Yoo Byung-jun'?</p>
+                <p>'<span id="modal-title">${exhibition.title}</span>' 전시 정보를 반려하시겠어요?</p>
                 <div class="mb-3">
                     <label class="form-label">반려 사유</label>
                     <input type="text"
                            name="rejected-cause"
-                           placeholder="Input Rejected Cause"
+                           placeholder="반려 사유를 입력해주세요."
                            class="form-control">
                 </div>
                 <div class="mt-3">
                     <div class="btn-container mt-3 text-end">
                         <button data-bs-dismiss="modal"
                                 class="btn btn-sm btn-dark waves-effect waves-light"
-                                type="button">Cancel
+                                type="button">취소
                         </button>
                         <button data-bs-dismiss="modal"
-                                class="btn btn-sm btn-danger waves-effect waves-light">Reject
+                                class="btn btn-sm btn-danger waves-effect waves-light">반려
                         </button>
                     </div>
                 </div>
@@ -644,22 +578,55 @@
         <div class="modal-content">
             <div class="modal-header bg-light">
                 <h4 class="modal-title"
-                    id="exhibitionInActiveModalLabel">Exhibition InActive</h4>
+                    id="exhibitionInActiveModalLabel">전시 비활성화</h4>
                 <button type="button"
                         class="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
-                <p>Would you like to cancel service suspension for 'Yoo Byung-jun'?</p>
+                <p>'<span id="modal-title">${exhibition.title}</span>' 전시를 비활성화 하시겠어요?</p>
                 <div class="mt-3">
                     <div class="btn-container mt-3 text-end">
                         <button data-bs-dismiss="modal"
                                 class="btn btn-sm btn-dark waves-effect waves-light"
-                                type="button">Cancel
+                                type="button">취소
                         </button>
                         <button data-bs-dismiss="modal"
-                                class="btn btn-sm btn-secondary waves-effect waves-light">InActive
+                                class="btn btn-sm btn-secondary waves-effect waves-light">비활성화
+                        </button>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
+
+<div class="modal fade"
+     id="exhibition-active-modal"
+     tabindex="-1"
+     role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h4 class="modal-title"
+                    id="exhibitionActiveModalLabel">전시 활성화</h4>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <p>'<span id="modal-title">${exhibition.title}</span>' 전시를 활성화 하시겠어요?</p>
+                <div class="mt-3">
+                    <div class="btn-container mt-3 text-end">
+                        <button data-bs-dismiss="modal"
+                                class="btn btn-sm btn-dark waves-effect waves-light"
+                                type="button">취소
+                        </button>
+                        <button data-bs-dismiss="modal"
+                                class="btn btn-sm btn-primary waves-effect waves-light">활성화
                         </button>
                     </div>
                 </div>
@@ -722,6 +689,10 @@
 <!-- third party js form end -->
 <!-- Init js-->
 <script src="../../../resources/admin/assets/js/pages/form-advanced.init.js"></script>
+<!-- common js -->
+<script src="../../../resources/admin/assets/js/common.js"></script>
+<!-- server js -->
+<script src="../../../resources/admin/assets/js/server.js"></script>
 <!-- Kakao Map -->
 <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cde34104a73ef798b0fc9edc7fb3bc5c&libraries=services,drawing"></script>
@@ -734,8 +705,8 @@
             console.log($button.data());
             let $modal = $(this);
             $modal.find('.btn-container button:nth-child(2)').click(function (e) {
-                console.log('click event');
-                $(this).off('click');
+                const data = {"exhibition_no": $button.data().bsExhibitionNo};
+                normalFetchFunction('/admin/exhibition/delete', 'POST', data, exhibitionDeleteDoneFunction);
             });
         });
         $('#exhibition-agree-modal').on('show.bs.modal', function (event) {
@@ -744,8 +715,8 @@
             console.log($button.data());
             let $modal = $(this);
             $modal.find('.btn-container button:nth-child(2)').click(function (e) {
-                console.log('click event');
-                $(this).off('click');
+                const data = {"exhibition_no": $button.data().bsExhibitionNo};
+                normalFetchFunction('/admin/exhibition/agree', 'POST', data, exhibitionAgreeDoneFunction);
             });
         });
         $('#exhibition-reject-modal').on('show.bs.modal', function (event) {
@@ -754,8 +725,14 @@
             console.log($button.data());
             let $modal = $(this);
             $modal.find('.btn-container button:nth-child(2)').click(function (e) {
-                console.log('click event');
-                $(this).off('click');
+                let reject = $('input[name=rejected-cause]').val()
+                if (reject.length > 0 && reject.length < 500) {
+                    const data = {
+                        "exhibtion_no": $button.data().bsExhibitionNo,
+                        "reject_details": reject
+                    }
+                    normalFetchFunction('/admin/exhibition/reject', 'POST', data, exhibitionRejectDoneFunction)
+                }
             });
         });
         $('#exhibition-inactive-modal').on('show.bs.modal', function (event) {
@@ -764,9 +741,55 @@
             console.log($button.data());
             let $modal = $(this);
             $modal.find('.btn-container button:nth-child(2)').click(function (e) {
-                console.log('click event');
-                $(this).off('click');
+                const data = {"exhibition_no": $button.data().bsExhibitionNo};
+                normalFetchFunction('/admin/exhibition/active', 'POST', data, exhibitionActiveStatusFunction);
             });
+        });
+        $('#exhibition-active-modal').on('show.bs.modal', function (event) {
+            // do something...
+            let $button = $(event.relatedTarget)
+            console.log($button.data());
+            let $modal = $(this);
+            $modal.find('.btn-container button:nth-child(2)').click(function (e) {
+                const data = {"exhibition_no": $button.data().bsExhibitionNo};
+                normalFetchFunction('/admin/exhibition/active', 'POST', data, exhibitionActiveStatusFunction);
+            });
+        });
+
+        $('#exhibition-delete-modal').on('hidden.bs.modal', function (event) {
+            // do something...
+            let $button = $(event.relatedTarget)
+            console.log($button.data());
+            let $modal = $(this);
+            $modal.find('.btn-container button:nth-child(2)').off('click');
+        });
+        $('#exhibition-agree-modal').on('hidden.bs.modal', function (event) {
+            // do something...
+            let $button = $(event.relatedTarget)
+            console.log($button.data());
+            let $modal = $(this);
+            $modal.find('.btn-container button:nth-child(2)').off('click');
+        });
+        $('#exhibition-reject-modal').on('hidden.bs.modal', function (event) {
+            // do something...
+            let $button = $(event.relatedTarget)
+            console.log($button.data());
+            let $modal = $(this);
+            $modal.find('.btn-container button:nth-child(2)').off('click');
+        });
+        $('#exhibition-inactive-modal').on('hidden.bs.modal', function (event) {
+            // do something...
+            let $button = $(event.relatedTarget)
+            console.log($button.data());
+            let $modal = $(this);
+            $modal.find('.btn-container button:nth-child(2)').off('click');
+        });
+        $('#exhibition-active-modal').on('hidden.bs.modal', function (event) {
+            // do something...
+            let $button = $(event.relatedTarget)
+            console.log($button.data());
+            let $modal = $(this);
+            $modal.find('.btn-container button:nth-child(2)').off('click');
         });
     });
 </script>
@@ -774,12 +797,44 @@
     $('.link-move').on('click', function () {
         window.open($(this).data('sns-url'), '_blank');
     })
+
+    $('#exhibition-edit').on('click', function () {
+        window.location.href='/admin/exhibition/update.do?no='+$(this).data().bsExhibitionNo;
+    })
+
+    const exhibitionActiveStatusFunction = (res) => {
+        if (res.status === 200) {
+            alert('상태가 변경되었습니다.');
+            window.location.reload();
+        }
+    }
+
+    const exhibitionRejectDoneFunction = (res) => {
+        if(res.status === 200) {
+            alert('전시 등록 요청이 반려되었습니다.');
+            window.location.reload();
+        }
+    }
+
+    const exhibitionDeleteDoneFunction = (res) => {
+        if(res.status === 200) {
+            alert('전시 정보를 삭제했습니다.');
+            window.location.replace('/admin/exhibition/process.do');
+        }
+    }
+    const exhibitionAgreeDoneFunction = (res) => {
+        if(res.status === 200) {
+            alert('전시 정보를 승인했습니다.');
+            window.location.reload();
+        }
+    }
 </script>
 
 <script>
     const mapContainer = document.querySelector('#map-div');
-    const kakao_map_target_address = '서울시 관악구 남부순환로 1892';
-    const kakap_map_label = '우리회사';
+    const kakao_map_target_address = mapContainer.dataset.bsAddress;
+    const kakap_map_label = mapContainer.dataset.bsTitle;
+
     kakaoMapInit(mapContainer, kakao_map_target_address);
 
     /**
@@ -809,7 +864,7 @@
     function displayKakaoMap(mapContainer, latitude, longitude, label) {
         const mapOption = {
             center: new kakao.maps.LatLng(latitude, longitude), // 지도의 중심좌표
-            level: 4, // 지도의 확대 레벨
+            level: 2, // 지도의 확대 레벨
             draggable: false
         };
         const map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다

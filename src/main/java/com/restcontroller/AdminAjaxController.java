@@ -1,20 +1,28 @@
 package com.restcontroller;
 
+import com.google.gson.Gson;
 import com.model.admin.auth.request.AdminLoginRequest;
+import com.model.admin.exhibition.request.*;
 import com.model.admin.user.request.AdminUserSuspendRequest;
 import com.model.admin.user.request.AdminUserUnSuspendRequest;
+import com.model.common.MFile;
 import com.response.DefaultRes;
 import com.response.StatusCode;
+import com.service.ExhibitionService;
 import com.service.UserService;
+import com.util.Constant;
 import com.util.FileUploadUtility;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -26,12 +34,15 @@ public class AdminAjaxController {
     private UserService userService;
 
     @Autowired
+    private ExhibitionService exhibitionService;
+
+    @Autowired
     private FileUploadUtility fileUploadUtility;
     /* Service AutoWired END */
 
     @PostMapping("/login")
     public ResponseEntity AdminLogin(@RequestBody AdminLoginRequest request, HttpSession session) {
-        if (request.getId().equals("root") && request.getPassword().equals("root")) {
+        if (request.getId().equals("admin") && request.getPassword().equals("admin")) {
             // AUTH SUCCESS -> SESSION SET
             session.removeAttribute("adminLogin");
             session.setAttribute("adminLogin", request.getId());
@@ -62,6 +73,52 @@ public class AdminAjaxController {
     @PostMapping("/user/unsuspend")
     public ResponseEntity UnSuspendUser(@RequestBody AdminUserUnSuspendRequest request) {
         return userService.unsuspendUser(request);
+    }
+
+    @PostMapping("/exhibition/active")
+    public ResponseEntity SwitchExhibitionActiveStatus(@RequestBody AdminExhibitionActiveSwitchRequest request) {
+        return exhibitionService.switchExhibitionActiveStatus(request);
+    }
+
+    @PostMapping("/exhibition/delete")
+    public ResponseEntity DeleteExhibition(@RequestBody AdminExhibitionDeleteRequest request) {
+        return exhibitionService.deleteExhibition(request);
+    }
+
+    @PostMapping("/exhibition/reject")
+    public ResponseEntity RejectExhibition(@RequestBody AdminExhibitionRejectRequest request) {
+        return exhibitionService.rejectExhibition(request);
+    }
+
+    @PostMapping("/exhibition/agree")
+    public ResponseEntity AgreeExhibition(@RequestBody AdminExhibitionAgreeRequest request) {
+        return exhibitionService.agreeExhibition(request);
+    }
+
+    @GetMapping("/exhibition/product/list")
+    public ResponseEntity GetProductListForExhibition(@RequestParam("no") int exhibition_no) {
+        return exhibitionService.getProductListForExhibition(exhibition_no);
+    }
+
+    @PostMapping("/exhibition/product/select")
+    public ResponseEntity GetSelectedProductInfoForExhibition(@RequestBody AdminExhibitionProductSelectRequest request) {
+        return exhibitionService.getSelectedProductInfoForExhibition(request);
+    }
+
+    @PostMapping("/exhibition/edit")
+    public ResponseEntity EditExhibition(HttpServletRequest servletRequest, @RequestParam("exhibition") String body) {
+        ExhibitionEditRequest request = new Gson().fromJson(body, ExhibitionEditRequest.class);
+        MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) servletRequest;
+        Map<String, MultipartFile> fileMap = multipartHttpServletRequest.getFileMap();
+        for (String key : fileMap.keySet()) {
+            if (key.equals("main_img")) {
+                if (!fileMap.get(key).isEmpty()) {
+                    MFile mfile = fileUploadUtility.uploadFile(fileMap.get(key), Constant.CDN_PATH.EXHIBITION);
+                    request.setImg(mfile.getUrl());
+                }
+            }
+        }
+        return exhibitionService.editExhibition(request);
     }
 
 }
