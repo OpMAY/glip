@@ -1,13 +1,13 @@
 package com.controller;
 
 import com.model.basic.exhibition.ExhibitionStatus;
+import com.service.CategoryService;
 import com.service.ExhibitionService;
 import com.service.ProductService;
 import com.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.UnsatisfiedServletRequestParameterException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +27,9 @@ public class AdminController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private CategoryService categoryService;
     /* Service AutoWired END */
 
     @GetMapping("/login.do")
@@ -149,7 +152,7 @@ public class AdminController {
     @GetMapping("/category.do")
     public ModelAndView CategoryManagePage() {
         VIEW = new ModelAndView("/admin/category-manage");
-        // TODO Default category data
+        VIEW.addObject("category", categoryService.getCategoryManagePage());
         return VIEW;
     }
 

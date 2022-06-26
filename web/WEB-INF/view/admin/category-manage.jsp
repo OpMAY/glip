@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -157,60 +158,25 @@
                         <label class="form-label">전시 카테고리</label>
                         <!-- Exhibition Category Inner -->
                         <div class="row row-cols-6 exhibition-category-inner">
-                          <div class="col exhibition-category-item"
-                               data-count="1">
-                            <div class="mb-3">
-                              <label class="form-label">
-                                <span>test1</span>
-                                <span class="badge badge-soft-danger cursor-pointer my-auto ms-1 me-1">삭제</span>
-                                <span class="badge badge-soft-secondary cursor-pointer my-auto ms-1"
-                                      data-bs-category-no="1"
-                                      data-bs-toggle="modal"
-                                      data-bs-target="#exhibition-category-update">수정</span>
-                              </label>
-                              <div class="background"
-                                   data-src="bg-auth.jpg"
-                                   style="padding-top:20%;
-                              background-image:url('../../../resources/admin/assets/images/bg-auth.jpg');"></div>
-                              <span class="mt-1 badge badge-soft-primary order">1</span>
+                          <c:forEach items="${category.exhibition_category}" var="category">
+                            <div class="col exhibition-category-item"
+                                 data-count="${category.order}">
+                              <div class="mb-3">
+                                <label class="form-label">
+                                  <span>${category.name}</span>
+                                  <span class="badge badge-soft-danger cursor-pointer my-auto ms-1 me-1">삭제</span>
+                                  <span class="badge badge-soft-secondary cursor-pointer my-auto ms-1"
+                                        data-bs-category-no="${category.order}"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#exhibition-category-update">수정</span>
+                                </label>
+                                <div class="background"
+                                     data-src="bg-auth.jpg"
+                                     style="padding-top: 100%;background-image:url('${category.img}');"></div>
+                                <span class="mt-1 badge badge-soft-primary order">${category.order}</span>
+                              </div>
                             </div>
-                          </div>
-                          <div class="col exhibition-category-item"
-                               data-count="2">
-                            <div class="mb-3">
-                              <label class="form-label">
-                                <span>test2</span>
-                                <span class="badge badge-soft-danger cursor-pointer my-auto ms-1 me-1">삭제</span>
-                                <span class="badge badge-soft-secondary cursor-pointer my-auto ms-1"
-                                      data-bs-category-no="1"
-                                      data-bs-toggle="modal"
-                                      data-bs-target="#exhibition-category-update">수정</span>
-                              </label>
-                              <div class="background"
-                                   data-src="bg-auth.jpg"
-                                   style="padding-top:20%;
-                              background-image:url('../../../resources/admin/assets/images/bg-auth.jpg');"></div>
-                              <span class="mt-1 badge badge-soft-primary order">2</span>
-                            </div>
-                          </div>
-                          <div class="col exhibition-category-item"
-                               data-count="3">
-                            <div class="mb-3">
-                              <label class="form-label">
-                                <span>test3</span>
-                                <span class="badge badge-soft-danger cursor-pointer my-auto ms-1 me-1">삭제</span>
-                                <span class="badge badge-soft-secondary cursor-pointer my-auto ms-1"
-                                      data-bs-category-no="1"
-                                      data-bs-toggle="modal"
-                                      data-bs-target="#exhibition-category-update">수정</span>
-                              </label>
-                              <div class="background"
-                                   data-src="bg-auth.jpg"
-                                   style="padding-top:20%;
-                              background-image:url('../../../resources/admin/assets/images/bg-auth.jpg');"></div>
-                              <span class="mt-1 badge badge-soft-primary order">3</span>
-                            </div>
-                          </div>
+                          </c:forEach>
                         </div>
                         <!--Exhibition Category Add Wrapper -->
                         <div class="mb-3 category-item-add-wrapper">
@@ -228,7 +194,7 @@
                             <label class="form-label">추천 해시태그</label>
                             <input type="text"
                                    class="selectize-close-btn"
-                                   value="유병준,관리자 지정">
+                                   value="<c:forEach items="${category.recommend_hashtag}" var="hashtag">${hashtag.replaceAll("\"", "")}<c:if test="${hashtag != category.recommend_hashtag[category.recommend_hashtag.size() - 1]}">,</c:if></c:forEach>">
                           </div>
                         </div>
                       </div>
@@ -237,20 +203,22 @@
                           <div>
                             <label class="form-label">상품 카테고리</label>
                             <div class="row row-cols-6 product-category-inner">
-                              <div class="col product-category-item"
-                                   data-category-no="1">
-                                <label class="form-label d-flex">
-                                  <span class="title">Category</span>
-                                  <span class="badge my-auto cursor-pointer badge-soft-danger ms-1 me-1">삭제</span>
-                                  <span class="badge my-auto cursor-pointer badge-soft-secondary"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#product-category-update"
-                                        data-category-no="1">수정</span>
-                                </label>
-                                <div>
-                                  <span class="badge cursor-pointer badge-soft-primary">1</span>
+                              <c:forEach items="${category.product_category}" var="category">
+                                <div class="col product-category-item"
+                                     data-category-no="${category.order}">
+                                  <label class="form-label d-flex">
+                                    <span class="title">${category.name}</span>
+                                    <span class="badge my-auto cursor-pointer badge-soft-danger ms-1 me-1">삭제</span>
+                                    <span class="badge my-auto cursor-pointer badge-soft-secondary"
+                                          data-bs-toggle="modal"
+                                          data-bs-target="#product-category-update"
+                                          data-category-no="${category.order}">수정</span>
+                                  </label>
+                                  <div>
+                                    <span class="badge cursor-pointer badge-soft-primary">${category.order}</span>
+                                  </div>
                                 </div>
-                              </div>
+                              </c:forEach>
                             </div>
                             <div class="mt-3 category-item-add-wrapper">
                               <button type="button"
