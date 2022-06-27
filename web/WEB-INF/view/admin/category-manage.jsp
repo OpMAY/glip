@@ -273,7 +273,7 @@
                 aria-label="Close"></button>
       </div>
       <div class="modal-body p-4">
-        <p>Would you like to cancel service suspension for 'Yoo Byung-jun'?</p>
+        <p>전시 카테고리 정보를 입력하세요.</p>
         <div class="mb-3">
           <label class="form-label">메인 이미지를 업로드해주세요.</label>
           <div class="input-group">
@@ -308,10 +308,10 @@
         <div class="btn-container mt-3 text-end">
           <button data-bs-dismiss="modal"
                   class="btn btn-sm btn-dark waves-effect waves-light"
-                  type="button">Cancel
+                  type="button">취소
           </button>
           <button data-bs-dismiss="modal"
-                  class="btn btn-sm btn-success waves-effect waves-light">Add
+                  class="btn btn-sm btn-success waves-effect waves-light">추가
           </button>
         </div>
       </div><!-- /.modal-content -->
@@ -334,7 +334,7 @@
                 aria-label="Close"></button>
       </div>
       <div class="modal-body p-4">
-        <p>Would you like to cancel service suspension for 'Yoo Byung-jun'?</p>
+        <p>전시 카테고리 정보를 입력하세요.</p>
         <div class="mb-3">
           <label class="form-label">메인 이미지를 업로드해주세요.</label>
           <div class="input-group">
@@ -369,11 +369,11 @@
         <div class="btn-container mt-3 text-end">
           <button data-bs-dismiss="modal"
                   class="btn btn-sm btn-dark waves-effect waves-light"
-                  type="button">Cancel
+                  type="button">취소
           </button>
           <button data-bs-dismiss="modal"
                   data-count="0"
-                  class="btn btn-sm btn-success waves-effect waves-light">Update
+                  class="btn btn-sm btn-success waves-effect waves-light">수정
           </button>
         </div>
       </div><!-- /.modal-content -->
@@ -396,7 +396,7 @@
                 aria-label="Close"></button>
       </div>
       <div class="modal-body p-4">
-        <p>Would you like to cancel service suspension for 'Yoo Byung-jun'?</p>
+        <p>상품 카테고리 정보를 입력하세요.</p>
         <div class="mb-3">
           <label class="form-label">카테고리 명을 입력해주세요.</label>
           <input type="text"
@@ -414,10 +414,10 @@
         <div class="btn-container mt-3 text-end">
           <button data-bs-dismiss="modal"
                   class="btn btn-sm btn-dark waves-effect waves-light"
-                  type="button">Cancel
+                  type="button">취소
           </button>
           <button data-bs-dismiss="modal"
-                  class="btn btn-sm btn-success waves-effect waves-light">Add
+                  class="btn btn-sm btn-success waves-effect waves-light">추가
           </button>
         </div>
       </div><!-- /.modal-content -->
@@ -440,7 +440,7 @@
                 aria-label="Close"></button>
       </div>
       <div class="modal-body p-4">
-        <p>Would you like to cancel service suspension for 'Yoo Byung-jun'?</p>
+        <p>상품 카테고리 정보를 입력하세요.</p>
         <div class="mb-3">
           <label class="form-label">카테고리 명을 입력해주세요.</label>
           <input type="text"
@@ -458,11 +458,11 @@
         <div class="btn-container mt-3 text-end">
           <button data-bs-dismiss="modal"
                   class="btn btn-sm btn-dark waves-effect waves-light"
-                  type="button">Cancel
+                  type="button">취소
           </button>
           <button data-bs-dismiss="modal"
                   data-category-no="0"
-                  class="btn btn-sm btn-success waves-effect waves-light">Update
+                  class="btn btn-sm btn-success waves-effect waves-light">수정
           </button>
         </div>
       </div><!-- /.modal-content -->
@@ -593,7 +593,7 @@
         });
         /** Image Item Control */
         $('#exhibition-category-add .btn-container button:last-child').click(function () {
-            /** TODO Fetch*/
+            /** TODO 전시 카테고리 추가 Fetch*/
             addExhibitionCategoryItem({
                 category_image: category_image,
                 category_image_name: $('[name="category-image-name"]').val(),
@@ -628,20 +628,20 @@
         $('.exhibition-category-item[data-count="' + count + '"]').find('.order').text(order);
     }
 
-    const createExhibitionCategoryItem = ({category_image, category_image_name, category_name, count, order}) => {
-        return `<div class="col exhibition-category-item" data-count="${count}">
-                  <div class="mb-3">
-                    <label class="form-label">
-                      <span>${category_name}</span>
-                      <span class="badge badge-soft-danger cursor-pointer my-auto ms-1 me-1">삭제</span>
-                      <span class="badge badge-soft-secondary cursor-pointer my-auto ms-1" data-bs-category-no="${count}" data-bs-toggle="modal" data-bs-target="#exhibition-category-update">수정</span>
-                    </label>
-                    <div class="background"
-                    data-src="${category_image_name}"
-                    style="padding-top:20%; background-image:url('${category_image}')"></div>
-                    <span class="mt-1 badge badge-soft-primary order">${order}</span>
-                  </div>
-                </div>`;
+    const createExhibitionCategoryItem = (category_image, category_image_name, category_name, count, order) => {
+        return '<div class="col exhibition-category-item" data-count="' + count + '">' +
+               '   <div class="mb-3">' +
+               '     <label class="form-label">' +
+               '       <span>' + category_name + '</span>' +
+               '       <span class="badge badge-soft-danger cursor-pointer my-auto ms-1 me-1">삭제</span>' +
+               '       <span class="badge badge-soft-secondary cursor-pointer my-auto ms-1" data-bs-category-no="' + count + '" data-bs-toggle="modal" data-bs-target="#exhibition-category-update">수정</span>' +
+               '     </label>' +
+               '     <div class="background"' +
+               '     data-src="' + category_image_name + '"' +
+               '     style="padding-top:20%; background-image:url(\'' + category_image + '\')"></div>' +
+               '     <span class="mt-1 badge badge-soft-primary order">' + order + '</span>' +
+               '   </div>' +
+               '</div>';
     }
     /** Exhibition Category End */
 
