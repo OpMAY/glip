@@ -19,9 +19,11 @@
     window.jQuery.FileUpload.init()
 }(), 0 < $('[data-plugins="dropify"]').length && $('[data-plugins="dropify"]').dropify({
     messages: {
-        default: "Drag and drop a file here or click",
-        replace: "Drag and drop or click to replace",
-        remove: "Remove",
-        error: "Ooops, something wrong appended."
-    }, error: {fileSize: "The file size is too big (1M max)."}
+        default: "클릭하거나 이미지를 여기에 드래그해주세요.",
+        replace: "수정하려면 클릭하거나 이미지를 여기에 드래그해주세요.",
+        remove: "삭제",
+        error: "오류가 발생했어요."
+    }, error: {fileSize: "파일 크기가 너무 커요 (최대 크기 : 10MB)"}
+}).on('dropify.beforeClear', function(event, element) {
+    $(event.target).data().defaultFile = undefined;
 });

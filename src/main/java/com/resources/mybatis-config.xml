@@ -9,5 +9,6 @@
         <setting name="jdbcTypeForNull" value="NULL"/>
     </settings>
     <typeAliases>
+        <typeAlias alias="AdminUserListPage" type="com.model.admin.user.response.AdminUserListPage"/>
     </typeAliases>
 </configuration>

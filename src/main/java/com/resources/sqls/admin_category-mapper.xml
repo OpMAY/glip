@@ -3,5 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mapper.AdminCategoryMapper">
-
+    <resultMap id="AdminCategory" type="com.model.basic.admin.category.AdminCategory">
+        <result property="exhibition_category" column="exhibition_category" javaType="com.model.basic.admin.category.ExhibitionCategory" typeHandler="com.middleware.JsonArrayObjectTypeHandler"/>
+        <result property="product_category" column="product_category" javaType="com.model.basic.admin.category.ProductCategory" typeHandler="com.middleware.JsonArrayObjectTypeHandler"/>
+        <result property="recommend_hashtag" column="recommend_hashtag" typeHandler="com.middleware.StringArrayListTypeHandler"/>
+    </resultMap>
+    <select id="getCategoryManagePage" resultType="AdminCategory" resultMap="AdminCategory">
+        select * from admin_category WHERE no = 1;
+    </select>
 </mapper>
